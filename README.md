@@ -1,4 +1,4 @@
-# Project-Group-name-
+# One-Team
 Dự án môn Công nghệ phần mềm - Thầy Trương Anh Hoàng
 
 Thành viên:
