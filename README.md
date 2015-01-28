@@ -7,3 +7,5 @@ Thành viên:
 3. Trần Tuấn Linh
 4. Doãn Thị Hiền
 5. Phạm Khôi Nguyên
+
+Dự án: Xây dựng ứng dụng trên mobile điều khiển máy tính từ xa
