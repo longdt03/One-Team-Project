@@ -46,7 +46,7 @@ public class Action {
 	System.exit(0);
     }      
     
-    public static void doLoggingOff() throws IOException {
+    public static void doLogOff() throws IOException {
         System.out.println("Logging Off!");
         Runtime runtime = Runtime.getRuntime();
 	Process proc = runtime.exec(Config.LOGGING_OFF);
