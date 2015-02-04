@@ -55,8 +55,8 @@ public class Main implements ServerListener {
                 Action.doRestart(Integer.valueOf(msg[1]));
             } else if ("hibernate".equals(msg[0])) {
                 Action.doHibernate(Integer.valueOf(msg[1]));
-            } else if ("logging_off".equals(msg[0])) {
-                Action.doLoggingOff();
+            } else if ("log_off".equals(msg[0])) {
+                Action.doLogOff();
             }
         } catch (Exception e) {
             e.printStackTrace();
