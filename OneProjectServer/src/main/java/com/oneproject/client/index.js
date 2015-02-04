@@ -1,5 +1,4 @@
 var ws = new WebSocket("ws://127.0.0.1:1234/");
-ws.binaryType = "arraybuffer";
 
 ws.onopen = function () {
     alert("Opened");
@@ -8,6 +7,8 @@ ws.onopen = function () {
 };
 
 ws.onmessage = function (evt) {
+	document.getElementById ("status").innerHTML = "Status: Hien thong inh qua ^_^" 
+
 };
 
 ws.onclose = function () {

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title> REMOTE CONTROLLER </title>
+</head>
     <body>
-        <h1>WebSocket Client</h1>
-        <form>
-            IP Address:
-            <input type="text" id="ipaddress" name="ip_address">
-            <input type="button" id="connect" value="Connect" ><br>
-        </form>  
+        <h1> WebSocket Client</h1>
+        <div>
+        	<form>
+            	IP Address:
+            	<input type="text" id="ipaddress" name="ip_address">
+            	<input type="button" id="connect" value="Connect" ><br>
+        	</form>  
+        </div>
         <p id="status">Status: Disconnect.</p>
         <input type="button" id="shutdown" value="Shutdown" ><br>
         <script src="index.js"></script>
