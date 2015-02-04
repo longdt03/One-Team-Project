@@ -5,6 +5,7 @@
  */
 package com.oneproject.server.core;
 
+import com.oneproject.server.helper.Config;
 import org.eclipse.jetty.server.Server;
 
 /**
@@ -22,7 +23,7 @@ public class WebSocketServer extends Thread {
     public void run() {
         super.run();
         try {
-            Server server = new Server(1234);
+            Server server = new Server(Config.PORT);
             server.setHandler(this.mHandler);
             server.setStopTimeout(0);
             server.start();
