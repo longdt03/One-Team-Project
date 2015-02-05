@@ -69,20 +69,6 @@ public class MyWebSocketHandler extends WebSocketHandler {
     public void configure(WebSocketServletFactory factory) {
         factory.register(MyWebSocketHandler.class);
     }
-
-    public void sendImage(byte[] data) {
-        if (mSession == null) {
-            return;
-        }
-
-        try {
-            ByteBuffer byteBuffer = ByteBuffer.wrap(data);
-            mSession.getRemote().sendBytes(byteBuffer);
-            byteBuffer.clear();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     
     public Session getSession() {
         return this.mSession;

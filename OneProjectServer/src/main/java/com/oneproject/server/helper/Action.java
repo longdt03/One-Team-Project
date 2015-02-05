@@ -13,10 +13,6 @@ import java.io.IOException;
  */
 public class Action {   
     
-    private void doShutdown() throws IOException {
-        this.doShutdown(0);
-    }
-    
     public static void doShutdown(int second) throws IOException {
         System.out.println("Shutdown!");
         Runtime runtime = Runtime.getRuntime();
@@ -24,20 +20,12 @@ public class Action {
 	System.exit(0);
     }
     
-    private void doRestart() throws IOException {
-        this.doRestart(0);
-    }
-    
     public static void doRestart(int second) throws IOException {
         System.out.println("Restart!");
         Runtime runtime = Runtime.getRuntime();
 	Process proc = runtime.exec(Config.RESTART.replace("{second}", String.valueOf(second)));
 	System.exit(0);
-    }
-    
-    private void doHibernate() throws IOException {
-        this.doHibernate(0);
-    }
+    }   
     
     public static void doHibernate(int second) throws IOException {
         System.out.println("Hibernate!");
@@ -46,7 +34,7 @@ public class Action {
 	System.exit(0);
     }      
     
-    public static void doLoggingOff() throws IOException {
+    public static void doLogOff() throws IOException {
         System.out.println("Logging Off!");
         Runtime runtime = Runtime.getRuntime();
 	Process proc = runtime.exec(Config.LOGGING_OFF);

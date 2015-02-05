@@ -16,4 +16,5 @@ public class Config {
     public static final String LOGGING_OFF  = "shutdown -l";
     public static final String SYNTAX_ERROR = "Syntax Error";
     public static final String SUCCESS = "Do Action Success!";
+    public static final int PORT = 1234;
 }
