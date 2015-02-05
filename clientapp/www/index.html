@@ -41,7 +41,9 @@
           </label>
           <label class="item item-input">
             <span class="input-label">Task</span>
-            <input type="text" ng-model="ctrl.task">
+            <select ng-model="ctrl.defaultTask" ng-options="task.name for task in ctrl.tasks">
+              
+            </select> 
           </label>
           <label class="item item-input">
             <span class="input-label">Time</span>

@@ -5,8 +5,13 @@ angular.module('start.controllers', ['angular-websocket'])
   self.ip = '127.0.0.1';
   self.port = '1234';
   self.time = 300;
-  self.task = 'hi';
-  
+  self.tasks = [
+    {name: 'Shutdown', task: 'shutdown'}, 
+    {name: 'Log off', task: 'log_off'},
+    {name: 'Hibernate', task: 'hibernate'},
+    {name: 'Restart', task: 'restart'}
+  ];
+  self.defaultTask = self.tasks[0];
 
   self.submit = function() {
     var wsUrl = function() {
@@ -14,7 +19,7 @@ angular.module('start.controllers', ['angular-websocket'])
     };
 
     var request = function() {
-      return self.task+'|'+self.time.toString();
+      return self.defaultTask.task+'|'+self.time.toString();
     };
 
     var ws = $websocket(wsUrl());
