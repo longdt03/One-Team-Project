@@ -68,6 +68,7 @@ public class MyWebSocketHandler extends WebSocketHandler {
     @Override
     public void configure(WebSocketServletFactory factory) {
         factory.register(MyWebSocketHandler.class);
+        factory.getPolicy().setIdleTimeout(60 * 60 * 1000);
     }
     
     public Session getSession() {

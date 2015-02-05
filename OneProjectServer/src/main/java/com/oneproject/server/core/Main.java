@@ -9,36 +9,41 @@ import com.oneproject.server.helper.Action;
 import com.oneproject.server.helper.Config;
 import com.oneproject.server.ui.UI;
 import java.io.IOException;
+import javax.swing.JButton;
 import org.eclipse.jetty.websocket.api.Session;
 
 /**
  *
  * @author DangThanh
  */
-public class Main implements ServerListener {
+public class Main implements ServerListener, UI.UIListener {
 
     private WebSocketServer mWebSocketServer;
     private UI ui;
+    private boolean isStart = false;
 
     public Main() {
         //Khoi tao giao dien
+        UI.setListener(this);
         ui = new UI();
-        ui.createAndShowGUI();
+        ui.createAndShowUI();
 
         //Khoi tao server
         MyWebSocketHandler.setListener(this);
-        mWebSocketServer = new WebSocketServer();               
+        mWebSocketServer = new WebSocketServer();
     }
 
     //Start server
-    public void startServer() {
+    private void startServer() {
         mWebSocketServer.start();
+        ui.setStatus("Waiting Client...");
+        this.isStart = true;
     }
 
     @Override
     public void onMessage(Session session, String message) {
         System.out.println("Message: " + message);
-        ui.setMessage("Message: " + message);
+        ui.setMessage(message);
         String[] msg = message.split("\\|");
         try {
             //Kiem tra request gui len
@@ -46,7 +51,7 @@ public class Main implements ServerListener {
                 session.getRemote().sendString(Config.SYNTAX_ERROR);
                 return;
             }
-            
+
             //Thuc hien action
             session.getRemote().sendString(Config.SYNTAX_ERROR);
             if ("shutdown".equals(msg[0])) {
@@ -67,8 +72,7 @@ public class Main implements ServerListener {
     @Override
     public void onConnect(Session session) {
         System.out.println("Connected");
-        ui.setStatus("Status: Connected");
-        ui.setTittle(session.getLocalAddress().toString());
+        ui.setStatus("Connected");
         try {
             session.getRemote().sendString("Connected");
         } catch (IOException ex) {
@@ -79,17 +83,26 @@ public class Main implements ServerListener {
     @Override
     public void onError(Throwable t) {
         System.out.println("Error: " + t.getMessage());
+        this.isStart = false;
     }
 
     @Override
     public void onClose(int statusCode, String reason) {
         System.out.println("Status Code: " + statusCode);
         System.out.println("Reason: " + reason);
+        this.isStart = false;
         ui.setStatus("Status: Disconnect");
+        this.startServer();
     }
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.startServer();
+    }
+
+    @Override
+    public void onClick() {
+        if (!this.isStart) {
+            this.startServer();
+        }
     }
 }
