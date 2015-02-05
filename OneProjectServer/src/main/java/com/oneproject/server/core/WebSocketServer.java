@@ -7,6 +7,7 @@ package com.oneproject.server.core;
 
 import com.oneproject.server.helper.Config;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.websocket.api.Session;
 
 /**
  *

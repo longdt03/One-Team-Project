@@ -90,9 +90,12 @@ public class Main implements ServerListener, UI.UIListener {
     public void onClose(int statusCode, String reason) {
         System.out.println("Status Code: " + statusCode);
         System.out.println("Reason: " + reason);
+        
+        ui.setStatus("Disconnect");
+        ui.setMessage("Message");
+        
         this.isStart = false;
-        ui.setStatus("Status: Disconnect");
-        this.startServer();
+        mWebSocketServer.stop();
     }
 
     public static void main(String[] args) {

@@ -26,18 +26,13 @@ public class MyWebSocketHandler extends WebSocketHandler {
 
     private static ServerListener listener;
     private String message;
-    private Session mSession;
-    private static ArrayList<MyWebSocketHandler> sessions = new ArrayList();
-
-    public static ArrayList<MyWebSocketHandler> getAllSessions() {
-        return sessions;
-    }
+    private static Session mSession;
 
     @OnWebSocketClose
-    public void onClose(int statusCode, String reason) {
-        sessions.remove(this);
-        if (listener != null) {
+    public void onClose(Session session, int statusCode, String reason) {
+        if (mSession == session && listener != null) {
             this.listener.onClose(statusCode, reason);
+            mSession = null;
         }
     }
 
@@ -50,18 +45,19 @@ public class MyWebSocketHandler extends WebSocketHandler {
 
     @OnWebSocketConnect
     public void onConnect(Session session) {
-        mSession = session;
-        sessions.add(this);
-        if (listener != null) {
+        if (mSession == null && listener != null) {
+            mSession = session;
             this.listener.onConnect(mSession);
+        } else {
+            session.close();
         }
     }
 
     @OnWebSocketMessage
     public void onMessage(Session session, String message) {
-        this.message = message;
-        if (listener != null) {
-            this.listener.onMessage(session, message);
+        if (session == mSession && listener != null) {
+            this.message = message;
+            this.listener.onMessage(mSession, message);
         }
     }
 
@@ -70,11 +66,11 @@ public class MyWebSocketHandler extends WebSocketHandler {
         factory.register(MyWebSocketHandler.class);
         factory.getPolicy().setIdleTimeout(60 * 60 * 1000);
     }
-    
+
     public Session getSession() {
         return this.mSession;
     }
-    
+
     public ServerListener getListener() {
         return this.listener;
     }
