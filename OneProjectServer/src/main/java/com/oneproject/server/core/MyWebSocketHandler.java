@@ -6,8 +6,7 @@
 package com.oneproject.server.core;
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
+import java.net.Socket;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
@@ -77,5 +76,12 @@ public class MyWebSocketHandler extends WebSocketHandler {
 
     public static void setListener(ServerListener listener) {
         MyWebSocketHandler.listener = listener;
+    }
+
+    public String getIpAddress() throws IOException {
+        Socket s = new Socket("www.google.com", 80);
+        String ip = s.getLocalAddress().getHostAddress();
+        s.close();
+        return ip;
     }
 }

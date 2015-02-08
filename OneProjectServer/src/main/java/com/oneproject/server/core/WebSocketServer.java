@@ -6,18 +6,23 @@
 package com.oneproject.server.core;
 
 import com.oneproject.server.helper.Config;
+import java.io.IOException;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.websocket.api.Session;
 
 /**
  *
  * @author DangThanh
  */
-public class WebSocketServer extends Thread {    
+public class WebSocketServer extends Thread {
+
     private MyWebSocketHandler mHandler;
 
     public WebSocketServer() {
-        mHandler = new MyWebSocketHandler();        
+        mHandler = new MyWebSocketHandler();
+    }
+
+    public String getIpAddress() throws IOException {
+        return mHandler.getIpAddress();
     }
 
     @Override
@@ -32,5 +37,5 @@ public class WebSocketServer extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }    
+    }
 }

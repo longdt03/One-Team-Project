@@ -2,33 +2,82 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.oneproject.server.core</groupId>
-    <artifactId>OneProjectServer</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>RemoteControl</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <useDefaultManifestFile>true</useDefaultManifestFile>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.oneproject.server.core.Main</mainClass>
+                            <packageName>com.oneproject.server.core</packageName>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>classes/</classpathPrefix>                            
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <!-- get all project dependencies -->
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <!-- MainClass in mainfest make a executable jar -->
+                    <archive>
+                        <manifest>
+                            <mainClass>com.oneproject.server.core.Main</mainClass>
+                        </manifest>
+                    </archive>
+ 
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase> 
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     
-     <dependencies>
+    
+    <dependencies>
         <dependency>
             <groupId>org.eclipse.jetty.websocket</groupId>
             <artifactId>websocket-server</artifactId>
             <version>9.3.0.M1</version>
             <type>jar</type>
         </dependency>
-          <dependency>
-               <groupId>org.eclipse.jetty.websocket</groupId>
-               <artifactId>websocket-client</artifactId>
-               <version>9.3.0.M1</version>
-               <type>jar</type>
-          </dependency>
-          <dependency>
-               <groupId>javax</groupId>
-               <artifactId>javaee-web-api</artifactId>
-               <version>7.0</version>
-               <type>jar</type>
-          </dependency>
-     </dependencies>    
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-client</artifactId>
+            <version>9.3.0.M1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-api</artifactId>
+            <version>9.3.0.M1</version>
+            <type>jar</type>
+        </dependency>       
+    </dependencies>    
 </project>

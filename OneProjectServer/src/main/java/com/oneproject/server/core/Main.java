@@ -9,7 +9,8 @@ import com.oneproject.server.helper.Action;
 import com.oneproject.server.helper.Config;
 import com.oneproject.server.ui.UI;
 import java.io.IOException;
-import javax.swing.JButton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.eclipse.jetty.websocket.api.Session;
 
 /**
@@ -23,6 +24,7 @@ public class Main implements ServerListener, UI.UIListener {
     private boolean isStart = false;
 
     public Main() {
+
         //Khoi tao giao dien
         UI.setListener(this);
         ui = new UI();
@@ -36,8 +38,12 @@ public class Main implements ServerListener, UI.UIListener {
     //Start server
     private void startServer() {
         mWebSocketServer.start();
-        ui.setStatus("Waiting Client...");
         this.isStart = true;
+        try {
+            ui.setStatus(mWebSocketServer.getIpAddress() + ":" + Config.PORT);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -53,7 +59,6 @@ public class Main implements ServerListener, UI.UIListener {
             }
 
             //Thuc hien action
-            session.getRemote().sendString(Config.SYNTAX_ERROR);
             if ("shutdown".equals(msg[0])) {
                 Action.doShutdown(Integer.valueOf(msg[1]));
             } else if ("restart".equals(msg[0])) {
@@ -90,10 +95,10 @@ public class Main implements ServerListener, UI.UIListener {
     public void onClose(int statusCode, String reason) {
         System.out.println("Status Code: " + statusCode);
         System.out.println("Reason: " + reason);
-        
+
         ui.setStatus("Disconnect");
         ui.setMessage("Message");
-        
+
         this.isStart = false;
         mWebSocketServer.stop();
     }
