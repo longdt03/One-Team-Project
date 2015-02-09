@@ -7,7 +7,7 @@ ws.onopen = function () {
 };
 
 ws.onmessage = function (evt) {
-	document.getElementById ("status").innerHTML = "Status: Hien thong inh qua ^_^" 
+	document.getElementById ("status").innerHTML = "Status: Hien thong minh qua ^_^" 
 
 };
 
