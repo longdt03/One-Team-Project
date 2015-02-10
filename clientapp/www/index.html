@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head lang = "en-US">
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title> REMOTE CONTROL </title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -24,32 +24,31 @@
     <script src="lib/angular-websocket/angular-websocket.js"></script>
   </head>
   <body ng-app="starter" ng-controller="appCtrl as ctrl">
-
     <ion-pane>
       <ion-header-bar class="bar-positive">
+        <img id = "image" src="../img/ionic.png" width = "35px" height = "35px">
         <h1 class="title">Remote Control</h1>
       </ion-header-bar>
       <ion-content>
         <form class="list" ng-submit="ctrl.submit()">
           <label class="item item-input">
-            <span class="input-label">IP</span>
-            <input type="text" ng-model="ctrl.ip">
+            <span class="input-label item-icon-left ion-compose"> IP :</span>
+              <input type="text" ng-model="ctrl.ip" placeholder = "IP Address">
           </label>
           <label class="item item-input">
-            <span class="input-label">Port</span>
-            <input type="text" ng-model="ctrl.port">
+            <span class="input-label item-icon-left ion-compose"> Port :</span>
+            <input type="text" ng-model="ctrl.port" placeholder = "Port Address">
           </label>
           <label class="item item-input">
             <span class="input-label">Task</span>
             <select ng-model="ctrl.defaultTask" ng-options="task.name for task in ctrl.tasks">
-              
             </select> 
           </label>
           <label class="item item-input">
-            <span class="input-label">Time</span>
-            <input type="number" ng-model="ctrl.time">
+            <span class="input-label item-icon-left ion-compose"> Time :</span>
+            <input type="number" ng-model="ctrl.time" placeholder = "Action Will Do In ... seconds">
           </label>
-          <input type="submit" value="Send Request" class="button button-block button-positive">
+          <input type="submit" value ="Send Request" class="button button-block button-positive">
         </form>
       </ion-content>
     </ion-pane>
