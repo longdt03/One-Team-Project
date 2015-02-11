@@ -3,6 +3,13 @@
 	font-size: 20px;
 }
 
+.tab-item {
+    color: blue;
+}
+.icon {
+    color: blue;
+}
+
 .input-label {	
 	color: blue;
 	font-weight: bolder;

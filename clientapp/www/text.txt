@@ -1,0 +1,4 @@
+Projects's name: Build an application to remote computer
+Team: One Team
+Members (Authors): Dang Thanh Long, Vu Trung Kien, Doan Thi Hien, Tran Tuan Linh
+First sprint: Shutdown computer by sending a request through websocket
