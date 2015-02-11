@@ -14,30 +14,29 @@ angular.module('start.controllers', ['angular-websocket'])
   ];
 
   self.defaultTask = self.tasks[0];
-  self.ws = $websocket();
-
-    
   self.connect = function() {
     //connect to the server 
     var wsUrl = function() {
       return 'ws://'+self.ip+':'+self.port;
     };
-    
     self.ws = $websocket(wsUrl());
-    self.ws.onOpen(function() {
+    self.ws.onMessage(function() {
       self.status = 'Connected';
-    });
-    self.ws.onClose(function() {
-      self.status = 'Not connected';
-    });
+    });    
   };
 
-  self.send = function() {
+  self.send = function($self) {
     //send request to server  
     var request = function() {
+      return self.task;
       return self.defaultTask.task+'|'+self.time.toString();
     };
+    
     self.ws.send(request());
+  
+    self.ws.onClose(function() {
+      self.status = 'Disconnected';
+    })
   };
   
 });
