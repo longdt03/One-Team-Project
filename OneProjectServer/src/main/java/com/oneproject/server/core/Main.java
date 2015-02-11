@@ -40,7 +40,8 @@ public class Main implements ServerListener, UI.UIListener {
         mWebSocketServer.start();
         this.isStart = true;
         try {
-            ui.setStatus(mWebSocketServer.getIpAddress() + ":" + Config.PORT);
+            ui.setIpAddress(mWebSocketServer.getIpAddress() + ":" + Config.PORT);
+            ui.setStatus("Waiting Client...");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,6 +90,9 @@ public class Main implements ServerListener, UI.UIListener {
     public void onError(Throwable t) {
         System.out.println("Error: " + t.getMessage());
         this.isStart = false;
+
+        ui.setStatus(t.getMessage());
+        ui.setMessage("Message");
     }
 
     @Override
@@ -110,6 +114,7 @@ public class Main implements ServerListener, UI.UIListener {
     @Override
     public void onClick() {
         if (!this.isStart) {
+            ui.setEnableStartBtn(false);
             this.startServer();
         }
     }
