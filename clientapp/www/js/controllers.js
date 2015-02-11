@@ -41,3 +41,4 @@ angular.module('start.controllers', ['angular-websocket'])
   };
   
 });
+  
