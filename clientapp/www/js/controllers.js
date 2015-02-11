@@ -9,6 +9,9 @@ angular.module('start.controllers', ['angular-websocket'])
     {name: 'Restart', task: 'restart'}
   ];
 
+  self.ip = "207.0.0.1";
+  self.port = "1234";
+  self.time = 300;
   self.defaultTask = self.tasks[0];
 
   self.submit = function() {
@@ -18,7 +21,7 @@ angular.module('start.controllers', ['angular-websocket'])
     };
     
     var ws = $websocket(wsUrl());
-
+   
     //send request to server  
     var request = function() {
       return self.defaultTask.task+'|'+self.time.toString();
