@@ -2,6 +2,10 @@ angular.module('start.controllers', ['angular-websocket'])
 
 .controller('appCtrl', function($scope, $websocket) {
   var self = this;
+  self.status = 'Not connected';
+  self.ip = '127.0.0.1';
+  self.port = '1234';
+  self.time = 300;
   self.tasks = [
     {name: 'Shutdown', task: 'shutdown'}, 
     {name: 'Log off', task: 'log_off'},
@@ -13,20 +17,36 @@ angular.module('start.controllers', ['angular-websocket'])
   self.port = "1234";
   self.time = 300;
   self.defaultTask = self.tasks[0];
+  self.ws = $websocket();
 
-  self.submit = function() {
+    
+  self.connect = function() {
     //connect to the server 
     var wsUrl = function() {
       return 'ws://'+self.ip+':'+self.port;
     };
     
+<<<<<<< HEAD
     var ws = $websocket(wsUrl());
    
+=======
+    self.ws = $websocket(wsUrl());
+    self.ws.onOpen(function() {
+      self.status = 'Connected';
+    });
+    self.ws.onClose(function() {
+      self.status = 'Not connected';
+    });
+  };
+
+  self.send = function() {
+>>>>>>> origin/master
     //send request to server  
     var request = function() {
       return self.defaultTask.task+'|'+self.time.toString();
     };
-    ws.send(request());
-  }
+    self.ws.send(request());
+  };
+  
 });
 
