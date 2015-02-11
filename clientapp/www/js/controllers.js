@@ -28,7 +28,6 @@ angular.module('start.controllers', ['angular-websocket'])
   self.send = function($self) {
     //send request to server  
     var request = function() {
-      return self.task;
       return self.defaultTask.task+'|'+self.time.toString();
     };
     
