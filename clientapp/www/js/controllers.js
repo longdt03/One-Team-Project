@@ -13,9 +13,6 @@ angular.module('start.controllers', ['angular-websocket'])
     {name: 'Restart', task: 'restart'}
   ];
 
-  self.ip = "207.0.0.1";
-  self.port = "1234";
-  self.time = 300;
   self.defaultTask = self.tasks[0];
   self.ws = $websocket();
 
@@ -26,10 +23,6 @@ angular.module('start.controllers', ['angular-websocket'])
       return 'ws://'+self.ip+':'+self.port;
     };
     
-<<<<<<< HEAD
-    var ws = $websocket(wsUrl());
-   
-=======
     self.ws = $websocket(wsUrl());
     self.ws.onOpen(function() {
       self.status = 'Connected';
@@ -40,7 +33,6 @@ angular.module('start.controllers', ['angular-websocket'])
   };
 
   self.send = function() {
->>>>>>> origin/master
     //send request to server  
     var request = function() {
       return self.defaultTask.task+'|'+self.time.toString();
@@ -49,4 +41,3 @@ angular.module('start.controllers', ['angular-websocket'])
   };
   
 });
-
