@@ -43,5 +43,7 @@ angular.module('myremote.controllers', [])
       template: 'Logging Out...'
     });
     Auth.$unauth();
+    $ionicLoading.hide();
+    $state.go('login');
   };
 });

@@ -10,7 +10,7 @@ var firebaseUrl = "https://mychatex.firebaseio.com";
 // 'myremote.controllers' is found in controllers.js
 angular.module('myremote', ['ionic', 'myremote.controllers', 'mychat.services', 'firebase'])
 
-.run(function($ionicPlatform, $rootScope, $ionicLoading, $state, Auth) {
+.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -23,16 +23,6 @@ angular.module('myremote', ['ionic', 'myremote.controllers', 'mychat.services', 
 
     // Global Variables
     $rootScope.firebaseUrl = firebaseUrl;
-
-    Auth.$onAuth(function (authData) {
-      if (authData) {
-        console.log("Logged in as:", authData.uid);
-      } else {
-        console.log("Logged out");
-        $ionicLoading.hide();
-        $state.go('login');
-      }
-    });
   });
 })
 
