@@ -1,0 +1,28 @@
+<ion-side-menus>
+  <!-- Center content -->
+  <ion-side-menu-content>
+    <ion-header-bar class="bar-positive">
+      <button class="button button-icon" ng-click="toggleSideMenu()">
+        <i class="icon ion-navicon"></i>
+      </button>
+      <h1 class="title">All Tools</h1>
+    </ion-header-bar>
+    
+    <ion-content>
+      <h1>Content here</h1>
+    </ion-content>
+  </ion-side-menu-content>
+
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Username</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      <ul class="list">
+        <a href="#/about" class="item" menu-close>About</a>
+      </ul>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
