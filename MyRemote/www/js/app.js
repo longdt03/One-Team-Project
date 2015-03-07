@@ -52,6 +52,22 @@ angular.module('myremote', ['ionic', 'myremote.controllers', 'mychat.services', 
   .state('about', {
     url: '/about',
     templateUrl: 'templates/about.html'
+  })
+
+  .state('shut-down',{
+    url: '/shut-down',
+    templateUrl: 'templates/shut-down.html',
+    controller: 'ShutdownCtrl'
+  })
+
+  .state('file-transfer',{
+    url: '/file-transfer',
+    templateUrl: 'templates/file-transfer.html'
+  })
+
+  .state('camera',{
+    url: '/camera',
+    templateUrl: 'templates/camera.html'
   });
 
   // if none of the above states are matched, use this as the fallback

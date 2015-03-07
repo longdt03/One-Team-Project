@@ -1,0 +1,38 @@
+<ion-header-bar class="bar-positive">
+  <h1 class="title">Shut Down Tasks</h1>
+</ion-header-bar>
+
+<ion-content id="ctrl">
+  <div class="list">
+    <label class="item item-input item-select">
+        <div class="input-label">
+        Tasks
+        </div>
+        <select ctrl.task =selected>
+            <option>Shut Down</option>
+            <option selected>Restart</option>
+            <option>Hibernate</option>
+            <option>Log Off</option>
+        </select>
+    </label>
+
+    <label ng-hide="tasks.timeDisabled" class="item item-input item-select">
+        <div class="input-label">
+        Time
+        </div>
+        <select ctrl.time=selected>
+            <option>Immediately</option>
+            <option selected>10 seconds</option>
+            <option>30 seconds</option>
+            <option>1 minute</option>
+            <option>Other</option>
+        </select>
+    </label>
+  </div>
+  <div class="button-bar bar-clear">
+      <a class="button" href="#/main-menu">Cancel</a>
+      <a class="button" ng-click="submit()">Submit</a>
+  </div>
+
+
+</ion-content>

@@ -46,4 +46,29 @@ angular.module('myremote.controllers', [])
     $ionicLoading.hide();
     $state.go('login');
   };
+
+  $scope.shutdown = function(){
+    $state.go('shut-down');    
+   };
+
+  $scope.camera = function(){
+    $state.go('camera');
+  };
+
+   $scope.fileTransfer = function(){
+    $state.go('file-transfer');
+  };
+
+})
+
+.controller('ShutdownCtrl',function($scope,$state){
+    ctrl.tasks = [
+        {name: 'Shutdown', task: 'shutdown'}, 
+        {name: 'Log off', task: 'log_off'},
+        {name: 'Hibernate', task: 'hibernate'},
+        {name: 'Restart', task: 'restart'}
+    ];
+    ctrl.timeDisabled = (ctrl.task== ctrl.tasks[1] || ctrl.tasks[2]);
+    $scope.submit =function(){};
+
 });
