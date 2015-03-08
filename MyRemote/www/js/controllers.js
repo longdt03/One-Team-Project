@@ -62,13 +62,30 @@ angular.module('myremote.controllers', [])
 })
 
 .controller('ShutdownCtrl',function($scope,$state){
-    ctrl.tasks = [
+
+    $scope.tasks = [
         {name: 'Shutdown', task: 'shutdown'}, 
         {name: 'Log off', task: 'log_off'},
         {name: 'Hibernate', task: 'hibernate'},
         {name: 'Restart', task: 'restart'}
     ];
-    ctrl.timeDisabled = (ctrl.task== ctrl.tasks[1] || ctrl.tasks[2]);
-    $scope.submit =function(){};
+
+    $scope.times = [
+        {name: 'Immediately', time: '0'},
+        {name: '10 seconds', time: '10'},
+        {name: '30 seconds', time: '30'},
+        {name: '1 minute', time: '60'}
+    ];
+
+    $scope.timeDisabled = false;
+    $scope.timeSelected = $scope.times[0]; 
+    $scope.taskSelected = $scope.tasks[0];
+    
+    $scope.timeDisabled = ($scope.taskSelected == $scope.tasks[1] 
+                || $scope.taskSelected == $scope.tasks[2]);
+    
+    $scope.submit =function(){
+        alert ($scope.timeSelected.time);
+    };
 
 });

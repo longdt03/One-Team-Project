@@ -2,3 +2,8 @@
 #login {
   background-color: #43ced6;
 }
+
+.scroll-content{
+    background: url("../img/anime.png") no-repeat center center fixed;
+    background-size: cover;
+}
