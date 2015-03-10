@@ -78,6 +78,12 @@
             <artifactId>websocket-api</artifactId>
             <version>9.3.0.M1</version>
             <type>jar</type>
-        </dependency>       
+        </dependency>  
+        <dependency>
+            <groupId>com.firebase</groupId>
+            <artifactId>firebase-client-jvm</artifactId>
+            <version>2.2.1</version>
+            <type>jar</type>
+        </dependency>     
     </dependencies>    
 </project>
