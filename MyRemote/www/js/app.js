@@ -8,7 +8,7 @@ var firebaseUrl = "https://mychatex.firebaseio.com";
 
 // 'myremote.services' is found in services.js
 // 'myremote.controllers' is found in controllers.js
-angular.module('myremote', ['ionic', 'myremote.controllers', 'mychat.services', 'firebase'])
+angular.module('myremote', ['ionic', 'myremote.controllers', 'myremote.services', 'firebase'])
 
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {

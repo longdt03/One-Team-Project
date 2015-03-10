@@ -1,37 +1,36 @@
-<ion-header-bar class="bar-positive">
-  <h1 class="title">Shut Down Tasks</h1>
+<ion-header-bar class="bar-stable">
+  <button class="button button-clear" ng-click="back()">
+    <i class="icon ion-ios-arrow-left"></i>
+  </button>
+  <h1 class="title">Shutdown Options</h1>
 </ion-header-bar>
 
-<ion-content id="ctrl">
+<ion-content>
   <div class="list">
     <label class="item item-input item-select">
-        <div class="input-label">
-        Tasks
-        </div>
-        <select ctrl.task =selected>
-            <option>Shut Down</option>
-            <option selected>Restart</option>
-            <option>Hibernate</option>
-            <option>Log Off</option>
-        </select>
+      <div class="input-label">
+        Task
+      </div>
+      <select ng-model="selectedTask" ng-options="task.name for task in tasks">
+      </select>
     </label>
 
-    <label ng-hide="tasks.timeDisabled" class="item item-input item-select">
-        <div class="input-label">
+    <label class="item item-input item-select" ng-show="selectedTask.time">
+      <div class="input-label">
         Time
-        </div>
-        <select ctrl.time=selected>
-            <option>Immediately</option>
-            <option selected>10 seconds</option>
-            <option>30 seconds</option>
-            <option>1 minute</option>
-            <option>Other</option>
-        </select>
+      </div>
+      <select ng-model="selectedTime" ng-options="time.name for time in timeOptions">
+      </select>
+    </label>
+    <label class="item item-input" ng-show="selectedTask.time && selectedTime.other">
+      <div class="input-label">
+        Custom time
+      </div>
+      <input type="number" ng-model="customTime">
     </label>
   </div>
-  <div class="button-bar bar-clear">
-      <a class="button" href="#/main-menu">Cancel</a>
-      <a class="button" ng-click="submit()">Submit</a>
+  <div class="button-bar">
+    <a class="button" ng-click="submit()" ng-bind="selectedTask.name"></a>
   </div>
 
 
