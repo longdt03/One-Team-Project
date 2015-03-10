@@ -9,3 +9,9 @@ Thành viên:
 5. Phạm Khôi Nguyên
 
 Dự án: Xây dựng ứng dụng trên mobile điều khiển máy tính từ xa
++ Serve cài đặt trên desktop dưới dạng ứng dụng java (.exe)
++ Client cài đặt trên mobile dưới dạng ứng dụng android (.apk)
++ Cung cấp các chức năng: Shutdown (với các tác vụ Shutdown, Restart, Hibernate và LogOff)
++ Sử dụng firebase làm serve để gửi và nhận lệnh
++ Người dùng đăng nhập bằng email và password
++ Giao diện dễ sử dụng: có các tab chọn task và thời gian thực thi
