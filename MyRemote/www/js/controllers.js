@@ -74,16 +74,22 @@ angular.module('myremote.controllers', [])
 
 })
 
-.controller('ShutdownCtrl',function($scope, $state, ShutdownOptions, TimeOptions) {
+.controller('ShutdownCtrl',function($scope, $state, Task, ShutdownOptions, TimeOptions) {
   $scope.tasks = ShutdownOptions.all();
   $scope.selectedTask = $scope.tasks[0];
   $scope.timeOptions = TimeOptions.all();
   $scope.selectedTime = $scope.timeOptions[0];
-  $scope.customTime = 0;
-  $scope.submit = function() {
-    console.log(this.selectedTask);
-    console.log(this.selectedTime.value || this.customTime);
+
+  $scope.submit = function(){
+    $scope.task = Task("171253");
+
+    $scope.task.data = this.selectedTask.msg + '|' 
+                        + this.selectedTime.value.toString()||'0';
+
+    $scope.task.$save();
   }
+
+
   $scope.back = function() {
     $state.go('main-menu');
   }

@@ -1,4 +1,14 @@
 angular.module('myremote.services', ['firebase'])
+.factory('Task',["$firebaseObject", 
+  function($firebaseObject){
+    return function(id){
+      var ref = new Firebase(firebaseUrl);
+      var taskRef = ref.child(id);
+
+      return $firebaseObject(taskRef);
+    }
+  }
+])
 
 .factory('ShutdownOptions', function() {
   var tasks = [
