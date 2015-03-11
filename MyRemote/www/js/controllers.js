@@ -85,8 +85,7 @@ angular.module('myremote.controllers', [])
 
     userRef.child($rootScope.id).update({
       data: this.selectedTask.msg + '|' 
-            + this.selectedTime.value.toString()||'0'
-      });
+            + this.selectedTime.value.toString()||'0'});
   }
 
   $scope.back = function() {
