@@ -5,57 +5,46 @@
  */
 package com.oneproject.server.core;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.FirebaseError;
 import com.oneproject.server.helper.Action;
-import com.oneproject.server.helper.Config;
 import com.oneproject.server.ui.UI;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.eclipse.jetty.websocket.api.Session;
 
 /**
  *
  * @author DangThanh
  */
-public class Main implements ServerListener, UI.UIListener {
+public class Main implements ChildEventListener, UI.UIListener {
 
-    private WebSocketServer mWebSocketServer;
     private UI ui;
     private boolean isStart = false;
-
+    private FirebaseListenerThread firebaseListener;
+    private String deviceId = FirebaseAdapter.getDevice().getDeviceId();
+    private String password = FirebaseAdapter.getDevice().getPassword();
+    
     public Main() {
-
-        //Khoi tao giao dien
         UI.setListener(this);
         ui = new UI();
         ui.createAndShowUI();
-
-        //Khoi tao server
-        MyWebSocketHandler.setListener(this);
-        mWebSocketServer = new WebSocketServer();
+        ui.setDeviceId(deviceId);
+        ui.setPassword(password);
     }
-
-    //Start server
-    private void startServer() {
-        mWebSocketServer.start();
-        this.isStart = true;
-        try {
-            ui.setIpAddress(mWebSocketServer.getIpAddress() + ":" + Config.PORT);
-            ui.setStatus("Waiting Client...");
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+    @Override
+    public void onChildAdded(DataSnapshot ds, String string) {
+        System.out.println("Add");
     }
 
     @Override
-    public void onMessage(Session session, String message) {
+    public void onChildChanged(DataSnapshot ds, String string) {
+        String message = (String)ds.getValue();
         System.out.println("Message: " + message);
         ui.setMessage(message);
         String[] msg = message.split("\\|");
         try {
             //Kiem tra request gui len
             if (msg.length != 2) {
-                session.getRemote().sendString(Config.SYNTAX_ERROR);
                 return;
             }
 
@@ -72,50 +61,32 @@ public class Main implements ServerListener, UI.UIListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public void onConnect(Session session) {
-        System.out.println("Connected");
-        ui.setStatus("Connected");
-        try {
-            session.getRemote().sendString("Connected");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    public void onChildRemoved(DataSnapshot ds) {
+        System.out.println("Remove");
     }
 
     @Override
-    public void onError(Throwable t) {
-        System.out.println("Error: " + t.getMessage());
-        this.isStart = false;
-
-        ui.setStatus(t.getMessage());
-        ui.setMessage("Message");
+    public void onChildMoved(DataSnapshot ds, String string) {
+        System.out.println("Move");
     }
 
     @Override
-    public void onClose(int statusCode, String reason) {
-        System.out.println("Status Code: " + statusCode);
-        System.out.println("Reason: " + reason);
-
-        ui.setStatus("Disconnect");
-        ui.setMessage("Message");
-
-        this.isStart = false;
-        mWebSocketServer.stop();
-    }
-
-    public static void main(String[] args) {
-        Main main = new Main();
+    public void onCancelled(FirebaseError fe) {
+        System.out.println("Cancel");
     }
 
     @Override
     public void onClick() {
         if (!this.isStart) {
+            this.firebaseListener = new FirebaseListenerThread(this);
             ui.setEnableStartBtn(false);
-            this.startServer();
         }
     }
+    
+    public static void main(String[] args) {
+        Main main = new Main();
+    }   
 }
