@@ -82,10 +82,10 @@ angular.module('myremote.controllers', [])
 
   $scope.submit = function(){
     var userRef = new Firebase(firebaseUrl);
-
     userRef.child($rootScope.id).update({
       data: this.selectedTask.msg + '|' 
-            + this.selectedTime.value.toString()||'0'});
+            + (this.selectedTask.time? this.selectedTime.value.toString(): '0')
+    });
   }
 
   $scope.back = function() {
