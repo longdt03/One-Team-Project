@@ -74,21 +74,19 @@ angular.module('myremote.controllers', [])
 
 })
 
-.controller('ShutdownCtrl',function($scope, $state, Task, ShutdownOptions, TimeOptions) {
+.controller('ShutdownCtrl',function($scope, $state, $rootScope, ShutdownOptions, TimeOptions) {
   $scope.tasks = ShutdownOptions.all();
   $scope.selectedTask = $scope.tasks[0];
   $scope.timeOptions = TimeOptions.all();
   $scope.selectedTime = $scope.timeOptions[0];
 
   $scope.submit = function(){
-    $scope.task = Task("171253");
+    var userRef = new Firebase(firebaseUrl);
 
-    $scope.task.data = this.selectedTask.msg + '|' 
-                        + this.selectedTime.value.toString()||'0';
-
-    $scope.task.$save();
+    userRef.child($rootScope.id).update({
+      data: this.selectedTask.msg + '|' 
+            + this.selectedTime.value.toString()||'0'});
   }
-
 
   $scope.back = function() {
     $state.go('main-menu');
