@@ -1,14 +1,40 @@
 angular.module('myremote.controllers', [])
 
 .controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, $ionicLoading) {
+
+  var usersRef = new Firebase('https://one-app.firebaseio.com/');
   
   $scope.login = function(id) {
     // Check if id exist here
-
+    usersRef.child(id).once('value',function(snapshot){
+      var exists = (snapshot.val() !== null);
+      if(exists){
+      	$rootScope.id = id;
+        promptPassword(); 
+      } else {
+        alert('user' + id + ' do not exist!');
+      }
+    });
     // If id exists then popup to prompt password
-    promptPassword();
+    
+    
 
   };
+
+  $scope.checkpass = function(pass) {
+    // Check if id exist here
+    console.log($rootScope.id);
+    usersRef.child($rootScope.id).child('password').once('value',function(snapshot){
+      var a = (snapshot.val() === pass);
+      if(a){
+        $state.go('main-menu');
+      } else {
+        alert('password' + pass + ' do not exist!');
+      }
+    });
+    
+
+  }; 
   
   var promptPassword = function() {
     var promptPopup =   $ionicPopup.prompt({
@@ -18,7 +44,9 @@ angular.module('myremote.controllers', [])
       inputPlaceholder: 'Password'
     });
     promptPopup.then(function(res) {
-      $state.go('main-menu');
+   		$scope.checkpass(res);
+
+      // $state.go('main-menu');
     });
   };
 
