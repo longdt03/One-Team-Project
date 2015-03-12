@@ -5,32 +5,46 @@ angular.module('myremote.controllers', [])
   var usersRef = new Firebase('https://one-app.firebaseio.com/');
   
   $scope.login = function(id) {
-    // Check if id exist here
-    usersRef.child(id).once('value',function(snapshot){
-      var exists = (snapshot.val() !== null);
-      if(exists){
-      	$rootScope.id = id;
-        promptPassword(); 
-      } else {
-        alert('user' + id + ' do not exist!');
-      }
-    });
-    // If id exists then popup to prompt password
-    
-    
+    if (id) {
+      // Loading state
+      showLoading();
 
+      // Check if id exist here
+      usersRef.child(id).once('value', function(snapshot) {
+        hideLoading();
+        var isExisted = (snapshot.val() !== null);
+        if(isExisted){
+          $rootScope.id = id;
+          promptPassword();
+        } else {
+          alert('user' + id + ' do not exist!');
+        }
+      }, function (err) {
+          hideLoading();
+          alert(err);
+      }); 
+    } else {
+      alert('Please enter your computer\'s ID.');
+    }
+    
   };
 
-  $scope.checkpass = function(pass) {
-    // Check if id exist here
-    console.log($rootScope.id);
-    usersRef.child($rootScope.id).child('password').once('value',function(snapshot){
-      var a = (snapshot.val() === pass);
-      if(a){
+  var checkPassword = function(password) {
+    // Loading state
+    showLoading();
+
+    usersRef.child($rootScope.id).child('password').once('value',function(snapshot) {
+      hideLoading();
+
+      var isMatched = (snapshot.val() === password);
+      if(isMatched){
         $state.go('main-menu');
       } else {
-        alert('password' + pass + ' do not exist!');
+        alert('Password does not match!');
       }
+    }, function (err) {
+      hideLoading();
+      alert(err);
     });
     
 
@@ -44,14 +58,21 @@ angular.module('myremote.controllers', [])
       inputPlaceholder: 'Password'
     });
     promptPopup.then(function(res) {
-   		$scope.checkpass(res);
-
-      // $state.go('main-menu');
+      if (res) {
+        checkPassword(res);
+      }
     });
   };
 
-  
+  var showLoading = function() {
+    $ionicLoading.show({
+      template: 'Please wait while connecting.'
+    })
+  }  
 
+  var hideLoading = function() {
+    $ionicLoading.hide();
+  }
 })
 
 .controller('MenuCtrl', function($scope, $state, $ionicSideMenuDelegate, $ionicLoading) {
