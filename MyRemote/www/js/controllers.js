@@ -66,7 +66,7 @@ angular.module('myremote.controllers', [])
 
   var showLoading = function() {
     $ionicLoading.show({
-      template: 'Please wait while connecting.'
+      template: '<ion-spinner></ion-spinner>'
     })
   }  
 
@@ -100,9 +100,11 @@ angular.module('myremote.controllers', [])
   $scope.selectedTask = $scope.tasks[0];
   $scope.timeOptions = TimeOptions.all();
   $scope.selectedTime = $scope.timeOptions[0];
+  $scope.customTime = 10;
 
   $scope.submit = function(){
     var userRef = new Firebase(firebaseUrl);
+    this.selectedTime.value = (this.selectedTime.other ? this.customTime * 60 : this.selectedTime.value);
     userRef.child($rootScope.id).update({
       data: this.selectedTask.msg + '|' 
             + (this.selectedTask.time? this.selectedTime.value.toString(): '0')

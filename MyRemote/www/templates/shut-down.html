@@ -5,7 +5,7 @@
   <h1 class="title">Shutdown Options</h1>
 </ion-header-bar>
 
-<ion-content>
+<ion-content class="padding">
   <div class="list">
     <label class="item item-input item-select">
       <div class="input-label">
@@ -22,12 +22,11 @@
       <select ng-model="selectedTime" ng-options="time.name for time in timeOptions">
       </select>
     </label>
-    <label class="item item-input" ng-show="selectedTask.time && selectedTime.other">
-      <div class="input-label">
-        Custom time
-      </div>
-      <input type="number" ng-model="selectedTime.value">
-    </label>
+    <div class="item range" ng-show="selectedTask.time && selectedTime.other">
+      <i class="icon ion-ios-timer-outline"></i>
+      <input ng-model="customTime" type="range" name="time" min="0" max="80">
+      {{customTime}} minutes
+    </div>
   </div>
   <div class="button-bar">
     <a class="button" ng-click="submit()" ng-bind="selectedTask.name"></a>
