@@ -114,4 +114,15 @@ angular.module('myremote.controllers', [])
   $scope.back = function() {
     $state.go('main-menu');
   }
+})
+
+.controller('CameraCtrl', function($scope, $state) {
+  $scope.doRefresh = function() {
+    $scope.data = "img/ionic.png";
+    $scope.$broadcast('scroll.refreshComplete');
+    $scope.$apply();
+  }
+  $scope.back= function() {
+    $state.go('main-menu');
+  }
 });

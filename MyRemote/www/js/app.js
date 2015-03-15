@@ -67,9 +67,10 @@ angular.module('myremote', ['ionic', 'myremote.controllers', 'myremote.services'
 
   .state('camera',{
     url: '/camera',
-    templateUrl: 'templates/camera.html'
+    templateUrl: 'templates/camera.html',
+    controller: 'CameraCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/camera');
 });
