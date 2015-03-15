@@ -1,4 +1,4 @@
-<ion-header-bar class="bar-stable">
+<ion-header-bar class="bar-positive">
   <button class="button button-clear" ng-click="back()">
     <i class="icon ion-ios-arrow-left"></i>
   </button>
@@ -22,13 +22,13 @@
       <select ng-model="selectedTime" ng-options="time.name for time in timeOptions">
       </select>
     </label>
-    <div class="item range" ng-show="selectedTask.time && selectedTime.other">
+    <div class="item range range-positive" ng-show="selectedTask.time && selectedTime.other">
       <i class="icon ion-ios-timer-outline"></i>
       <input ng-model="customTime" type="range" name="time" min="0" max="80">
       {{customTime}} minutes
     </div>
   </div>
   <div class="button-bar">
-    <a class="button" ng-click="submit()" ng-bind="selectedTask.name"></a>
+    <a class="button button-positive" ng-click="submit()" ng-bind="selectedTask.name"></a>
   </div>
 </ion-content>

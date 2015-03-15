@@ -1,28 +1,28 @@
 <ion-side-menus>
   <!-- Center content -->
   <ion-side-menu-content>
-    <ion-header-bar class="bar-stable">
+    <ion-header-bar class="bar-positive">
       <button class="button button-icon" ng-click="toggleSideMenu()">
         <i class="icon ion-navicon"></i>
       </button>
       <h1 class="title">All Tools</h1>
     </ion-header-bar>
     
-    <ion-content>
+    <ion-content class="center">
       <div class="row">
         <div class="col card" ng-click="shutdown()">
           <div class="item item-image">
-            <img src="img/power.png">
+            <i class="icon ion-power positive custom-icon"></i>
           </div>
-          <div class="item">
+          <div class="item positive">
             Shutdown
           </div>
         </div>
         <div class="col card" ng-click="camera()">
           <div class="item item-image">
-            <img src="img/camera.png">
+            <i class="icon ion-camera positive custom-icon"></i>
           </div>
-          <div class="item">
+          <div class="item positive">
             Camera
           </div>
         </div>
