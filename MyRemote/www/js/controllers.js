@@ -3,12 +3,6 @@ angular.module('myremote.controllers', [])
 .controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, $ionicLoading) {
 
   var usersRef = new Firebase(firebaseUrl);
-  usersRef.child('1').set ({
-    data: "",
-    device_name: "",
-    image: "",
-    password: ""
-  });
   
   $scope.login = function(id) {
     if (id) {
