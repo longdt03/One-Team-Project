@@ -116,15 +116,12 @@ angular.module('myremote.controllers', [])
   }
 })
 
-.controller('CameraCtrl', function($scope, $state, $firebase, $rootScope) {
-  $scope.doRefresh = function() {
-    var ref = new Firebase(firebaseUrl);
-    var refChild = ref.child($rootScope.id);
-    refChild.on('value', function(snapshot){
-      var newData = snapshot.val();
-      $scope.data = newData.image;
-    });
+.controller('CameraCtrl', function($scope,$firebase, $rootScope, $state, $http){
+  var ref = new Firebase(firebaseUrl);
+  ref.child($rootScope.id).update({data: "capture|photo"});
 
+  $scope.doRefresh = function() {
+  
     $scope.$broadcast('scroll.refreshComplete');
     $scope.$apply();
   }
