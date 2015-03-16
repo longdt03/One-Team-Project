@@ -2,7 +2,13 @@ angular.module('myremote.controllers', [])
 
 .controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, $ionicLoading) {
 
-  var usersRef = new Firebase('https://one-app.firebaseio.com/');
+  var usersRef = new Firebase(firebaseUrl);
+  usersRef.child('1').set ({
+    data: "",
+    device_name: "",
+    image: "",
+    password: ""
+  });
   
   $scope.login = function(id) {
     if (id) {
@@ -116,9 +122,15 @@ angular.module('myremote.controllers', [])
   }
 })
 
-.controller('CameraCtrl', function($scope, $state) {
+.controller('CameraCtrl', function($scope, $state, $firebase, $rootScope) {
   $scope.doRefresh = function() {
-    $scope.data = "img/ionic.png";
+    var ref = new Firebase(firebaseUrl);
+    var refChild = ref.child($rootScope.id);
+    refChild.on('value', function(snapshot){
+      var newData = snapshot.val();
+      $scope.data = newData.image;
+    });
+
     $scope.$broadcast('scroll.refreshComplete');
     $scope.$apply();
   }
