@@ -1,9 +1,12 @@
-<ion-content>
-  <div class="list list-inset padding">
+<ion-content class="padding">
+  <div class="item-image">
+    <img src="img/logo.png">
+  </div>
+  <div class="list padding">
     <label class="item item-input">
-      <input type="number" placeholder="Computer ID" ng-model="id">
+      <input type="text" placeholder="Computer ID" ng-model="id">
     </label>
-    <button ng-click="login(id)" class="button button-block button-stable">
+    <button ng-click="login(id)" class="button button-block button-positive">
       Remote Control
     </button>
   </div>

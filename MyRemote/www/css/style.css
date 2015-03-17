@@ -1,10 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
-.card {
+.custom-icon {
+  font-size: 128px;
+}
+
+.center {
   text-align: center;
 }
 
-.scroll-content{
-    background: url("../img/anime.png") no-repeat center center fixed;
-    background-size: cover;
+.scroll-content {
+  background-color: #ebebeb;
 }

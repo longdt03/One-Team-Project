@@ -1,14 +1,54 @@
 angular.module('myremote.controllers', [])
 
 .controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, $ionicLoading) {
+
+  var usersRef = new Firebase(firebaseUrl);
   
   $scope.login = function(id) {
-    // Check if id exist here
+    if (id) {
+      // Loading state
+      showLoading();
 
-    // If id exists then popup to prompt password
-    promptPassword();
-
+      // Check if id exist here
+      usersRef.child(id).once('value', function(snapshot) {
+        hideLoading();
+        var isExisted = (snapshot.val() !== null);
+        if(isExisted){
+          $rootScope.id = id;
+          promptPassword();
+        } else {
+          alert('user' + id + ' do not exist!');
+        }
+      }, function (err) {
+          hideLoading();
+          alert(err);
+      }); 
+    } else {
+      alert('Please enter your computer\'s ID.');
+    }
+    
   };
+
+  var checkPassword = function(password) {
+    // Loading state
+    showLoading();
+
+    usersRef.child($rootScope.id).child('password').once('value',function(snapshot) {
+      hideLoading();
+
+      var isMatched = (snapshot.val() === password);
+      if(isMatched){
+        $state.go('main-menu');
+      } else {
+        alert('Password does not match!');
+      }
+    }, function (err) {
+      hideLoading();
+      alert(err);
+    });
+    
+
+  }; 
   
   var promptPassword = function() {
     var promptPopup =   $ionicPopup.prompt({
@@ -18,12 +58,21 @@ angular.module('myremote.controllers', [])
       inputPlaceholder: 'Password'
     });
     promptPopup.then(function(res) {
-      $state.go('main-menu');
+      if (res) {
+        checkPassword(res);
+      }
     });
   };
 
-  
+  var showLoading = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    })
+  }  
 
+  var hideLoading = function() {
+    $ionicLoading.hide();
+  }
 })
 
 .controller('MenuCtrl', function($scope, $state, $ionicSideMenuDelegate, $ionicLoading) {
@@ -46,17 +95,37 @@ angular.module('myremote.controllers', [])
 
 })
 
-.controller('ShutdownCtrl',function($scope, $state, ShutdownOptions, TimeOptions) {
+.controller('ShutdownCtrl',function($scope, $state, $rootScope, ShutdownOptions, TimeOptions) {
   $scope.tasks = ShutdownOptions.all();
   $scope.selectedTask = $scope.tasks[0];
   $scope.timeOptions = TimeOptions.all();
   $scope.selectedTime = $scope.timeOptions[0];
-  $scope.customTime = 0;
-  $scope.submit = function() {
-    console.log(this.selectedTask);
-    console.log(this.selectedTime.value || this.customTime);
+  $scope.customTime = 10;
+
+  $scope.submit = function(){
+    var userRef = new Firebase(firebaseUrl);
+    this.selectedTime.value = (this.selectedTime.other ? this.customTime * 60 : this.selectedTime.value);
+    userRef.child($rootScope.id).update({
+      data: this.selectedTask.msg + '|' 
+            + (this.selectedTask.time? this.selectedTime.value.toString(): '0')
+    });
   }
+
   $scope.back = function() {
+    $state.go('main-menu');
+  }
+})
+
+.controller('CameraCtrl', function($scope,$firebase, $rootScope, $state, $http){
+  var ref = new Firebase(firebaseUrl);
+  ref.child($rootScope.id).update({data: "capture|photo"});
+
+  $scope.doRefresh = function() {
+  
+    $scope.$broadcast('scroll.refreshComplete');
+    $scope.$apply();
+  }
+  $scope.back= function() {
     $state.go('main-menu');
   }
 });

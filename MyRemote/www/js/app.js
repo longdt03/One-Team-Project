@@ -3,8 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-
-var firebaseUrl = "https://mychatex.firebaseio.com";
+var APIUrl = "https://picasaweb.google.com/data/entry/api/user/oneteam.uet";
+var firebaseUrl = "https://one-app.firebaseio.com";
 
 // 'myremote.services' is found in services.js
 // 'myremote.controllers' is found in controllers.js
@@ -67,7 +67,8 @@ angular.module('myremote', ['ionic', 'myremote.controllers', 'myremote.services'
 
   .state('camera',{
     url: '/camera',
-    templateUrl: 'templates/camera.html'
+    templateUrl: 'templates/camera.html',
+    controller: 'CameraCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
