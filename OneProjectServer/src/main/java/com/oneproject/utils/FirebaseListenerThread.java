@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.core;
+package com.oneproject.utils;
 
 import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.FirebaseError;
-import static com.oneproject.server.core.FirebaseAdapter.getFirebase;
-import com.oneproject.server.helper.Device;
+import com.oneproject.server.models.Device;
 
 /**
  *
@@ -27,6 +24,6 @@ public class FirebaseListenerThread implements Runnable {
     }
     @Override
     public void run() {
-        FirebaseAdapter.getFirebase().child(FirebaseAdapter.getDevice().getDeviceId()).addChildEventListener(this.listener);
+        FirebaseAdapter.getFirebase().addChildEventListener(this.listener);
     }
 }

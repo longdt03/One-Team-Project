@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.core;
+package com.oneproject.utils;
 
 import com.firebase.client.Firebase;
 import com.oneproject.server.helper.Config;
-import com.oneproject.server.helper.Device;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.oneproject.server.models.Device;
 
 /**
  *
@@ -33,13 +31,22 @@ public class FirebaseAdapter {
         return root;
     }
     
-    public static void pushData(String url, Object data) {
+    public static void pushData(String key, Object data) {
         try {
-            Firebase firebase = new Firebase(url);
+            Firebase firebase = FirebaseAdapter.getFirebase().child(key);            
             firebase.setValue(data);
-            Thread.sleep(5000);
+            Thread.sleep(10000);
         } catch (InterruptedException ex) {
-            Logger.getLogger(FirebaseAdapter.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+    }
+    
+    public static void createFirebase(Object data) {
+        try {
+            FirebaseAdapter.getFirebase().setValue(data);           
+            Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
         }
     }
 }

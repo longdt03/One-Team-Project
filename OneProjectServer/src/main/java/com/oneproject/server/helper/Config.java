@@ -5,7 +5,7 @@
  */
 package com.oneproject.server.helper;
 
-import java.io.File;
+import com.oneproject.utils.FirebaseAdapter;
 
 /**
  *
@@ -19,6 +19,9 @@ public class Config {
     public static final String SYNTAX_ERROR = "Syntax Error";
     public static final String SUCCESS = "Do Action Success!";
     public static final int PORT = 1234;
-    public static final String FIREBASE_URL = "https://one-app.firebaseio.com/";
-    public static final String CONFIG_FILE_PATH = "res" + File.separator + "config.txt";
+    public static final String FIREBASE_URL = "https://one-app.firebaseio.com/" + FirebaseAdapter.getDevice().getDeviceId() + "/";
+    public static final String CONFIG_FILEPATH = "res\\config.txt";
+    public static final String WEBCAM_FOLDER = "res\\webcam\\";
+    
+    
 }

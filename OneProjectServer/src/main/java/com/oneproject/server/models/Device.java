@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.helper;
+package com.oneproject.server.models;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.snapshot.Node;
-import com.oneproject.server.core.FirebaseAdapter;
+import com.oneproject.server.helper.Config;
+import com.oneproject.utils.FirebaseAdapter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
@@ -34,10 +36,10 @@ public class Device {
     public Device() {
         try {
             deviceName = InetAddress.getLocalHost().getHostName();
+            this.initDeviceInfo();
         } catch (UnknownHostException ex) {
             Logger.getLogger(Device.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.initDeviceInfo();
     }
 
     public String getDeviceId() {
@@ -72,7 +74,7 @@ public class Device {
 
     public void initDeviceInfo() {
         try {
-            File file = new File(Config.CONFIG_FILE_PATH);
+            File file = new File(Config.CONFIG_FILEPATH);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -88,7 +90,7 @@ public class Device {
 
     public boolean readDeviceInfo() {
         try {
-            File file = new File(Config.CONFIG_FILE_PATH);
+            File file = new File(Config.CONFIG_FILEPATH);
 
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String data = reader.readLine();
@@ -107,20 +109,20 @@ public class Device {
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     public void storeDeviceInfo() {
         try {
-            File file = new File(Config.CONFIG_FILE_PATH);
+            File file = new File(Config.CONFIG_FILEPATH);
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(new String(this.deviceId + "\n" + this.password + "\n" + this.deviceName).getBytes());
 
             //Store data to Database
-            String url = Config.FIREBASE_URL + String.valueOf(this.deviceId) + "/";
             Map data = new HashMap();
             data.put("password", this.password);
             data.put("data", "");
             data.put("device_name", this.deviceName);
-            FirebaseAdapter.pushData(url, data);
-        } catch (Exception e) {
+            FirebaseAdapter.createFirebase(data);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
