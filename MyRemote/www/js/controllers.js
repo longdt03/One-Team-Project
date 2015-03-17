@@ -121,7 +121,9 @@ angular.module('myremote.controllers', [])
   ref.child($rootScope.id).update({data: "capture|photo"});
 
   $scope.doRefresh = function() {
-  
+    ref.child($rootScope.id).child('image').once('value', function(snapshot){
+      $scope.data = snapshot.val();
+    });
     $scope.$broadcast('scroll.refreshComplete');
     $scope.$apply();
   }
