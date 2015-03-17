@@ -11,3 +11,10 @@
 .scroll-content {
   background-color: #ebebeb;
 }
+
+.logo {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
