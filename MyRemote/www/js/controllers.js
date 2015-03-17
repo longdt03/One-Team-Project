@@ -1,7 +1,6 @@
 angular.module('myremote.controllers', [])
 
 .controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, $ionicLoading) {
-
   var usersRef = new Firebase(firebaseUrl);
   
   $scope.login = function(id) {
