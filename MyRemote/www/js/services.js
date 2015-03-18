@@ -12,7 +12,7 @@ angular.module('myremote.services', ['firebase'])
     all: function() {
       return tasks;
     }
-  }
+  };
 })
 
 .factory('TimeOptions', function() {
@@ -22,10 +22,10 @@ angular.module('myremote.services', ['firebase'])
     {name: '30 seconds', value: 30},
     {name: '1 minute', value: 60},
     {name: 'Other', other: true}
-  ]
+  ];
   return {
     all: function() {
       return timeOptions;
     }
-  }
-})
+  };
+});
