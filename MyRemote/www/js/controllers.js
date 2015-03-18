@@ -119,7 +119,9 @@ angular.module('myremote.controllers', [])
 
 .controller('CameraCtrl', function($scope,$firebase, $rootScope, $state, $http, $ionicLoading, $timeout){
   var ref = new Firebase(firebaseUrl);
-  
+  ref.child($rootScope.id).child('data').on('value', function(snapshot){
+    $scope.data = snapshot.val();
+  });
 
   $scope.capturePhoto = function() {
     var time = new Date();
