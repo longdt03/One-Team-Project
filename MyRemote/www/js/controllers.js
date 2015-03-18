@@ -118,6 +118,7 @@ angular.module('myremote.controllers', [])
 })
 
 .controller('CameraCtrl', function($scope,$firebase, $rootScope, $state, $http, $ionicLoading, $timeout){
+ 
   var ref = new Firebase(firebaseUrl);
   ref.child($rootScope.id).child('data').on('value', function(snapshot){
     $scope.data = snapshot.val();
@@ -125,13 +126,19 @@ angular.module('myremote.controllers', [])
 
   $scope.capturePhoto = function() {
     var time = new Date();
-    ref.child($rootScope.id).update({request: "capture|" + time.getTime().toString()});
-  }
 
-  $scope.showPhoto = function() {
+    //loading state
+    showLoading();
+    
+    ref.child($rootScope.id).update({data: "", request: "capture|" + time.getTime().toString()});
+    
+    //stop loading
     ref.child($rootScope.id).child('data').on('value', function(snapshot){
       $scope.data = snapshot.val();
+      hideLoading();
     });
+
+    
   }
 
   $scope.back= function() {
@@ -147,4 +154,6 @@ angular.module('myremote.controllers', [])
   var hideLoading = function() {
     $ionicLoading.hide();
   }
+
+  
 });
