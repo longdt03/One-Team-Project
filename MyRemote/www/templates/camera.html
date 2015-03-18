@@ -5,9 +5,13 @@
   <h1 class="title">Camera</h1>
 </ion-header-bar>
 <ion-content>
-  <ion-refresher pulling-text="Pull to refresh" on-refresh="doRefresh()">
-  </ion-refresher>
-  <div class="item item-image">
-    <img ng-src="{{data}}" alt="Pull to refresh"> 
+  <div class="list padding">
+    <div class="item item-image">
+      <img ng-src="{{data}}" alt="Image Placeholder"> 
+    </div>
+    <div class="button-bar">
+      <button ng-click="capturePhoto()" class="button button-positive">Capture photo</a>
+      <button ng-click="showPhoto()" class="button button-positive">Show Photo</a>
+    </div>
   </div>
 </ion-content>

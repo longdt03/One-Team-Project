@@ -1,6 +1,6 @@
 angular.module('myremote.controllers', [])
 
-.controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, $ionicLoading) {
+.controller('LoginCtrl', function($scope, $rootScope, $ionicPopup, $state, $ionicLoading, $timeout) {
   var usersRef = new Firebase(firebaseUrl);
   
   $scope.login = function(id) {
@@ -66,12 +66,14 @@ angular.module('myremote.controllers', [])
   var showLoading = function() {
     $ionicLoading.show({
       template: '<ion-spinner></ion-spinner>'
-    })
+    });
   }  
 
   var hideLoading = function() {
     $ionicLoading.hide();
   }
+
+  
 })
 
 .controller('MenuCtrl', function($scope, $state, $ionicSideMenuDelegate, $ionicLoading) {
@@ -105,7 +107,7 @@ angular.module('myremote.controllers', [])
     var userRef = new Firebase(firebaseUrl);
     this.selectedTime.value = (this.selectedTime.other ? this.customTime * 60 : this.selectedTime.value);
     userRef.child($rootScope.id).update({
-      data: this.selectedTask.msg + '|' 
+      request: this.selectedTask.msg + '|' 
             + (this.selectedTask.time? this.selectedTime.value.toString(): '0')
     });
   }
@@ -115,18 +117,32 @@ angular.module('myremote.controllers', [])
   }
 })
 
-.controller('CameraCtrl', function($scope,$firebase, $rootScope, $state, $http){
+.controller('CameraCtrl', function($scope,$firebase, $rootScope, $state, $http, $ionicLoading, $timeout){
   var ref = new Firebase(firebaseUrl);
-  ref.child($rootScope.id).update({data: "capture|photo"});
+  
 
-  $scope.doRefresh = function() {
-    ref.child($rootScope.id).child('image').once('value', function(snapshot){
+  $scope.capturePhoto = function() {
+    var time = new Date();
+    ref.child($rootScope.id).update({request: "capture|" + time.getTime().toString()});
+  }
+
+  $scope.showPhoto = function() {
+    ref.child($rootScope.id).child('data').on('value', function(snapshot){
       $scope.data = snapshot.val();
     });
-    $scope.$broadcast('scroll.refreshComplete');
-    $scope.$apply();
   }
+
   $scope.back= function() {
     $state.go('main-menu');
+  }
+
+  var showLoading = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+  }  
+
+  var hideLoading = function() {
+    $ionicLoading.hide();
   }
 });
