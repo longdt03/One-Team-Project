@@ -53,9 +53,6 @@ public class WebcamUtils {
         Thread.sleep(4000);
         webcam.close();
 
-        File folder = new File(Config.WEBCAM_FOLDER);
-        folder.mkdir(); //Khoi tao folder neu chua ton tai
-
         //Ghi anh ra file
         String fileName = "webcam_" + String.valueOf(System.currentTimeMillis()) + ".jpg";
         File file = new File(Config.WEBCAM_FOLDER + fileName);

@@ -9,6 +9,7 @@ import com.oneproject.utils.FirebaseListenerThread;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.FirebaseError;
+import com.oneproject.server.helper.Config;
 import com.oneproject.server.models.Action;
 import com.oneproject.server.ui.UI;
 import com.oneproject.utils.FirebaseAdapter;
@@ -25,13 +26,16 @@ public class Application implements ChildEventListener, UI.UIListener {
     private UI ui;
     private boolean isStart = false;
     private FirebaseListenerThread firebaseListener;
-    private String deviceId = FirebaseAdapter.getDevice().getDeviceId();
-    private String password = FirebaseAdapter.getDevice().getPassword();
+    private String deviceId;
+    private String password;
     private WebcamUtils webcam;
     private PicasaUtils picasaUploader;
     
     public Application() throws Exception {
-        this.initUI();
+        this.initConfigFile();
+        deviceId = FirebaseAdapter.getDevice().getDeviceId();
+        password = FirebaseAdapter.getDevice().getPassword();
+        this.initUI();        
         webcam = new WebcamUtils();
         picasaUploader = new PicasaUtils();
     }
@@ -109,6 +113,15 @@ public class Application implements ChildEventListener, UI.UIListener {
     public String captureAndUpload() throws Exception {        
         File image = this.webcam.capture();
         return picasaUploader.uploadImage(image);
+    }
+    
+    public void initConfigFile() {
+        //Khoi tao folder neu chua ton tai
+        File resFolder = new File("//res");
+        resFolder.mkdir();
+
+        File folder = new File(Config.WEBCAM_FOLDER);
+        folder.mkdir(); 
     }
     
     public static void main(String[] args) {
