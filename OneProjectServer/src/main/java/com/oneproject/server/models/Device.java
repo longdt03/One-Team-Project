@@ -8,6 +8,7 @@ package com.oneproject.server.models;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.snapshot.Node;
+import com.oneproject.server.core.Application;
 import com.oneproject.server.helper.Config;
 import com.oneproject.utils.FirebaseAdapter;
 import java.io.BufferedReader;
@@ -81,8 +82,8 @@ public class Device {
             if (!this.readDeviceInfo()) {
                 this.deviceId = this.generateDeviceId();
                 this.password = "oneteam";
-                this.storeDeviceInfo();
             }
+            this.storeDeviceInfo();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,13 +116,6 @@ public class Device {
             File file = new File(Config.CONFIG_FILEPATH);
             FileOutputStream fos = new FileOutputStream(file);
             fos.write(new String(this.deviceId + "\n" + this.password + "\n" + this.deviceName).getBytes());
-
-            //Store data to Database
-            Map data = new HashMap();
-            data.put("password", this.password);
-            data.put("data", "");
-            data.put("device_name", this.deviceName);
-            FirebaseAdapter.createFirebase(data);
         } catch (IOException e) {
             e.printStackTrace();
         }

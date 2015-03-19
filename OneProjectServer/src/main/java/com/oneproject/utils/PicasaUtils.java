@@ -88,7 +88,7 @@ public class PicasaUtils {
         URL albumPostUrl = new URL(this.PICASA_URL + "/albumid/" + albumID);
         PhotoEntry myPhoto = new PhotoEntry();
         myPhoto.setTitle(new PlainTextConstruct(imageFile.getName()));
-        myPhoto.setDescription(new PlainTextConstruct("Webcam Image was uploaded by MyRemote"));
+        myPhoto.setDescription(new PlainTextConstruct("Webcam Image was uploaded by OneRemote"));
         myPhoto.setClient("OneRemote");
         MediaFileSource myMedia = new MediaFileSource(imageFile, new MimetypesFileTypeMap().getContentType(imageFile));
         myPhoto.setMediaSource(myMedia);
