@@ -127,27 +127,14 @@ angular.module('myremote.controllers', [])
     var time = new Date();
     ref.child($rootScope.id).update({request: "capture|" + time.getTime().toString()});
     showLoading();
+    ref.child($rootScope.id).child('data').on(function(snapshot){
+        $scope.data = snapshot.val();
+    });
+
     $timeout(function() {
       hideLoading();
       showPhoto();
     }, 15000);
-  }
-
-  $scope.showPhoto = function() {
-    ref.child($rootScope.id).child('data').on('value', function(snapshot) {
-
-    //loading state
-    showLoading();
-    
-    ref.child($rootScope.id).update({data: "", request: "capture|" + time.getTime().toString()});
-    
-    //stop loading
-    ref.child($rootScope.id).child('data').on('value', function(snapshot){
-      $scope.data = snapshot.val();
-      hideLoading();
-    });
-
-    
   };
 
   $scope.back= function() {
