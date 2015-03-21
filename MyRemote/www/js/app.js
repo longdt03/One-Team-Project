@@ -7,7 +7,12 @@ var firebaseUrl = 'https://one-app.firebaseio.com';
 
 // 'myremote.services' is found in services.js
 // 'myremote.controllers' is found in controllers.js
-angular.module('one', ['ionic', 'one.controllers', 'one.services', 'firebase'])
+angular.module('one', [
+  'ionic', 
+  'one.controllers', 
+  'one.services', 
+  'firebase'
+])
 
 .run(function($ionicPlatform, $rootScope){
   $ionicPlatform.ready(function() {
