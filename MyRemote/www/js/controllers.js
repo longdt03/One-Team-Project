@@ -127,6 +127,10 @@ angular.module('myremote.controllers', [])
     var time = new Date();
     ref.child($rootScope.id).update({request: "capture|" + time.getTime().toString()});
     showLoading();
+    ref.child($rootScope.id).child('data').on(function(snapshot){
+        $scope.data = snapshot.val();
+    });
+
     $timeout(function() {
       hideLoading();
       showPhoto();

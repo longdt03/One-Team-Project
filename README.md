@@ -62,3 +62,5 @@ User can send request to computer to take a photo from webcam. The photo display
 * Display computer name
 * Save computer ID history
 
+##Video Demo
+* Sprint 2: https://www.youtube.com/watch?v=ExW3Xpie2Pg&feature=youtu.be
