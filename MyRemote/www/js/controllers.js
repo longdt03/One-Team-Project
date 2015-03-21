@@ -96,7 +96,7 @@ angular.module('myremote.controllers', [])
 
 })
 
-.controller('ShutdownCtrl',function($scope, $state, $rootScope, ShutdownOptions, TimeOptions) {
+.controller('ShutdownCtrl',function($scope, $state, $rootScope, ShutdownOptions, TimeOptions, $ionicHistory) {
   $scope.tasks = ShutdownOptions.all();
   $scope.selectedTask = $scope.tasks[0];
   $scope.timeOptions = TimeOptions.all();
@@ -112,7 +112,7 @@ angular.module('myremote.controllers', [])
   };
 
   $scope.back = function() {
-    $state.go('main-menu');
+    $ionicHistory.goBack();
   };
 })
 
@@ -136,19 +136,19 @@ angular.module('myremote.controllers', [])
   $scope.showPhoto = function() {
     ref.child($rootScope.id).child('data').on('value', function(snapshot) {
 
-    //loading state
-    showLoading();
-    
-    ref.child($rootScope.id).update({data: "", request: "capture|" + time.getTime().toString()});
-    
-    //stop loading
-    ref.child($rootScope.id).child('data').on('value', function(snapshot){
-      $scope.data = snapshot.val();
-      hideLoading();
+      //loading state
+      showLoading();
+      
+      ref.child($rootScope.id).update({data: "", request: "capture|" + time.getTime().toString()});
+      
+      //stop loading
+      ref.child($rootScope.id).child('data').on('value', function(snapshot){
+        $scope.data = snapshot.val();
+        hideLoading();
+      });
     });
-
-    
   };
+
 
   $scope.back= function() {
     $state.go('main-menu');
