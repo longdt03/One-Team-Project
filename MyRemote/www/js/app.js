@@ -28,10 +28,13 @@ angular.module('one', [
     // Global Variables
     $rootScope.firebaseUrl = firebaseUrl;
 
-    // //display status connection
-    // window.addEventListener('offline', function(e){
-    //     console.log("Disconnect");
-    // });
+    //display status connection
+    var connectedRef = new Firebase(firebaseUrl + '/.info/connected');
+    connectedRef.on('value', function(snapshot){
+      if (snapshot.val() != true){
+        console.log('Disconnected');
+      }
+    });
   });
 
 })
