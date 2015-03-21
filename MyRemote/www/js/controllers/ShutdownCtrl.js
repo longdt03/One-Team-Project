@@ -1,8 +1,8 @@
 angular
-  .module('one.controllers.shutdown')
+  .module('one.controllers.shutdown', [])
   .controller('ShutdownCtrl',['$scope', '$state', '$rootScope', 'ShutdownOptions', 'TimeOptions', shutdownCtrl]);
 
-function shutdownCtrl($scope, $state, $rootScope, ShutdownOptions, TimeOptions) 
+function shutdownCtrl($scope, $state, $rootScope, ShutdownOptions, TimeOptions) {
   $scope.tasks = ShutdownOptions.all();
   $scope.selectedTask = $scope.tasks[0];
   $scope.timeOptions = TimeOptions.all();

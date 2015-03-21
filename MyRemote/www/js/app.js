@@ -3,11 +3,11 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var firebaseUrl = "https://one-app.firebaseio.com";
+var firebaseUrl = 'https://one-app.firebaseio.com';
 
 // 'myremote.services' is found in services.js
 // 'myremote.controllers' is found in controllers.js
-angular.module('myremote', ['ionic', 'myremote.controllers', 'myremote.services', 'firebase'])
+angular.module('one', ['ionic', 'one.controllers', 'one.services', 'firebase'])
 
 .run(function($ionicPlatform, $rootScope){
   $ionicPlatform.ready(function() {
@@ -63,11 +63,6 @@ angular.module('myremote', ['ionic', 'myremote.controllers', 'myremote.services'
     url: '/shut-down',
     templateUrl: 'templates/shut-down.html',
     controller: 'ShutdownCtrl'
-  })
-
-  .state('file-transfer',{
-    url: '/file-transfer',
-    templateUrl: 'templates/file-transfer.html'
   })
 
   .state('camera',{

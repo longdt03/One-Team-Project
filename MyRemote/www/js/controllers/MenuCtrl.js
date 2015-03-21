@@ -1,5 +1,5 @@
 angular
-  .module('one.controllers.menu')
+  .module('one.controllers.menu', [])
   .controller('MenuCtrl', ['$scope', '$state', '$ionicLoading','$ionicSideMenuDelegate', menuCtrl]);
 
 function menuCtrl($scope, $state, $ionicSideMenuDelegate, $ionicLoading) {

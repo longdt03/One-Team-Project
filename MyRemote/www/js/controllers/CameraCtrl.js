@@ -1,5 +1,5 @@
 angular
-  .module('one.controllers.camera')
+  .module('one.controllers.camera', [])
   .controller('CameraCtrl', ['$scope', '$firebase', '$rootScope', '$state', '$http', '$ionicLoading', '$timeout', cameraCtrl]);
 
 function cameraCtrl($scope,$firebase, $rootScope, $state, $http, $ionicLoading, $timeout) {
@@ -11,7 +11,7 @@ function cameraCtrl($scope,$firebase, $rootScope, $state, $http, $ionicLoading, 
 
   $scope.capturePhoto = function() {
     var time = new Date();
-    ref.child($rootScope.id).update({request: "capture|" + time.getTime().toString()});
+    ref.child($rootScope.id).update({request: 'capture|' + time.getTime().toString()});
     showLoading();
     ref.child($rootScope.id).child('data').on(function(snapshot){
         $scope.data = snapshot.val();

@@ -1,4 +1,4 @@
-angular.module('myremote.services', ['firebase'])
+angular.module('one.services', ['firebase'])
 
 .factory('ShutdownOptions', function() {
   var tasks = [
