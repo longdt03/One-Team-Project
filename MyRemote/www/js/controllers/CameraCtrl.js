@@ -1,28 +1,33 @@
 angular
   .module('one.controllers.camera', [])
-  .controller('CameraCtrl', ['$scope', '$firebase', '$rootScope', '$state', '$http', '$ionicLoading', '$timeout', cameraCtrl]);
+  .controller('CameraCtrl', [
+    '$scope', 
+    '$firebase', 
+    '$rootScope', 
+    '$state', 
+    '$http', 
+    '$ionicLoading', 
+    '$timeout', 
+    cameraCtrl
+  ]);
 
 function cameraCtrl($scope,$firebase, $rootScope, $state, $http, $ionicLoading, $timeout) {
-  var ref = new Firebase(firebaseUrl);
   
-  ref.child($rootScope.id).child('data').on('value', function(snapshot) {
-    $scope.data = snapshot.val();
-  });
-
   $scope.capturePhoto = function() {
-    var time = new Date();
-    ref.child($rootScope.id).update({request: 'capture|' + time.getTime().toString()});
+    //first, get data to display before take a photo
+    // YOUR CODE HERE
+
     showLoading();
-    ref.child($rootScope.id).child('data').on(function(snapshot){
-        $scope.data = snapshot.val();
-    });
+    
+    //send request to server
+    //YOUR CODE HERE
 
     $timeout(function() {
       hideLoading();
-      showPhoto();
     }, 15000);
   };
 
+  //go back to main-menu
   $scope.back= function() {
     $state.go('main-menu');
   };
