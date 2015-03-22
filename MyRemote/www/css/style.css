@@ -16,3 +16,11 @@
 .logo-font {
   font-family: 
 }
+
+.shutdown {
+  background-image: url("../img/power.png");
+}
+
+.camera {
+  background-image: url('../img/camera.png');
+}
