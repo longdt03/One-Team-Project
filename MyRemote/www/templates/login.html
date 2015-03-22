@@ -7,17 +7,17 @@
   <div class="card">
     <label class="item item-input">
       <i class="icon ion-email placeholder-icon"></i>
-      <input type="text" placeholder="Email">
+      <input ng-model="email" type="text" placeholder="Email">
     </label>
     <label class="item item-input">
       <i class="icon ion-key placeholder-icon"></i>
-      <input type="password" placeholder="Password">
+      <input ng-model="pass" type="password" placeholder="Password">
     </label>
   </div>
   <div class="padding-horizontal padding-top">
     <button class="button button-block button-positive" ng-click="signIn()">Login</button>
   </div>
   <div class="padding">
-    <button class="button button-block button-assertive">Login with Google+</button>
+    <button class="button button-block button-assertive" ng-click="signInWithGoogle()">Login with Google+</button>
   </div>
 </div>
