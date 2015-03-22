@@ -1,34 +1,41 @@
-<ion-header-bar class="bar-positive">
-  <button class="button button-clear" ng-click="back()">
-    <i class="icon ion-ios-arrow-left"></i>
-  </button>
-  <h1 class="title">Shutdown Options</h1>
-</ion-header-bar>
+<div class="ionic">
+  <div class="bar bar-header bar-positive">
+    <button class="button button-icon icon ion-ios-arrow-left flat" ng-click="back()"></button>
+    <h1 class="title fab-left">Shutdown Options</h1>
+  </div>
+  <button class="button button-fab button-fab-bottom-right button-assertive icon ion-power" ng-click="submit()"></button>
+</div>
+<div>
+  <div class="content has-header">
+    <div class="list list-inset">
+      <div class="item item-divider">Task</div>
+      <ion-radio ng-repeat="task in tasks"
+                 ng-value="task"
+                 ng-model="data.selectedTask">
+        {{task.name}}   
+      </ion-radio>
+    </div>
 
-<ion-content class="padding">
-  <div class="list">
-    <label class="item item-input item-select">
-      <div class="input-label">
-        Task
+    <div class="list list-inset">
+      <div class="item item-divider" ng-hide="data.selectedTask.time">
+        No Timer
       </div>
-      <select ng-model="selectedTask" ng-options="task.name for task in tasks">
-      </select>
-    </label>
 
-    <label class="item item-input item-select" ng-show="selectedTask.time">
-      <div class="input-label">
-        Time
+      <div ng-show="data.selectedTask.time">
+        <div class="item item-divider">
+          <span>Timer</span>
+          <span class="pull-right">{{data.timer.minute}}m{{data.timer.second}}s</span>
+        </div>
+      
+        <div class="item range range-assertive">
+          <i class="icon ion-ios-timer-outline"></i>
+          <input ng-model="data.timer.minute" type="range" name="minute" min="0" max="81">
+        </div>
+        <div class="item range range-positive">
+          <i class="icon ion-ios-timer-outline"></i>
+          <input ng-model="data.timer.second" type="range" name="second" min="0" max="59">
+        </div>
       </div>
-      <select ng-model="selectedTime" ng-options="time.name for time in timeOptions">
-      </select>
-    </label>
-    <div class="item range range-positive" ng-show="selectedTask.time && selectedTime.other">
-      <i class="icon ion-ios-timer-outline"></i>
-      <input ng-model="customTime" type="range" name="time" min="0" max="80">
-      {{customTime}} minutes
     </div>
   </div>
-  <div class="button-bar">
-    <a class="button button-positive" ng-click="submit()" ng-bind="selectedTask.name"></a>
-  </div>
-</ion-content>
+</div>

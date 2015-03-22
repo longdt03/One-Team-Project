@@ -5,16 +5,18 @@ angular
     '$state', 
     '$rootScope', 
     'ShutdownOptions', 
-    'TimeOptions', 
     shutdownCtrl
   ]);
 
-function shutdownCtrl($scope, $state, $rootScope, ShutdownOptions, TimeOptions) {
+function shutdownCtrl($scope, $state, $rootScope, ShutdownOptions) {
   $scope.tasks = ShutdownOptions.all();
-  $scope.selectedTask = $scope.tasks[0];
-  $scope.timeOptions = TimeOptions.all();
-  $scope.selectedTime = $scope.timeOptions[0];
-  $scope.customTime = 10;
+  $scope.data = {
+    selectedTask: $scope.tasks[0],
+    timer: {
+      minute: 0,
+      second: 0,
+    }
+  };
 
   $scope.submit = function() {
     //get data from the form and make request then send to server

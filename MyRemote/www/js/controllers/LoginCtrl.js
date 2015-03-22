@@ -28,6 +28,8 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading) {
   
   //sign in with email and pass 
   $scope.signIn = function() {
+    $state.go('main-menu');
+    return;
     if($scope.email && $scope.pass){
       $ionicLoading.show({
         template: 'Signing in ...'
