@@ -14,13 +14,15 @@ angular
 function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService) {
   var ref = new Firebase(firebaseUrl);
 
-  ref.onAuth(function(authData){
-    $rootScope.username = AuthService.getName(authData);
+  ref.onAuth(function(authData) {
+    if(authData){
+      $rootScope.username = AuthService.getName(authData);
+    }
   });
 
   // Create a callback to handle the result of the authentication
   $scope.authHandler = function(error, authData) {
-
+    //notify when an error occurs
     if (error) {
       alert("Login Failed!", error);
     } else {
@@ -48,6 +50,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
       //hide loading when checking finished
       $ionicLoading.hide();
     } else {
+      // notify when email or password is not filled
       alert("Please fill email and password");
     }
   };
