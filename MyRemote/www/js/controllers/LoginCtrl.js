@@ -8,27 +8,45 @@ angular
     '$ionicLoading',
     '$rootScope',
     'AuthService',
+    'UserService',
     loginCtrl
 ]);
 
-function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService) {
+function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService, UserService) {
   var ref = new Firebase(firebaseUrl);
 
   ref.onAuth(function(authData) {
     if(authData){
-      $rootScope.username = AuthService.getName(authData);
+      $rootScope.id = AuthService.getId(authData);
+      $rootScope.username = UserService.getName(authData);
     }
   });
 
+  //init profile
+  $scope.setProfile = function() {
+    ref.child($rootScope.id).set({
+      user_name: $rootScope.username,
+      device: "",
+      data: "",
+      request: ""
+    });
+  };
+
   // Create a callback to handle the result of the authentication
   $scope.authHandler = function(error, authData) {
+    
     //notify when an error occurs
     if (error) {
       alert("Login Failed!", error);
     } else {
+      //when login success
       console.log("Login success");
+      
       //then go to the Main menu
       $state.go('main-menu');
+
+      //init profile
+      $scope.setProfile();
     }
   };
   
@@ -75,10 +93,13 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
         }
       } else if (authData) {
         // user authenticated with Firebase
-        console.log("Success!" + $rootScope.username);
+        console.log("Success!" + $rootScope.id);
 
         //then go to Main menu
         $state.go('main-menu'); 
+
+        //and init user profile
+        $scope.setProfile();
       }
     });
 

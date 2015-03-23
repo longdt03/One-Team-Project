@@ -16,6 +16,16 @@ angular.module('one.services', ['firebase'])
 })
 
 .factory('AuthService', function() {
+
+  return {
+    getId: function(authData) {
+      var data = authData.uid.toString().split(':');
+      return data[1];
+    }
+  }
+})
+
+.factory('UserService', function() {
   return {
     getName: function(authData) {
       switch(authData.provider) {

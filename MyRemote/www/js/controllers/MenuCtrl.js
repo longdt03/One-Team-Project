@@ -30,20 +30,12 @@ function menuCtrl($scope, $state, $ionicSideMenuDelegate, $rootScope, $firebaseA
   };
 
   //log out 
-  // $scope.logOut = function() {
-  //   var ref = new Firebase(firebaseUrl);
+  $scope.logOut = function() {
+    //log out of application
+    //YOUR CODE HERE
 
-  //   //log out of application
-  //   ref.unauth().then(function(){
-
-  //     //then stop listening for changes
-  //     ref.offAuth(function(){
-  //       console.log("Service off");
-  //     });
-
-  //     //anounce
-  //     console.log("Log out");
-  //   });
-  // };
+    //then goto login interface
+    $state.go('login');
+  };
 
 } 
