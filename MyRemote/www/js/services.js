@@ -13,4 +13,19 @@ angular.module('one.services', ['firebase'])
       return tasks;
     }
   };
+})
+
+.factory('AuthService', function() {
+  return {
+    getName: function(authData) {
+      switch(authData.provider) {
+        case 'password':
+          return authData.password.email.replace(/@.*/, '');
+        case 'google':
+          return authData.google.displayName;
+        case 'facebook':
+          return authData.facebook.displayName;
+      }
+    }
+  }
 });

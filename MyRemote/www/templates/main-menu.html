@@ -32,12 +32,13 @@
   <!-- Left menu -->
   <ion-side-menu side="left">
     <div class="bar bar-header expanded bar-dark">
-      <h1 class="title">Username</h1>
+      <h1 class="title">{{username}}</h1>
     </div>
     <div class="content has-header">
       <div class="list">
         <a class="item" nav-clear menu-close href="#/about">About</a>
         <a class="item" nav-clear menu-close href="#">Help</a>
+        <a class="item" nav-clear menu-close ng-click="logOut()">Log Out</a>
       </div>
     </div>
   </ion-side-menu>

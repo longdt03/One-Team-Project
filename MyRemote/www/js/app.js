@@ -33,6 +33,8 @@ angular.module('one', [
     connectedRef.on('value', function(snapshot){
       if (snapshot.val() != true){
         console.log('Disconnected');
+      } else {
+        console.log('Connected');
       }
     });
   });
