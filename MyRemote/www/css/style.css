@@ -24,3 +24,11 @@
 .camera {
   background-image: url('../img/camera.png');
 }
+
+.margin-bottom {
+  margin-bottom: 40px
+}
+
+.line-height-small {
+  line-height: 0.8;
+}

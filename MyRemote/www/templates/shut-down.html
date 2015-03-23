@@ -5,37 +5,40 @@
   </div>
   <button class="button button-fab button-fab-bottom-right button-assertive icon ion-power" ng-click="submit()"></button>
 </div>
-<div>
-  <div class="content has-header">
+<ion-content class="margin-bottom">
+  <div class="content has-header padding-bottom">
     <div class="list list-inset">
-      <div class="item item-divider">Task</div>
+      <div class="item item-divider positive-bg positive-border light">Task</div>
       <ion-radio ng-repeat="task in tasks"
                  ng-value="task"
-                 ng-model="data.selectedTask">
+                 ng-model="data.selectedTask"
+                 class="line-height-small">
         {{task.name}}   
       </ion-radio>
     </div>
 
-    <div class="list list-inset">
-      <div class="item item-divider" ng-hide="data.selectedTask.time">
+    <div class="list list-inset padding-bottom">
+      <div class="item item-divider positive-bg positive-border light" ng-hide="data.selectedTask.time">
         No Timer
       </div>
 
-      <div ng-show="data.selectedTask.time">
-        <div class="item item-divider">
+      <div ng-show="data.selectedTask.time" class="padding-bottom">
+        <div class="item item-divider positive-bg positive-border light">
           <span>Timer</span>
           <span class="pull-right">{{data.timer.minute}}m{{data.timer.second}}s</span>
         </div>
       
         <div class="item range range-assertive">
-          <i class="icon ion-ios-timer-outline"></i>
+          <i class="icon ion-ios-clock-outline"></i>
           <input ng-model="data.timer.minute" type="range" name="minute" min="0" max="81">
+          <i class="icon ion-ios-clock"></i>
         </div>
         <div class="item range range-positive">
-          <i class="icon ion-ios-timer-outline"></i>
+          <i class="icon ion-ios-stopwatch-outline"></i>
           <input ng-model="data.timer.second" type="range" name="second" min="0" max="59">
+          <i class="icon ion-ios-stopwatch"></i>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ion-content>
