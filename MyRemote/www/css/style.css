@@ -1,20 +1,34 @@
 /* Empty. Add your own CSS if you like */
 
-.custom-icon {
-  font-size: 128px;
+@font-face {
+  font-family: ;
 }
 
-.center {
+.text-center {
   text-align: center;
 }
 
-.scroll-content {
-  background-color: #ebebeb;
+.scroll-bg {
+  background-image: url("../img/Share Wallpapers.jpg");
+  size: cover;
 }
 
-.logo {
-  display: block;
-  position: relative;
-  width: 80%;
-  margin: 0 auto;
+.logo-font {
+  font-family: 
+}
+
+.shutdown {
+  background-image: url("../img/power.png");
+}
+
+.camera {
+  background-image: url('../img/camera.png');
+}
+
+.margin-bottom {
+  margin-bottom: 40px
+}
+
+.line-height-small {
+  line-height: 0.8;
 }

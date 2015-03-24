@@ -1,14 +1,26 @@
-<ion-content class="scroll-bg">
-  <div>
-    <img ng-src="img/ionic.png" class="logo">
+<ion-content class="ionic scroll-bg">
+  <div class="hero no-header flat">
+    <div class="content">
+      <h1 class="light logo-font"><strong>One Remote</strong></h1>
+    </div>
   </div>
-  <div class="list card padding">
+  <div class="card">
     <label class="item item-input">
-      <input type="text" placeholder="Computer ID" ng-model="id">
+      <i class="icon ion-email placeholder-icon"></i>
+      <input ng-model="vm.email" type="text" placeholder="Email">
     </label>
-    <button ng-click="login(id)" class="item button button-block button-positive">
-      Connect
-    </button>
+    <label class="item item-input">
+      <i class="icon ion-key placeholder-icon"></i>
+      <input ng-model="vm.pass" type="password" placeholder="Password">
+    </label>
+  </div>
+  <div class="padding-horizontal padding-top">
+    <button class="button button-block button-positive" ng-click="signInWithPassword(vm)">Login</button>
+  </div>
+  <div class="padding">
+    <button class="button button-block button-assertive" ng-click="signInWithGoogle()">Login with Google+</button>
+  </div>
+  <div class="padding">
+    <button class="button button-block button-royal" ng-click="signInWithFacebook()">Login with Facebook</button>
   </div>
 </ion-content>
-

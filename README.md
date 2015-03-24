@@ -15,3 +15,52 @@ Dự án: Xây dựng ứng dụng trên mobile điều khiển máy tính từ 
 + Sử dụng firebase làm serve để gửi và nhận lệnh
 + Người dùng đăng nhập bằng email và password
 + Giao diện dễ sử dụng: có các tab chọn task và thời gian thực thi
+
+# Mobile application
+
+## Description
+
+An application for mobile devices to remotely control computer.
+
+## Requirement
+
+* Android, iOS operating system
+* Internet connection
+
+## Technologies and tools
+* Firebase API
+* Ionic framework
+
+## Feature
+
+### Shutdown Options
+
+User can choose these tasks:
+* Shutdown
+* Restart
+Then choose time delay to execute task on computer, or:
+* Hibernate
+* Log off
+computer instantly.
+
+### Camera
+
+User can send request to computer to take a photo from webcam. The photo display after.
+
+## Bugs
+
+* Photos sometimes do not display.
+* Animations sometimes do not work.
+* User cannot login sometimes
+
+## TODO
+
+* Complete and upgrade UI
+* Design icons, logo and splash screen
+* Improve user experiences
+* Check internet connection
+* Display computer name
+* Save computer ID history
+
+##Video Demo
+* Sprint 2: https://www.youtube.com/watch?v=ExW3Xpie2Pg&feature=youtu.be

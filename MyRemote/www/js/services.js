@@ -1,4 +1,4 @@
-angular.module('myremote.services', ['firebase'])
+angular.module('one.services', ['firebase'])
 
 .factory('ShutdownOptions', function() {
   var tasks = [
@@ -12,20 +12,42 @@ angular.module('myremote.services', ['firebase'])
     all: function() {
       return tasks;
     }
-  }
+  };
 })
 
-.factory('TimeOptions', function() {
-  var timeOptions = [
-    {name: 'Immediately', value: 0},
-    {name: '10 seconds', value: 10},
-    {name: '30 seconds', value: 30},
-    {name: '1 minute', value: 60},
-    {name: 'Other', other: true}
-  ]
+.factory('AuthService', function() {
+
   return {
-    all: function() {
-      return timeOptions;
+    getId: function(authData) {
+      var data = authData.uid.toString().split(':');
+      return data[1];
     }
   }
 })
+
+.factory('UserService', function() {
+  return {
+    getName: function(authData) {
+      switch(authData.provider) {
+        case 'password':
+          return authData.password.email.replace(/@.*/, '');
+        case 'google':
+          return authData.google.displayName;
+        case 'facebook':
+          return authData.facebook.displayName;
+      }
+    }
+  }
+})
+
+.factory('Notification', function() {
+  return {
+    noti: function(err) {
+      if (err){
+        console.log ('Request sent failed');
+      } else {
+        console.log('Request sent success');
+      }
+    }
+  }
+});
