@@ -50,6 +50,35 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
       $scope.setProfile();
     }
   };
+
+  //sign in with provider
+  var signInWithProvider = function(provider) {
+    ref.authWithOAuthPopup(provider, function(error, authData) {
+      if (error) {
+        if (error.code === "TRANSPORT_UNAVAILABLE") {
+
+          // fall-back to browser redirects, and pick up the session
+          // automatically when we come back to the origin page
+          ref.authWithOAuthRedirect(provider, function(error) {
+            if (error) {
+              console.log("Login Failed!", error);
+            } else {
+              console.log("Success");
+            }
+          });
+        }
+      } else if (authData) {
+        // user authenticated with Firebase
+        console.log("Success!" + $rootScope.id);
+
+        //then go to Main menu
+        $state.go('main-menu'); 
+
+        //and init user profile
+        $scope.setProfile();
+      }
+    });
+  };
   
   //sign in with email and pass 
   $scope.signInWithPassword = function(vm) {
@@ -76,33 +105,14 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
 
   //sign in with Google account
   $scope.signInWithGoogle = function() {
+    vm.provider = "google";
+    signInWithProvider(vm.provider);
+  };
 
-    // Or via popular OAuth providers ("facebook", "github", "google", or "twitter")
-    ref.authWithOAuthPopup("google", function(error, authData) {
-      if (error) {
-        if (error.code === "TRANSPORT_UNAVAILABLE") {
+  //sign in with Facebook account
+  $scope.signInWithFacebook = function () {
 
-          // fall-back to browser redirects, and pick up the session
-          // automatically when we come back to the origin page
-          ref.authWithOAuthRedirect("google", function(error) {
-            if (error) {
-              console.log("Login Failed!", error);
-            } else {
-              console.log("Success");
-            }
-          });
-        }
-      } else if (authData) {
-        // user authenticated with Firebase
-        console.log("Success!" + $rootScope.id);
-
-        //then go to Main menu
-        $state.go('main-menu'); 
-
-        //and init user profile
-        $scope.setProfile();
-      }
-    });
-
+    vm.provider = "facebook";
+    signInWithProvider(vm.provider);
   };
 }

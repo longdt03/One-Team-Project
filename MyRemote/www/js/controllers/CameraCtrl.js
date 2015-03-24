@@ -17,6 +17,8 @@ function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading,
   $scope.capturePhoto = function() {
     //first, get data to display before take a photo
     var ref = new Firebase (firebaseUrl);
+    
+    //update data changing
     ref.child($rootScope.id).on('value', function(snapshot) {
       if(snapshot) {
         $scope.data = snapshot.val();
