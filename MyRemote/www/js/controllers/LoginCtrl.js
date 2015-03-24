@@ -14,6 +14,7 @@ angular
 
 function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService, UserService) {
   var ref = new Firebase(firebaseUrl);
+  var vm = this;
 
   ref.onAuth(function(authData) {
     if(authData){
@@ -40,7 +41,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
       alert("Login Failed!", error);
     } else {
       //when login success
-      console.log("Login success");
+      console.log("Login success"+  $rootScope.id);
       
       //then go to the Main menu
       $state.go('main-menu');
@@ -51,8 +52,8 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   };
   
   //sign in with email and pass 
-  $scope.signIn = function() {
-    if($scope.email && $scope.pass){
+  $scope.signInWithPassword = function(vm) {
+    if(vm.email && vm.pass){
 
       //show loading when start login
       $ionicLoading.show({
@@ -61,8 +62,8 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
 
       // Log in with an email/password combination
       ref.authWithPassword({
-        email    : $scope.email,
-        password : $scope.pass
+        email    : vm.email,
+        password : vm.pass
       }, $scope.authHandler);
 
       //hide loading when checking finished
