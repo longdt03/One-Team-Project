@@ -38,4 +38,16 @@ angular.module('one.services', ['firebase'])
       }
     }
   }
+})
+
+.factory('Notification', function() {
+  return {
+    noti: function(err) {
+      if (err){
+        console.log ('Request sent failed');
+      } else {
+        console.log('Request sent success');
+      }
+    }
+  }
 });

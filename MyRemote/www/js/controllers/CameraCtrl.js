@@ -7,20 +7,32 @@ angular
     '$state', 
     '$http', 
     '$ionicLoading', 
-    '$timeout', 
+    '$timeout',
+    'Notification', 
     cameraCtrl
   ]);
 
-function cameraCtrl($scope,$firebase, $rootScope, $state, $http, $ionicLoading, $timeout) {
+function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading, $timeout, Notification) {
   
   $scope.capturePhoto = function() {
     //first, get data to display before take a photo
-    // YOUR CODE HERE
+    var ref = new Firebase (firebaseUrl);
+    ref.child($rootScope.id).on('value', function(snapshot) {
+      if(snapshot) {
+        $scope.data = snapshot.val();
+      }
+    });
 
     showLoading();
     
     //send request to server
-    //YOUR CODE HERE
+    ref.child($rootScope.id).update({
+      request: "capture"
+    }, function (error) {
+
+      //when request is sent
+      Notification.noti(error);
+    });
 
     $timeout(function() {
       hideLoading();
