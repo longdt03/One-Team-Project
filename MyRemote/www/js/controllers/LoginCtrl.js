@@ -14,7 +14,6 @@ angular
 
 function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService, UserService) {
   var ref = new Firebase(firebaseUrl);
-  var vm = this;
 
   ref.onAuth(function(authData) {
     if(authData){
@@ -23,9 +22,9 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
     }
   });
 
-  //init profile
+  //init new user profile
   $scope.setProfile = function() {
-    ref.child($rootScope.id).set({
+    ref.child('users').child($rootScope.id).update({
       user_name: $rootScope.username,
       device: "",
       data: "",
@@ -38,7 +37,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
     
     //notify when an error occurs
     if (error) {
-      alert("Login Failed!", error);
+      alert("Password or email is invalid!");
     } else {
       //when login success
       console.log("Login success"+  $rootScope.id);
@@ -82,7 +81,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   
   //sign in with email and pass 
   $scope.signInWithPassword = function(vm) {
-    if(vm.email && vm.pass){
+    if(vm && vm.email && vm.pass){
 
       //show loading when start login
       $ionicLoading.show({
@@ -105,14 +104,14 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
 
   //sign in with Google account
   $scope.signInWithGoogle = function() {
-    vm.provider = "google";
-    signInWithProvider(vm.provider);
+    $scope.provider = "google";
+    signInWithProvider($scope.provider);
   };
 
   //sign in with Facebook account
   $scope.signInWithFacebook = function () {
 
-    vm.provider = "facebook";
-    signInWithProvider(vm.provider);
+    $scope.provider = "facebook";
+    signInWithProvider($scope.provider);
   };
 }

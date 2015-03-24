@@ -28,7 +28,7 @@ function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading,
     showLoading();
     
     //send request to server
-    ref.child($rootScope.id).update({
+    ref.child('users').child($rootScope.id).update({
       request: "capture"
     }, function (error) {
 

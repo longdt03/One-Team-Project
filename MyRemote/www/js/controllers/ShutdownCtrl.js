@@ -30,7 +30,7 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, No
     $scope.request = $scope.data.selectedTask.msg + '|' + $scope.time.toString();
     
     //send request to server 
-    var ref = new Firebase(firebaseUrl + '/' + $rootScope.id);
+    var ref = new Firebase(firebaseUrl + '/users/' + $rootScope.id);
     
     ref.update({
       request: $scope.request
