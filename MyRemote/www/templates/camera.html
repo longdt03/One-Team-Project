@@ -1,16 +1,14 @@
-<ion-header-bar class="bar-positive">
-  <button class="button button-clear" ng-click="back()">
-    <i class="icon ion-ios-arrow-left"></i>
-  </button>
-  <h1 class="title">Camera</h1>
-</ion-header-bar>
-<ion-content>
-  <div class="list padding">
-    <div class="item item-image">
-      <img ng-src="{{data}}" alt="Image Placeholder"> 
-    </div>
-    <div class="button-bar">
-      <button ng-click="capturePhoto()" class="button button-positive">Capture photo</a>
-    </div>
+<div class="ionic">
+  <div class="bar bar-header bar-positive">
+    <button class="button button-icon icon ion-ios-arrow-left flat" ng-click="back()"></button>
+    <h1 class="title fab-left">Camera</h1>
   </div>
-</ion-content>
+  <button class="button button-fab button-fab-bottom-right button-assertive icon ion-power" ng-click="submit()"></button>
+</div>
+  <ion-content>
+    <div class="list padding">
+      <div class="item item-image">
+        <img ng-src="{{data}}" alt="Image Placeholder"> 
+      </div>
+    </div>
+  </ion-content>

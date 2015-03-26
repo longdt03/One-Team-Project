@@ -16,6 +16,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   var ref = new Firebase(firebaseUrl);
 
   ref.onAuth(function(authData) {
+    console.log(authData);
     if(authData){
       $rootScope.id = AuthService.getId(authData);
       $rootScope.username = UserService.getName(authData);
@@ -24,7 +25,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
 
   //init new user profile
   $scope.setProfile = function() {
-    ref.child('users').child($rootScope.id).update({
+    ref.child($rootScope.id).update({
       user_name: $rootScope.username,
       device: "",
       data: "",
@@ -105,13 +106,6 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   //sign in with Google account
   $scope.signInWithGoogle = function() {
     $scope.provider = "google";
-    signInWithProvider($scope.provider);
-  };
-
-  //sign in with Facebook account
-  $scope.signInWithFacebook = function () {
-
-    $scope.provider = "facebook";
     signInWithProvider($scope.provider);
   };
 }

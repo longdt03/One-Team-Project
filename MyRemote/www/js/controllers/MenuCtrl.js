@@ -33,7 +33,8 @@ function menuCtrl($scope, $state, $ionicSideMenuDelegate, $rootScope, $firebaseA
   $scope.logOut = function() {
     //log out of application
     //YOUR CODE HERE
-
+    var ref = new Firebase(firebaseUrl);
+    ref.unauth();
     //then goto login interface
     $state.go('login');
   };

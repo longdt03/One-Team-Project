@@ -25,18 +25,12 @@
       <div ng-show="data.selectedTask.time" class="padding-bottom">
         <div class="item item-divider positive-bg positive-border light">
           <span>Timer</span>
-          <span class="pull-right">{{data.timer.minute}}m{{data.timer.second}}s</span>
+          <span class="pull-right">{{data.timer.minute}} minute(s)</span>
         </div>
       
         <div class="item range range-assertive">
           <i class="icon ion-ios-clock-outline"></i>
           <input ng-model="data.timer.minute" type="range" name="minute" min="0" max="81">
-          <i class="icon ion-ios-clock"></i>
-        </div>
-        <div class="item range range-positive">
-          <i class="icon ion-ios-stopwatch-outline"></i>
-          <input ng-model="data.timer.second" type="range" name="second" min="0" max="59">
-          <i class="icon ion-ios-stopwatch"></i>
         </div>
       </div>
     </div>
