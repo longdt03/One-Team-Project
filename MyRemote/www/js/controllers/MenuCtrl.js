@@ -10,6 +10,13 @@ angular
   ]);
 
 function menuCtrl($scope, $state, $ionicSideMenuDelegate, $rootScope, $firebaseAuth) {
+  // devices list
+  $scope.allDevices = [
+    {name: 'LongPC'},
+    {name: 'KienPC'},
+    {name: 'HienPC'}
+  ];
+  $scope.selectedDevice = {};
 
   //display user name in the top of side menu
   $scope.username = $rootScope.username;

@@ -32,3 +32,8 @@
 .line-height-small {
   line-height: 0.8;
 }
+
+.list .item-radio input:checked ~ .item-content   {
+  background-color: white;
+  color: black;
+}

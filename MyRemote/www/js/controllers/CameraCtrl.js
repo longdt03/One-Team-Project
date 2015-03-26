@@ -41,11 +41,6 @@ function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading,
     }, 15000);
   };
 
-  //go back to main-menu
-  $scope.back= function() {
-    $state.go('main-menu');
-  };
-
   var showLoading = function() {
     $ionicLoading.show({
       template: '<ion-spinner></ion-spinner>'

@@ -39,9 +39,4 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, No
       Notification.noti(error);
     });
   };
-
-  // back tho the Main Menu
-  $scope.back = function() {
-    $state.go('main-menu');
-  };
 }

@@ -36,9 +36,17 @@
     </div>
     <div class="content has-header">
       <div class="list">
+        <a class="item item-divider">Devices</a>
+        <ion-radio ng-repeat="device in allDevices"
+                   ng-value="task"
+                   ng-model="selectedDevice"
+                   class="light-bg">
+          {{device.name}}
+        </ion-radio>
       </div>
       <div class="list">
-        <a class="item" nav-clear menu-close ng-click="logOut()">Log Out</a>
+        <a class="item item-divider"></a>
+        <a class="item" nav-clear menu-close ng-click="logOut()">Log out</a>
       </div>
     </div>
   </ion-side-menu>
