@@ -6,17 +6,28 @@ angular
     '$ionicSideMenuDelegate',
     '$rootScope', 
     '$firebaseAuth',
+    '$ionicPopover',
     menuCtrl
   ]);
 
-function menuCtrl($scope, $state, $ionicSideMenuDelegate, $rootScope, $firebaseAuth) {
+function menuCtrl(
+  $scope, 
+  $state, 
+  $ionicSideMenuDelegate, 
+  $rootScope, 
+  $firebaseAuth,
+  $ionicPopover) {
+  
   // devices list
   $scope.allDevices = [
     {name: 'LongPC'},
     {name: 'KienPC'},
-    {name: 'HienPC'}
+    {name: 'HienPC'},
+    {name: 'LinhPC'}
   ];
-  $scope.selectedDevice = {};
+  $scope.data = {
+    selectedDevice: {}
+  }
 
   //display user name in the top of side menu
   $scope.username = $rootScope.username;
@@ -46,4 +57,26 @@ function menuCtrl($scope, $state, $ionicSideMenuDelegate, $rootScope, $firebaseA
     $state.go('login');
   };
 
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope
+  });
+
+  // .fromTemplateUrl() method
+  $ionicPopover.fromTemplateUrl('templates/main-popover.html', {
+    scope: $scope
+  }).then(function(popover) {
+    $scope.popover = popover;
+  });
+
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
 } 

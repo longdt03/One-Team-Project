@@ -3,7 +3,7 @@
   <ion-side-menu-content>
     <div class="bar bar-header bar-positive">
       <button class="button button-icon icon ion-navicon flat" ng-click="toggleLeft()"></button>
-      <button class="button button-icon icon ion-android-more-vertical flat pull-right"></button>
+      <button class="button button-icon icon ion-android-more-vertical flat pull-right" ng-click="openPopover($event)"></button>
       <h1 class="title fab-left">Menu</h1>
     </div>
     
@@ -36,17 +36,19 @@
     </div>
     <div class="content has-header">
       <div class="list">
-        <a class="item item-divider">Devices</a>
+        <a class="item item-divider">Devices: {{data.selectedDevice}}</a>
         <ion-radio ng-repeat="device in allDevices"
-                   ng-value="task"
-                   ng-model="selectedDevice"
+                   ng-value="device"
+                   ng-model="data.selectedDevice"
                    class="light-bg">
           {{device.name}}
-        </ion-radio>
+        </ion-radio
+        <a class="item item-divider"></a>
       </div>
       <div class="list">
-        <a class="item item-divider"></a>
-        <a class="item" nav-clear menu-close ng-click="logOut()">Log out</a>
+        <a class="item" nav-clear menu-close ng-click="logOut()">
+          <strong>Log out</strong>
+        </a>
       </div>
     </div>
   </ion-side-menu>
