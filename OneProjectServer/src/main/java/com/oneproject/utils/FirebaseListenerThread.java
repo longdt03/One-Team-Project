@@ -6,8 +6,7 @@
 package com.oneproject.utils;
 
 import com.firebase.client.ChildEventListener;
-import com.oneproject.server.models.DataObject;
-import com.oneproject.server.models.Device;
+import com.firebase.client.Firebase;
 
 /**
  *
@@ -16,20 +15,17 @@ import com.oneproject.server.models.Device;
 public class FirebaseListenerThread implements Runnable {
 
     private ChildEventListener listener;
-    private Device device = null;
-
-    public FirebaseListenerThread(ChildEventListener listener) {
+    private Firebase firebase;
+    
+    public FirebaseListenerThread(Firebase firebase, ChildEventListener listener) {
         this.listener = listener;
-        this.device = FirebaseAdapter.getDevice();
+        this.firebase = firebase;
         new Thread(this).start();
     }
 
     @Override
     public void run() {
         //Create new firebase note
-        DataObject data = new DataObject();
-        data.setData(FirebaseAdapter.getDevice().getDeviceName(), FirebaseAdapter.getDevice().getPassword(), "", "");
-        FirebaseAdapter.createFirebase(data);
-        FirebaseAdapter.getFirebase().addChildEventListener(this.listener);
+        firebase.addChildEventListener(this.listener);
     }
 }

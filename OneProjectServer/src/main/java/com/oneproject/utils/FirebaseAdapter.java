@@ -7,8 +7,6 @@ package com.oneproject.utils;
 
 import com.firebase.client.Firebase;
 import com.oneproject.server.helper.Config;
-import com.oneproject.server.models.DataObject;
-import com.oneproject.server.models.Device;
 
 /**
  *
@@ -17,38 +15,47 @@ import com.oneproject.server.models.Device;
 public class FirebaseAdapter {
 
     private static Firebase root;
-    private static Device device;
+    private Firebase deviceFirebase;
+    private StringBuilder firebaseURL = new StringBuilder(Config.FIREBASE_URL);
 
-    public static Device getDevice() {
-        if (device == null) {
-            device = new Device();
-        }
-        return device;
+    public FirebaseAdapter(String childPath) {
+        deviceFirebase = new Firebase(firebaseURL.append(childPath).toString());
     }
 
-    public static Firebase getFirebase() {
-        if (root == null) {          
+    public Firebase getDeviceFirebase() {
+        return this.deviceFirebase;
+    }
+
+    public String getFirebaseUrl() {
+        return this.firebaseURL.toString();
+    }
+
+    public static Firebase getFirebaseRoot() {
+        if (root == null) {
             root = new Firebase(Config.FIREBASE_URL);
         }
         return root;
     }
 
-    public static void pushData(String key, Object data) {
-        try {
-            Firebase firebase = FirebaseAdapter.getFirebase().child(key);
-            firebase.setValue(data);
-            Thread.sleep(10000);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+    public void pushData(final String key, final Object data) throws InterruptedException {
+        new Thread() {
+            @Override
+            public void run() {
+                Firebase firebase = deviceFirebase;
+                if (key != null && key != "") {
+                    firebase = deviceFirebase.child(key);
+                }
+                firebase.setValue(data);
+            }
+        }.start();
     }
 
-    public static void createFirebase(Object data) {
-        try {
-            FirebaseAdapter.getFirebase().setValue(data);
-            Thread.sleep(10000);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+    public void createFirebase(final Object data) throws InterruptedException {
+        new Thread() {
+            @Override
+            public void run() {
+                deviceFirebase.setValue(data);
+            }
+        }.start();        
     }
 }

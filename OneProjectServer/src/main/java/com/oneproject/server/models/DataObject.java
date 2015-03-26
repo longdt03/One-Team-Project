@@ -13,14 +13,16 @@ import java.util.HashMap;
  */
 public class DataObject extends HashMap<String, Object>{
     
-    private String deviceName;
-    private String password;
+    private String response;
     private String data;
-    private String systax;
+    private String request;
     
-    public DataObject setData(String deviceName, String password, String data, String request) {
-        this.put("device_name", deviceName);
-        this.put("password", password);
+    public DataObject() {
+        this.setData("", "", "");
+    }
+    
+    public DataObject setData(String response, String data, String request) {
+        this.put("response", response);
         this.put("data", data);
         this.put("request", request);
         return this;

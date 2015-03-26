@@ -5,10 +5,8 @@
  */
 package com.oneproject.server.ui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
@@ -17,15 +15,15 @@ import javax.swing.JFrame;
  */
 public class MainUI extends JFrame implements ActionListener {
 
-    private static MainUIListener listener;
+    private MainUIListener listener;
 
-    public MainUI() {
+    public MainUI(MainUIListener listener) {
         super("One Remote Server");
         initComponents();
-        
+        this.listener = listener;
         this.setResizable(false);
         this.createAndShowUI();
-        this.btnStart.addActionListener(this);        
+        this.btnStart.addActionListener(this);  
     }
 
     /**
@@ -94,14 +92,14 @@ public class MainUI extends JFrame implements ActionListener {
         listener.onClick();
     }
 
-    public static void setListener(MainUIListener listener) {
-        MainUI.listener = listener;
-    }   
-    
     public void setEnableStartBtn(boolean isEnable) {
         this.btnStart.setEnabled(isEnable);
     }
    
+    public void printLog(String log) {        
+        this.txtLog.append(log + "\n");
+    }
+    
     private void createAndShowUI() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

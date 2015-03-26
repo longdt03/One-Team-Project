@@ -5,6 +5,7 @@
  */
 package com.oneproject.server.ui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -16,9 +17,9 @@ import javax.swing.JFrame;
 public class LoginFrame extends JFrame {
 
     private LoginListener loginListener;
-    
+
     public LoginFrame(final LoginListener listener) {
-        super("Login");
+        super("OneRemoteServer - Login ");
         initComponents();
         this.loginListener = listener;
         this.createAndShowUI();
@@ -28,7 +29,7 @@ public class LoginFrame extends JFrame {
                 loginListener.onClickLogin(txtEmail.getText(), new String(txtPassword.getPassword()));
             }
         });
-        
+
         this.btnLoginGoogle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -36,16 +37,24 @@ public class LoginFrame extends JFrame {
             }
         });
     }
-   
+
     public void setLoginStatus(boolean isSuccess) {
-        if(isSuccess) {
+        if (isSuccess) {
             this.lbLoginStatus.setText("Login Success!");
+            this.lbLoginStatus.setForeground(Color.green);
+            
         } else {
             this.lbLoginStatus.setText("Invalid email or password.");
+            this.lbLoginStatus.setForeground(Color.red);
         }
     }
-    
-     private void createAndShowUI() {
+
+    public void setEnableLoginButton(boolean isEnable) {
+        this.btnLogin.setEnabled(isEnable);
+        this.btnLoginGoogle.setEnabled(isEnable);
+    }
+
+    private void createAndShowUI() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("System".equals(info.getName())) {
@@ -58,7 +67,7 @@ public class LoginFrame extends JFrame {
         }
         this.setLocationRelativeTo(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -134,7 +143,7 @@ public class LoginFrame extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLoginGoogle;
@@ -146,7 +155,9 @@ public class LoginFrame extends JFrame {
     // End of variables declaration//GEN-END:variables
 
     public static interface LoginListener {
+
         public void onClickLogin(String email, String password);
+
         public void onClickLoginGG(String email, String password);
     }
 }

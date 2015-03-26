@@ -70,7 +70,7 @@ public class LoadingDialog extends javax.swing.JDialog {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        this.lbLoading.setText("Loading...");
+        this.lbLoading.setText("Waiting...");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
