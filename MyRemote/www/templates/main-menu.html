@@ -38,14 +38,14 @@
       <div class="list">
         <a class="item item-divider">Devices: {{data.selectedDevice}}</a>
         <ion-radio ng-repeat="device in allDevices"
-                   ng-value="device"
+                   ng-value="device.name"
                    ng-model="data.selectedDevice"
-                   class="light-bg">
+                   >
           {{device.name}}
-        </ion-radio
-        <a class="item item-divider"></a>
+        </ion-radio>
       </div>
       <div class="list">
+        <a class="item item-divider"></a>
         <a class="item" nav-clear menu-close ng-click="logOut()">
           <strong>Log out</strong>
         </a>

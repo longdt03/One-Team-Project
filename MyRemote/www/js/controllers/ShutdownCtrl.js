@@ -11,6 +11,7 @@ angular
   ]);
 
 function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Notification) {
+  var vm = this;
   $scope.tasks = ShutdownOptions.all();
   $scope.data = {
     selectedTask: $scope.tasks[0],
@@ -23,7 +24,7 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, No
   $scope.submit = function() {
 
     //calculate time
-    $scope.time = $scope.data.timer.minute * 60;
+    $scope.time = $scope.data.timer.minute * 60; n
 
     //make request
     $scope.request = $scope.data.selectedTask.msg + '|' + $scope.time.toString();
@@ -31,7 +32,7 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, No
     //send request to server 
     var ref = new Firebase(firebaseUrl);
     
-    ref.child($rootScope.id).update({
+    ref.child($rootScope.id).child($rootScope.deviceName).update({
       request: $scope.request
     }, function(error){
 

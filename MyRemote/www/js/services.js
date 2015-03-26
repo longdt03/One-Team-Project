@@ -15,6 +15,36 @@ angular.module('one.services', ['firebase'])
   };
 })
 
+.factory('DevicesList', function() {
+  
+  //get device name from firebase
+  var service = function(user) {
+    var count = 0;
+
+    //array of devices
+    var devices = [];
+
+    // add name to the devices
+    user.orderByKey().on('value', function(snap) {
+       snap.forEach(function(data) {
+
+        //get device name
+        var obj = {name: data.key()}
+
+        //then assign to devices array 
+        devices[count] = obj;
+        count ++;
+      });
+    });
+    return devices;
+  };
+
+  // return devices name
+  return {
+    getDevices: service
+  };
+})
+
 .factory('AuthService', function() {
 
   return {

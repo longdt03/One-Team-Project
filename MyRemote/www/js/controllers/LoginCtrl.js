@@ -24,13 +24,8 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   });
 
   //init new user profile
-  $scope.setProfile = function() {
-    ref.child($rootScope.id).update({
-      user_name: $rootScope.username,
-      device: "",
-      data: "",
-      request: ""
-    });
+  $scope.setUser = function() {
+    ref.child($rootScope.id).update({});
   };
 
   // Create a callback to handle the result of the authentication
@@ -47,7 +42,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
       $state.go('main-menu');
 
       //init profile
-      $scope.setProfile();
+      $scope.setUser();
     }
   };
 
@@ -75,7 +70,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
         $state.go('main-menu'); 
 
         //and init user profile
-        $scope.setProfile();
+        $scope.setUser();
       }
     });
   };

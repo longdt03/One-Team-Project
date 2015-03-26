@@ -7,6 +7,7 @@ angular
     '$rootScope', 
     '$firebaseAuth',
     '$ionicPopover',
+    'DevicesList',
     menuCtrl
   ]);
 
@@ -16,15 +17,14 @@ function menuCtrl(
   $ionicSideMenuDelegate, 
   $rootScope, 
   $firebaseAuth,
-  $ionicPopover) {
+  $ionicPopover,
+  DevicesList) {
   
   // devices list
-  $scope.allDevices = [
-    {name: 'LongPC'},
-    {name: 'KienPC'},
-    {name: 'HienPC'},
-    {name: 'LinhPC'}
-  ];
+  var ref = new Firebase(firebaseUrl);
+  
+  $scope.allDevices = [];
+  $scope.allDevices = DevicesList.getDevices(ref.child($rootScope.id));
   $scope.data = {
     selectedDevice: {}
   }
@@ -44,7 +44,7 @@ function menuCtrl(
 
   //Goto camera interface
   $scope.camera = function() {
-    $state.go('camera');
+    $state.go('camera');  
   };
 
   //log out 
