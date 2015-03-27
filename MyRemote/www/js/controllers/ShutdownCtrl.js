@@ -11,7 +11,7 @@ angular
   ]);
 
 function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Notification) {
-  var vm = this;
+
   $scope.tasks = ShutdownOptions.all();
   $scope.data = {
     selectedTask: $scope.tasks[0],
@@ -24,7 +24,7 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, No
   $scope.submit = function() {
 
     //calculate time
-    $scope.time = $scope.data.timer.minute * 60; n
+    $scope.time = $scope.data.timer.minute * 60; 
 
     //make request
     $scope.request = $scope.data.selectedTask.msg + '|' + $scope.time.toString();

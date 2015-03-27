@@ -22,11 +22,11 @@ function menuCtrl(
   
   // devices list
   var ref = new Firebase(firebaseUrl);
-  
+  var vm = this;
   $scope.allDevices = [];
   $scope.allDevices = DevicesList.getDevices(ref.child($rootScope.id));
   $scope.data = {
-    selectedDevice: {}
+    selectedDevice: {name: ""}
   }
 
   //display user name in the top of side menu
@@ -39,20 +39,37 @@ function menuCtrl(
 
   //go to Shut down interface
   $scope.shutdown = function() {
-    $state.go('shut-down');
+    
+    //alert when no device was choosen
+    if($scope.data.selectedDevice.name === "") {
+      alert ("Please choose device");
+    } else {
+
+      //assign deviceName
+      $rootScope.deviceName = $scope.data.selectedDevice.name;
+
+      //then go to ShutDown
+      $state.go('shut-down');
+    }
   };
 
   //Goto camera interface
   $scope.camera = function() {
-    $state.go('camera');  
+    if($scope.data.selectedDevice.name === "") {
+      alert ("Please choose device");
+    } else {
+      $rootScope.deviceName = $scope.data.selectedDevice.name;
+      $state.go('camera');
+    }
   };
 
   //log out 
   $scope.logOut = function() {
+    
     //log out of application
-    //YOUR CODE HERE
     var ref = new Firebase(firebaseUrl);
     ref.unauth();
+    
     //then goto login interface
     $state.go('login');
   };

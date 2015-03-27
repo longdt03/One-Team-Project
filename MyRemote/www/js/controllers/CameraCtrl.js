@@ -14,12 +14,12 @@ angular
 
 function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading, $timeout, Notification) {
   
-  $scope.capturePhoto = function() {
+  $scope.submit = function() {
     //first, get data to display before take a photo
     var ref = new Firebase (firebaseUrl);
     
     //update data changing
-    ref.child($rootScope.id).on('value', function(snapshot) {
+    ref.child($rootScope.id).child($rootScope.deviceName).child('data').on('value', function(snapshot) {
       if(snapshot) {
         $scope.data = snapshot.val();
       }
@@ -28,7 +28,7 @@ function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading,
     showLoading();
     
     //send request to server
-    ref.child($rootScope.id).update({
+    ref.child($rootScope.id).child($rootScope.deviceName).update({
       request: "capture"
     }, function (error) {
 
