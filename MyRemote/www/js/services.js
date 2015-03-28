@@ -16,9 +16,13 @@ angular.module('one.services', ['firebase'])
 })
 
 .factory('DevicesList', function() {
-  
-  //get device name from firebase
-  var service = function(user) {
+  var service = {
+    getDevices: getDevices
+  };
+  return service;
+
+  //get device name from firebas
+  function getDevices(user) {
     var count = 0;
 
     //array of devices
@@ -38,35 +42,38 @@ angular.module('one.services', ['firebase'])
     });
     return devices;
   };
-
-  // return devices name
-  return {
-    getDevices: service
-  };
 })
 
 .factory('AuthService', function() {
+  var service = {
+    getId: getId,
+    getName: getName
+  }
+  return service;
 
-  return {
-    getId: function(authData) {
-      var data = authData.uid.toString().split(':');
-      return data[1];
+  function getId(authData) {
+    var data = authData.uid.toString().split(':');
+    return data[1];
+  }
+
+  function getName(authData) {
+    switch(authData.provider) {
+      case 'password':
+        return authData.password.email.replace(/@.*/, '');
+      case 'google':
+        return authData.google.displayName;
+      case 'facebook':
+        return authData.facebook.displayName;
     }
   }
 })
 
 .factory('UserService', function() {
-  return {
-    getName: function(authData) {
-      switch(authData.provider) {
-        case 'password':
-          return authData.password.email.replace(/@.*/, '');
-        case 'google':
-          return authData.google.displayName;
-        case 'facebook':
-          return authData.facebook.displayName;
-      }
-    }
+  var id = "";
+  var username = "";
+  
+  var service = {
+    
   }
 })
 

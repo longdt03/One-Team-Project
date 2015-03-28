@@ -77,6 +77,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   
   //sign in with email and pass 
   $scope.signInWithPassword = function(vm) {
+    var vm = {email: 'kien@one.com', pass: 'shinigami123'};
     if(vm && vm.email && vm.pass){
 
       //show loading when start login

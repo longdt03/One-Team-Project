@@ -28,7 +28,7 @@ function menuCtrl(
   $scope.data = {
     selectedDevice: {name: ""}
   }
-
+  console.log($scope.data);
   //display user name in the top of side menu
   $scope.username = $rootScope.username;
   
@@ -69,7 +69,7 @@ function menuCtrl(
     //log out of application
     var ref = new Firebase(firebaseUrl);
     ref.unauth();
-    
+      
     //then goto login interface
     $state.go('login');
   };

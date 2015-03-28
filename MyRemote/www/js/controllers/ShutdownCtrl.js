@@ -19,7 +19,7 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, No
       minute: 0
     }
   };
-
+  console.log($scope.data);
   //get data from the form and make request then send to server
   $scope.submit = function() {
 
