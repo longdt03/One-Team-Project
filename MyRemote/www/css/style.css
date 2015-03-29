@@ -27,3 +27,15 @@
   background-color: white;
   color: black;
 }
+
+.checkbox-easi-blue .checkbox-icon:before, .checkbox-easi-blue input:before { border-color: #416969; }
+.checkbox-easi-blue input:checked+.checkbox-icon:before, .checkbox-easi-blue input:checked:before { background: #416969; border-color: #416969; }
+
+.float-right {
+  float: right;
+}
+
+.rememberme input {
+  display: inline-block;
+  margin-right: 10px;
+}

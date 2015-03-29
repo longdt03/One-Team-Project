@@ -9,11 +9,27 @@ angular
     '$rootScope',
     'AuthService',
     'UserService',
+    'RememberMe',
     loginCtrl
 ]);
 
-function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService, UserService) {
+function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService, UserService, RememberMe) {
   var ref = new Firebase(firebaseUrl);
+  $scope.rememberMe = {
+    isChecked: RememberMe.isChecked()
+  };
+  console.log('local: ', RememberMe.isChecked());
+  console.log('current: ', $scope.rememberMe.isChecked);
+  
+
+  if (RememberMe.isChecked()) {
+    $scope.user = RememberMe.getUser();
+  } else {
+    $scope.user = {
+      email: '',
+      pass: ''
+    };
+  }
 
   ref.onAuth(function(authData) {
     console.log(authData);
@@ -37,6 +53,11 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
     } else {
       //when login success
       console.log("Login success"+  $rootScope.id);
+      RememberMe.checked($scope.rememberMe.isChecked);
+      if ($scope.rememberMe.isChecked) {
+        console.log($scope.user);
+        RememberMe.setUser($scope.user);
+      }
       
       //then go to the Main menu
       $state.go('main-menu');
@@ -76,9 +97,8 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   };
   
   //sign in with email and pass 
-  $scope.signInWithPassword = function(vm) {
-    var vm = {email: 'kien@one.com', pass: 'shinigami123'};
-    if(vm && vm.email && vm.pass){
+  $scope.signInWithPassword = function(user) {
+    if(user && user.email && user.pass){
 
       //show loading when start login
       $ionicLoading.show({
@@ -87,8 +107,8 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
 
       // Log in with an email/password combination
       ref.authWithPassword({
-        email    : vm.email,
-        password : vm.pass
+        email    : user.email,
+        password : user.pass
       }, $scope.authHandler);
 
       //hide loading when checking finished

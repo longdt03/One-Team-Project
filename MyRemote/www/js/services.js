@@ -73,8 +73,20 @@ angular.module('one.services', ['firebase'])
   var username = "";
   
   var service = {
-    
+    getName: getName
   }
+  return service;
+
+  function getName(authData) {
+      switch(authData.provider) {
+        case 'password':
+          return authData.password.email.replace(/@.*/, '');
+        case 'google':
+          return authData.google.displayName;
+        case 'facebook':
+          return authData.facebook.displayName;
+      }
+    }
 })
 
 .factory('Notification', function() {
@@ -87,4 +99,35 @@ angular.module('one.services', ['firebase'])
       }
     }
   }
-});
+})
+
+.factory('RememberMe', ['$window', function($window) {
+  var service = {
+    setUser: setUser,
+    getUser: getUser,
+    isChecked: isChecked,
+    checked: checked
+  }
+  return service;
+
+  function setUser(user) {
+    $window.localStorage['email'] = user.email;
+    $window.localStorage['pass'] = user.pass;
+  }
+
+  function getUser() {
+    var user = {
+      email: $window.localStorage['email'],
+      pass: $window.localStorage['pass']
+    }
+    return user;
+  }
+
+  function isChecked() {
+    return $window.localStorage['isChecked'] === "true";
+  }
+
+  function checked(isChecked) {
+    $window.localStorage['isChecked'] = isChecked;
+  }
+}]);
