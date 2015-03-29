@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.utils;
+package com.oneproject.server.utils;
 
 import com.firebase.client.Firebase;
 import com.oneproject.server.helper.Config;
@@ -22,6 +22,7 @@ public class FirebaseAdapter {
         deviceFirebase = new Firebase(firebaseURL.append(childPath).toString());
     }
 
+    //=> Tra ve node Device Firebase cua ung dung
     public Firebase getDeviceFirebase() {
         return this.deviceFirebase;
     }
@@ -30,6 +31,7 @@ public class FirebaseAdapter {
         return this.firebaseURL.toString();
     }
 
+    //=> Khoi tao Firebase root
     public static Firebase getFirebaseRoot() {
         if (root == null) {
             root = new Firebase(Config.FIREBASE_URL);
@@ -37,6 +39,7 @@ public class FirebaseAdapter {
         return root;
     }
 
+    //=> Push du lieu vao firebase
     public void pushData(final String key, final Object data) throws InterruptedException {
         new Thread() {
             @Override
@@ -50,12 +53,8 @@ public class FirebaseAdapter {
         }.start();
     }
 
+    //=> Khoi tao du lieu tren Firebase
     public void createFirebase(final Object data) throws InterruptedException {
-        new Thread() {
-            @Override
-            public void run() {
-                deviceFirebase.setValue(data);
-            }
-        }.start();        
+        deviceFirebase.setValue(data);
     }
 }

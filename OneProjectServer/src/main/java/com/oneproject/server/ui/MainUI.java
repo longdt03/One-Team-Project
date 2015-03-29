@@ -20,6 +20,7 @@ public class MainUI extends JFrame implements ActionListener {
     public MainUI(MainUIListener listener) {
         super("One Remote Server");
         initComponents();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.listener = listener;
         this.setResizable(false);
         this.createAndShowUI();

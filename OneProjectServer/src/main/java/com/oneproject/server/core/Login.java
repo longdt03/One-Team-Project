@@ -8,7 +8,8 @@ package com.oneproject.server.core;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.oneproject.utils.FirebaseAdapter;
+import com.oneproject.server.helper.Config;
+import com.oneproject.server.utils.FirebaseAdapter;
 
 /**
  *
@@ -43,6 +44,25 @@ public class Login {
                 }
             });
         } else if ("google".equals(provider)) {
+            FirebaseAdapter.getFirebaseRoot().authWithOAuthToken(email, Config.GG_ACCESS_TOKEN, new Firebase.AuthResultHandler() {
+
+                @Override
+                public void onAuthenticated(AuthData aut) {
+                    System.out.println("success");
+                    uID = aut.getUid();                    
+                    if (listener != null) {
+                        listener.onSuccess();
+                    }
+                }
+
+                @Override
+                public void onAuthenticationError(FirebaseError fe) {
+                    System.out.println(fe.getMessage());
+                    if (listener != null) {
+                        listener.onFail();
+                    }
+                }
+            });
         }
     }    
     

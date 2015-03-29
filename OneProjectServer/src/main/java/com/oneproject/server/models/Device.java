@@ -10,7 +10,7 @@ import com.firebase.client.Firebase;
 import com.firebase.client.snapshot.Node;
 import com.oneproject.server.core.Application;
 import com.oneproject.server.helper.Config;
-import com.oneproject.utils.FirebaseAdapter;
+import com.oneproject.server.utils.FirebaseAdapter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;

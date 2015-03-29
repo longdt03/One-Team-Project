@@ -6,8 +6,8 @@
 package com.oneproject.server.models;
 
 import com.oneproject.server.helper.Config;
-import com.oneproject.utils.PicasaUtils;
-import com.oneproject.utils.WebcamUtils;
+import com.oneproject.server.utils.PicasaUtils;
+import com.oneproject.server.utils.WebcamUtils;
 import java.io.File;
 import java.io.IOException;
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.utils;
+package com.oneproject.server.utils;
 
 import com.github.sarxos.webcam.Webcam;
 import com.oneproject.server.helper.Config;
