@@ -24,7 +24,7 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, No
   $scope.submit = function() {
 
     //calculate time
-    $scope.time = $scope.data.timer.minute * 60; 
+    $scope.time = $scope.data.selectedTask.time ? $scope.data.timer.minute * 60 : 0; 
 
     //make request
     $scope.request = $scope.data.selectedTask.msg + '|' + $scope.time.toString();
