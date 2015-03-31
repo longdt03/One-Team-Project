@@ -29,7 +29,7 @@ angular.module('one.services', ['firebase'])
     var devices = [];
 
     // add name to the devices
-    user.orderByKey().on('value', function(snap) {
+    user.once('value', function(snap) {
        snap.forEach(function(data) {
 
         //get device name
@@ -75,6 +75,7 @@ angular.module('one.services', ['firebase'])
   var service = {
     getName: getName
   }
+
   return service;
 
   function getName(authData) {

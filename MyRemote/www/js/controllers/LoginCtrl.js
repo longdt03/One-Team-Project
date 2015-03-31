@@ -40,7 +40,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   });
 
   //init new user profile
-  $scope.setUser = function() {
+  $scope.updateUser = function() {
     ref.child($rootScope.id).update({});
   };
 
@@ -63,7 +63,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
       $state.go('main-menu');
 
       //init profile
-      $scope.setUser();
+      $scope.updateUser();
     }
   };
 
@@ -91,7 +91,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
         $state.go('main-menu'); 
 
         //and init user profile
-        $scope.setUser();
+        $scope.updateUser();
       }
     });
   };
