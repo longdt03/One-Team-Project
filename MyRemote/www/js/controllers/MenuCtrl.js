@@ -7,6 +7,7 @@ angular
     '$rootScope', 
     '$firebaseAuth',
     '$ionicPopover',
+    '$window',
     'DevicesList',
     menuCtrl
   ]);
@@ -18,6 +19,7 @@ function menuCtrl(
   $rootScope, 
   $firebaseAuth,
   $ionicPopover,
+  $window,
   DevicesList) {
   
   // devices list
@@ -69,9 +71,9 @@ function menuCtrl(
     //log out of application
     var ref = new Firebase(firebaseUrl);
     ref.unauth();
-      
-    //then goto login interface
-    $state.go('login');
+    
+    // restart app
+    $window.location.reload();
   };
 
   $scope.popover = $ionicPopover.fromTemplate(template, {
