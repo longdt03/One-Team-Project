@@ -1,34 +1,38 @@
 <ion-content class="scroll-bg">
-  <div class="ionic">
+  <!-- <div class="ionic">
     <div class="hero no-header flat">
       <div class="content">
         <h1 class="light logo-font"><strong>One Remote</strong></h1>
       </div>
     </div>
-  </div>
-  <div class="list card">
-    <div class="item item-divider positive-bg positive-border light">
-      Login
-    </div>
-    <label class="item item-input">
-      <!-- <i class="icon ion-email placeholder-icon"></i> -->
-      <span class="input-label"><strong>Email</strong></span>
-      <input ng-model="user.email" type="text">
-    </label>
-    <label class="item item-input">
-      <!-- <i class="icon ion-key placeholder-icon"></i> -->
-      <span class="input-label"><strong>Password</strong></span>
-      <input ng-model="user.pass" type="password">
-    </label>
-    <ion-checkbox ng-model="rememberMe.isChecked">Remember me</ion-checkbox>
+  </div> -->
 
-  </div>
-  <div class="ionic">
-    <div class="padding-horizontal padding-top">
-      <button class="button button-block button-positive" ng-click="signInWithPassword(user)">Login</button>
+  <div class="padding" style="margin-top: 120px">
+    <div class="ionic">
+      <div class="padding">
+        <button class="button button-block button-assertive" ng-click="signInWithGoogle()">Login with Google+</button>
+      </div>
     </div>
+    <h4 class="text-center dark">OR</h4>
     <div class="padding">
-      <button class="button button-block button-assertive" ng-click="signInWithGoogle()">Login with Google+</button>
+      <label class="item item-input transparency">
+        <!-- <i class="icon ion-email placeholder-icon"></i> -->
+        <span class="input-label"><strong>Email</strong></span>
+        <input ng-model="user.email" type="text">
+      </label>
+      <label class="item item-input transparency">
+        <!-- <i class="icon ion-key placeholder-icon"></i> -->
+        <span class="input-label"><strong>Password</strong></span>
+        <input ng-model="user.pass" type="password">
+      </label>
+      <ion-checkbox ng-model="rememberMe.isChecked" class="transparency">Remember me</ion-checkbox>
+
     </div>
+    <div class="ionic">
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="signInWithPassword(user)">Login</button>
+      </div>
+    </div>
+    
   </div>
 </ion-content>
