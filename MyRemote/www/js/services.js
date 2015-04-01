@@ -47,25 +47,38 @@ angular.module('one.services', ['firebase'])
 .factory('AuthService', function() {
   var service = {
     getId: getId,
-    getName: getName
+    noti: noti,
+    checkConnect: checkConnect
   }
   return service;
 
+  //get id address
   function getId(authData) {
     var data = authData.uid.toString().split(':');
     return data[1];
   }
 
-  function getName(authData) {
-    switch(authData.provider) {
-      case 'password':
-        return authData.password.email.replace(/@.*/, '');
-      case 'google':
-        return authData.google.displayName;
-      case 'facebook':
-        return authData.facebook.displayName;
+  //notify when request sent
+  function noti(err) {
+    if (err){
+      console.log ('Request sent failed');
+    } else {
+      console.log('Request sent success');
     }
   }
+
+  //check device's connnection
+  function checkConnect(device) {
+    device.once('value', function(snap) {
+      var val = snap.val().response.toString().split('|');
+      if (val[0] === "online") {
+        return true;
+      } else {
+        alert ("Device is offline");
+        return false;
+      }
+    });
+  } 
 })
 
 .factory('UserService', function() {
@@ -88,18 +101,6 @@ angular.module('one.services', ['firebase'])
           return authData.facebook.displayName;
       }
     }
-})
-
-.factory('Notification', function() {
-  return {
-    noti: function(err) {
-      if (err){
-        console.log ('Request sent failed');
-      } else {
-        console.log('Request sent success');
-      }
-    }
-  }
 })
 
 .factory('RememberMe', ['$window', function($window) {

@@ -8,32 +8,43 @@ angular
     '$http', 
     '$ionicLoading', 
     '$timeout',
-    'Notification', 
+    'AuthService', 
     cameraCtrl
   ]);
 
-function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading, $timeout, Notification) {
+function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading, $timeout, AuthService) {
+  var ref = new Firebase (firebaseUrl);
+  var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
+
+  //first check divice's connection
+  $scope.connect = AuthService.checkConnect(refChild);
+
+  //get lastest data to display before take a photo
+  refChild.child('data').on('value', function(snapshot) {
+    if(snapshot) {
+      $scope.data = snapshot.val();
+    }
+  });
   
   $scope.submit = function() {
-    //first, get data to display before take a photo
-    var ref = new Firebase (firebaseUrl);
-    
+
+    // show waiting animation
+    showLoading();
+
     //update data changing
-    ref.child($rootScope.id).child($rootScope.deviceName).child('data').on('value', function(snapshot) {
+    refChild.child('data').on('value', function(snapshot) {
       if(snapshot) {
         $scope.data = snapshot.val();
       }
     });
-
-    showLoading();
     
     //send request to server
-    ref.child($rootScope.id).child($rootScope.deviceName).update({
+    refChild.update({
       request: "capture"
     }, function (error) {
 
       //when request is sent
-      Notification.noti(error);
+      AuthService.noti(error);
     });
 
     $timeout(function() {
