@@ -74,6 +74,9 @@ function menuCtrl(
     
     // restart app
     $window.location.reload();
+
+    // go to login
+    $state.go('login');
   };
 
   $scope.popover = $ionicPopover.fromTemplate(template, {
