@@ -8,6 +8,8 @@ angular
     '$firebaseAuth',
     '$ionicPopover',
     'DevicesList',
+    'UserService',
+    'AuthService',
     menuCtrl
   ]);
 
@@ -18,16 +20,22 @@ function menuCtrl(
   $rootScope, 
   $firebaseAuth,
   $ionicPopover,
-  DevicesList) {
+  DevicesList,
+  UserService,
+  AuthService
+  ) {
   
   // devices list
   var ref = new Firebase(firebaseUrl);
-  var vm = this;
+  var refChild = ref.child($rootScope.id);
+
   $scope.allDevices = [];
-  $scope.allDevices = DevicesList.getDevices(ref.child($rootScope.id));
+  $scope.allDevices = DevicesList.getDevices(refChild);
+
   $scope.data = {
-    selectedDevice: {name: ""}
+    selectedDevice: {name: "None"}
   }
+  
   console.log($scope.data);
   //display user name in the top of side menu
   $scope.username = $rootScope.username;
@@ -69,6 +77,9 @@ function menuCtrl(
     //log out of application
     var ref = new Firebase(firebaseUrl);
     ref.unauth();
+
+    //reset user information
+    UserService.reset();
       
     //then goto login interface
     $state.go('login');

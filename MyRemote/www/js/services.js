@@ -15,7 +15,7 @@ angular.module('one.services', ['firebase'])
   };
 })
 
-.factory('DevicesList', function() {
+.factory('DevicesList', ['AuthService',function(AuthService) {
   var service = {
     getDevices: getDevices
   };
@@ -34,15 +34,18 @@ angular.module('one.services', ['firebase'])
 
         //get device name
         var obj = {name: data.key()}
+        var isOnline = AuthService.checkConnect(user.child(obj.name));
 
         //then assign to devices array 
-        devices[count] = obj;
-        count ++;
+        if (isOnline) {
+          devices[count] = obj;
+          count ++;
+        }
       });
     });
     return devices;
   };
-})
+}])
 
 .factory('AuthService', function() {
   var service = {
@@ -70,11 +73,10 @@ angular.module('one.services', ['firebase'])
   //check device's connnection
   function checkConnect(device) {
     device.once('value', function(snap) {
-      var val = snap.val().response.toString().split('|');
+      var val = snap.val().status.toString().split('|');
       if (val[0] === "online") {
         return true;
       } else {
-        alert ("Device is offline");
         return false;
       }
     });
@@ -86,21 +88,29 @@ angular.module('one.services', ['firebase'])
   var username = "";
   
   var service = {
-    getName: getName
+    getName: getName,
+    reset: reset
   }
 
   return service;
 
   function getName(authData) {
-      switch(authData.provider) {
-        case 'password':
-          return authData.password.email.replace(/@.*/, '');
-        case 'google':
-          return authData.google.displayName;
-        case 'facebook':
-          return authData.facebook.displayName;
-      }
+    switch(authData.provider) {
+      case 'password':
+        return authData.password.email.replace(/@.*/, '');
+      case 'google':
+        return authData.google.displayName;
+      case 'facebook':
+        return authData.facebook.displayName;
     }
+  }
+
+  //reset information 
+  function reset() {
+    $rootScope.id = "";
+    $rootScope.username = "";
+    $rootScope.deviceName = "";
+  }
 })
 
 .factory('RememberMe', ['$window', function($window) {

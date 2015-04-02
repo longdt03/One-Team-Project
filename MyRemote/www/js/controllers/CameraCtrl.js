@@ -16,9 +16,6 @@ function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading,
   var ref = new Firebase (firebaseUrl);
   var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
 
-  //first check divice's connection
-  $scope.connect = AuthService.checkConnect(refChild);
-
   //get lastest data to display before take a photo
   refChild.child('data').on('value', function(snapshot) {
     if(snapshot) {

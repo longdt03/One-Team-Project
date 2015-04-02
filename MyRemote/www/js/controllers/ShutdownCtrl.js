@@ -14,10 +14,6 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Au
 
   var ref = new Firebase(firebaseUrl);
   var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
-
-  //check out connection
-  //show submit button only if device is online
-  $scope.connect = AuthService.checkConnect (refChild);
   
   $scope.tasks = ShutdownOptions.all();
   $scope.data = {
