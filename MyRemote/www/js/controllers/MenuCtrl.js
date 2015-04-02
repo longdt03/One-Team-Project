@@ -7,7 +7,6 @@ angular
     '$rootScope', 
     '$firebaseAuth',
     '$ionicPopover',
-    '$window',
     'DevicesList',
     'UserService',
     'AuthService',
@@ -21,15 +20,10 @@ function menuCtrl(
   $rootScope, 
   $firebaseAuth,
   $ionicPopover,
-<<<<<<< HEAD
   DevicesList,
   UserService,
   AuthService
   ) {
-=======
-  $window,
-  DevicesList) {
->>>>>>> origin/master
   
   // devices list
   var ref = new Firebase(firebaseUrl);
@@ -83,19 +77,11 @@ function menuCtrl(
     //log out of application
     var ref = new Firebase(firebaseUrl);
     ref.unauth();
-<<<<<<< HEAD
 
     //reset user information
     UserService.reset();
       
     //then goto login interface
-=======
-    
-    // restart app
-    $window.location.reload();
-
-    // go to login
->>>>>>> origin/master
     $state.go('login');
   };
 
