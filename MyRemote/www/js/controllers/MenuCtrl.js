@@ -30,12 +30,22 @@ function menuCtrl(
   var refChild = ref.child($rootScope.id);
 
   $scope.allDevices = [];
-  $scope.allDevices = DevicesList.getDevices(refChild);
+  $scope.allDevices = [
+    {name: 'kienPC'},
+    {name: 'vuPC'}
+  ];
+  // $scope.allDevices = DevicesList.getDevices(refChild);
 
   $scope.data = {
-    selectedDevice: {name: "None"}
-  }
+    selectedDevice: {name: ""}
+  };
   
+  // choose device from list
+  $scope.chooseDevice = function(device) {
+    $scope.data.selectedDevice = device;
+    $rootScope.deviceName = device.name;
+  };
+
   console.log($scope.data);
   //display user name in the top of side menu
   $scope.username = $rootScope.username;

@@ -36,13 +36,10 @@
     </div>
     <div class="content has-header">
       <div class="list">
-        <a class="item item-divider">Devices: {{data.selectedDevice.name}}</a>
-        <ion-radio ng-repeat="device in allDevices"
-                   ng-value="device"
-                   ng-model="data.selectedDevice"
-                   >
+        <a class="item item-divider">Selected Device: {{data.selectedDevice.name || 'No Device'}}</a>
+        <a class="item" ng-repeat="device in allDevices" ng-click="chooseDevice(device)">
           {{device.name}}
-        </ion-radio>
+        </a>
       </div>
       <div class="list">
         <a class="item item-divider"></a>
