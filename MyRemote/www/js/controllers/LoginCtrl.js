@@ -1,6 +1,6 @@
 angular
   .module('one.controllers.login', [])
-  .controller('LoginCtrl',[
+  .controller('LoginCtrl', [
     '$state', 
     '$scope',
     '$firebase',
@@ -49,7 +49,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
     
     //notify when an error occurs
     if (error) {
-      alert("Password or email is invalid!");
+      alert(error);
     } else {
       //when login success
       console.log("Login success"+  $rootScope.id);

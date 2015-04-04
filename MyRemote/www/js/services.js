@@ -83,7 +83,7 @@ angular.module('one.services', ['firebase'])
   } 
 })
 
-.factory('UserService', function() {
+.factory('UserService', ['$rootScope', function($rootScope) {
   var id = "";
   var username = "";
   
@@ -111,7 +111,7 @@ angular.module('one.services', ['firebase'])
     $rootScope.username = "";
     $rootScope.deviceName = "";
   }
-})
+}])
 
 .factory('RememberMe', ['$window', function($window) {
   var service = {

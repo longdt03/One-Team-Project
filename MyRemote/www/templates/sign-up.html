@@ -1,0 +1,30 @@
+<ion-content>
+  <div class="ionic">
+    <div class="bar bar-header bar-positive">
+      <button class="button button-icon icon ion-ios-arrow-left flat" ng-click="goBack()"></button>
+      <h1 class="title">Sign up</h1>
+    </div>
+  </div>
+  <div class="padding content has-header">
+    <h4 class="text-center">Please fill all fields</h4>
+    <div class="padding">
+      <label class="item item-input transparency">
+        <span class="input-label"><strong>Email</strong></span>
+        <input ng-model="user.email" type="text">
+      </label>
+      <label class="item item-input transparency">
+        <span class="input-label"><strong>Password</strong></span>
+        <input ng-model="user.pass" type="password">
+      </label>
+      <label class="item item-input transparency">
+        <span class="input-label"><strong>Re-type</strong></span>
+        <input ng-model="user.retype" type="password">
+      </label>
+    </div>
+    <div class="ionic">
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="createAccount(user)">Create Account</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

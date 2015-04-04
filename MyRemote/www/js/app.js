@@ -56,6 +56,12 @@ angular.module('one', [
     controller: 'LoginCtrl'
   })
 
+  .state('sign-up', {
+    url: '/sign-up',
+    templateUrl: 'templates/sign-up.html',
+    controller: 'SignupCtrl'
+  })
+
   // State to represent Main Menu View
   .state('main-menu', {
     url: '/main-menu',
