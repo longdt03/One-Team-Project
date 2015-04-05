@@ -1,20 +1,23 @@
 One Remote README
 
 ----------------------------------------------------------------------
-CONTENTS
+#CONTENTS
 ----------------------------------------------------------------------
 
-     o About Us
-     o About One Remote Program
-     o Requirement Software
-     o Functions
-     o Usage
-     o Questions, Support, Reporting Bugs
-     o Todo
+     o [About Us](#about-us)
+     o [About One Remote Program](#about-one-remote-program)
+     o [Requirement Software](#requirement software)
+     o [Functions](#functions)
+     o [Usage](#usage)
+     o [Feedback](#feedback)
+	- [Questions](#question)
+	- [Support](#support)
+	- [Reporting Bugs](#reporting-bugs)
+     o [Todo](#todo)
 
 
 ----------------------------------------------------------------------
-About Us
+###About Us
 ----------------------------------------------------------------------
 
 Thank you for downloading the One Remote Program.
@@ -28,11 +31,11 @@ We are One Team. We are a student group who studying software technology instruc
 
 We follow Scrumpt process to do our project. In every sprint, we set up new tasks for it.After that, everybody pick and do their tasks based on their ability. 
 If you want to have more detail, go check our pivotal tracker in this link below:
-https://www.pivotaltracker.com/n/projects/1263646
+- [User Story](https://www.pivotaltracker.com/n/projects/1263646 "User Story")
 
 
 ----------------------------------------------------------------------
-ABout One Remote Program
+###ABout One Remote Program
 ----------------------------------------------------------------------
 One Remote Program is an application for mobile devices to remotely control computer
 It is a open source code so feel free to download it and use it if u want
@@ -40,14 +43,14 @@ This client program has been written in ionic framework and we have used firebas
 In this server, we have used java to code all necessary functions.  
 Besides, we have used jshint tool to check and test the syntax. So, don't worry about any syntax error.
 If you need more information about what we have used, follow this link :
-https://www.firebase.com/
-http://ionicframework.com/
-http://www.java.com/en/ 
-https://angularjs.org/	
+- [Firebase](https://www.firebase.com/ "firebase")
+- [Ionic](http://ionicframework.com/ "Ionic")
+- [Java](http://www.java.com/en/ "Java") 
+- [Angularjs](https://angularjs.org/ "Angularjs")	
 
 
 ----------------------------------------------------------------------
-Requirement Software
+###Requirement Software
 ----------------------------------------------------------------------
 To use our program, we need you to have all the following softwares:
  1. Android, IOS Operating System
@@ -57,7 +60,7 @@ http://developer.android.com/sdk/index.html
 
 
 ----------------------------------------------------------------------
-Functions
+###Functions
 ----------------------------------------------------------------------
 Now, we have two functions:
 1. Shutdown Options
@@ -73,7 +76,7 @@ User can send request to computer to take a photo from webcam. The photo display
 
 
 ----------------------------------------------------------------------
-Usage
+###Usage
 ----------------------------------------------------------------------
 <How to use>
 First, you have to install my server code into a computer and my client code into a android device(or you can use android virtual machine)
@@ -90,31 +93,32 @@ If you want more information, go check specified folder.
 
 
 -----------------------------------------------------------------------
-Questions, Support, Reporting Bugs
+##FeedBack
 -----------------------------------------------------------------------
 
-Questions
+###Questions
 ---------
 
 For miscellaneous questions about One Remote usage and deployment, we
-encourage you to contact this number: 0928347561 or send them to our facebook. If not, ask us directly in class.
+encourage you to contact this number: 01689964546 or send its to our mail: oneteam.uet@gmail.com. 
+If not, ask us directly in class.
 
 
-Support
+###Support
 -------
 
 For more extensive One Remote Software questions or deployment issues, please contact
-our Technical Support staff at this number: 0928347543
+our Technical Support staff at this mail: oneteam.uet@gmail.com 
 
 
-Reporting Bugs
+###Reporting Bugs
 --------------
 
 * Photos sometimes do not display.
 * Animations sometimes do not work.
 * User cannot login sometimes
 
-TODO
+##TODO
 ----
 
 1. Complete and upgrade UI
