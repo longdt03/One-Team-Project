@@ -83,13 +83,12 @@ angular.module('one.services', ['firebase'])
   } 
 })
 
-.factory('UserService', ['$rootScope', function($rootScope) {
+.factory('UserService', function($rootScope) {
   var id = "";
   var username = "";
   
   var service = {
     getName: getName,
-    reset: reset
   }
 
   return service;
@@ -104,14 +103,7 @@ angular.module('one.services', ['firebase'])
         return authData.facebook.displayName;
     }
   }
-
-  //reset information 
-  function reset() {
-    $rootScope.id = "";
-    $rootScope.username = "";
-    $rootScope.deviceName = "";
-  }
-}])
+})
 
 .factory('RememberMe', ['$window', function($window) {
   var service = {
