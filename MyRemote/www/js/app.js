@@ -64,6 +64,7 @@ angular.module('one', [
 
   // State to represent Main Menu View
   .state('main-menu', {
+    cache: false,
     url: '/main-menu',
     templateUrl: 'templates/main-menu.html',
     controller: 'MenuCtrl'

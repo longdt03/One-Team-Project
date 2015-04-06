@@ -18,9 +18,6 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   $scope.rememberMe = {
     isChecked: RememberMe.isChecked()
   };
-  console.log('local: ', RememberMe.isChecked());
-  console.log('current: ', $scope.rememberMe.isChecked);
-  
 
   if (RememberMe.isChecked()) {
     $scope.user = RememberMe.getUser();

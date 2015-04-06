@@ -25,6 +25,7 @@ function menuCtrl(
   AuthService
   ) {
   
+  console.log($rootScope.username);
   // devices list
   var ref = new Firebase(firebaseUrl);
   var refChild = ref.child($rootScope.id);
@@ -46,7 +47,6 @@ function menuCtrl(
     $rootScope.deviceName = device.name;
   };
 
-  console.log($scope.data);
   //display user name in the top of side menu
   $scope.username = $rootScope.username;
   
