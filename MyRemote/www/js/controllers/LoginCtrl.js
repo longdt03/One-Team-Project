@@ -97,7 +97,7 @@ function loginCtrl(
             }
           });
         }
-      } else if (authData) {
+      } else {
         // user authenticated with Firebase
         console.log("Success!" + $rootScope.id);
 
