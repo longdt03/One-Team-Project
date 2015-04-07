@@ -88,7 +88,7 @@ angular.module('one.services', ['firebase'])
   var username = "";
   
   var service = {
-    getName: getName,
+    getName: getName
   }
 
   return service;
@@ -104,6 +104,23 @@ angular.module('one.services', ['firebase'])
     }
   }
 })
+
+.factory('Popup', ['$ionicPopup','$timeout', function($ionicPopup, $timeout) {
+  var service = {
+    showAlert: showAlert
+  };
+  return service;
+
+  function showAlert(title, template) {
+    var alertPopup = $ionicPopup.alert({
+      title: title,
+      template: template
+    });
+    $timeout(function() {
+      alertPopup.close();
+    }, 3000);
+  }
+}])
 
 .factory('RememberMe', ['$window', function($window) {
   var service = {

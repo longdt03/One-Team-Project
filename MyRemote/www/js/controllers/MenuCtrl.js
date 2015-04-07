@@ -10,6 +10,7 @@ angular
     'DevicesList',
     'UserService',
     'AuthService',
+    'Popup',
     menuCtrl
   ]);
 
@@ -22,7 +23,8 @@ function menuCtrl(
   $ionicPopover,
   DevicesList,
   UserService,
-  AuthService
+  AuthService,
+  Popup
   ) {
   
   // devices list
@@ -52,25 +54,27 @@ function menuCtrl(
 
   //go to Shut down interface
   $scope.shutdown = function() {
-    //alert when no device was choosen
-    if(!$scope.data.selectedDevice.name) {
-      alert ("Please choose device");
-    } else {
+    
+    if($scope.data.selectedDevice.name) {
       //assign deviceName
       $rootScope.deviceName = $scope.data.selectedDevice.name;
       
       //then go to ShutDown
       $state.go('shut-down');
+      
+    } else { 
+      //alert when no device was choosen
+      Popup.showAlert('No Device!', 'Please choose your device in sidemenu.');      
     }
   };
 
   //Goto camera interface
   $scope.camera = function() {
-    if(!$scope.data.selectedDevice.name) {
-      alert ("Please choose device");
-    } else {
+    if($scope.data.selectedDevice.name) {
       $rootScope.deviceName = $scope.data.selectedDevice.name;
       $state.go('camera');
+    } else {
+      Popup.showAlert('No Device!', 'Please choose your device in sidemenu.');  
     }
   };
 

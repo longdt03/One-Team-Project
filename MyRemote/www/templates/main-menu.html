@@ -36,7 +36,10 @@
     </div>
     <div class="content has-header">
       <div class="list">
-        <a class="item item-divider">Selected Device: {{data.selectedDevice.name || 'No Device'}}</a>
+        <a class="item item-divider">
+          <strong class="grey">Selected Device: </strong>
+          {{data.selectedDevice.name || 'No Device'}}
+        </a>
         <a class="item" ng-repeat="device in allDevices" ng-click="chooseDevice(device)">
           {{device.name}}
         </a>
@@ -44,7 +47,7 @@
       <div class="list">
         <a class="item item-divider"></a>
         <a class="item" nav-clear menu-close ng-click="logOut()">
-          <strong>Log out</strong>
+          <strong class="grey">Log out</strong>
         </a>
       </div>
     </div>

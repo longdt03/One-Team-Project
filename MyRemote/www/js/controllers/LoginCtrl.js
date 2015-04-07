@@ -10,10 +10,23 @@ angular
     'AuthService',
     'UserService',
     'RememberMe',
+    'Popup',
     loginCtrl
 ]);
 
-function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $rootScope, AuthService, UserService, RememberMe) {
+function loginCtrl(
+  $state, 
+  $scope, 
+  $firebase, 
+  $firebaseAuth, 
+  $ionicLoading, 
+  $rootScope, 
+  AuthService, 
+  UserService, 
+  RememberMe,
+  Popup
+  ) {
+
   var ref = new Firebase(firebaseUrl);
   $scope.rememberMe = {
     isChecked: RememberMe.isChecked()
@@ -29,7 +42,6 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
   }
 
   ref.onAuth(function(authData) {
-    console.log(authData);
     if(authData){
       $rootScope.id = AuthService.getId(authData);
       $rootScope.username = UserService.getName(authData);
@@ -43,16 +55,21 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
 
   // Create a callback to handle the result of the authentication
   $scope.authHandler = function(error, authData) {
-    
+    $ionicLoading.hide();
     //notify when an error occurs
     if (error) {
-      alert(error);
+      switch (error.code) {
+        case 'NETWORK_ERROR':
+          var message = 'Unable to contact the OneRemote Server';
+          Popup.showAlert('Login Failed!', message);
+          break;
+        default:
+          Popup.showAlert('Login Failed!', error.message);
+      }
     } else {
       //when login success
-      console.log("Login success"+  $rootScope.id);
       RememberMe.checked($scope.rememberMe.isChecked);
       if ($scope.rememberMe.isChecked) {
-        console.log($scope.user);
         RememberMe.setUser($scope.user);
       }
       
@@ -74,7 +91,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
           // automatically when we come back to the origin page
           ref.authWithOAuthRedirect(provider, function(error) {
             if (error) {
-              console.log("Login Failed!", error);
+              Popup.showAlert('Login Failed!', error.message);
             } else {
               console.log("Success");
             }
@@ -99,7 +116,7 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
 
       //show loading when start login
       $ionicLoading.show({
-        template: 'Signing in ...'
+        template: '<ion-spinner icon="bubbles" class="spinner-positive"></ion-spinner>'
       });
 
       // Log in with an email/password combination
@@ -108,11 +125,11 @@ function loginCtrl($state, $scope, $firebase, $firebaseAuth, $ionicLoading, $roo
         password : user.pass
       }, $scope.authHandler);
 
-      //hide loading when checking finished
-      $ionicLoading.hide();
+      ;
     } else {
       // notify when email or password is not filled
-      alert("Please fill email and password");
+      var message = 'Please fill email and password.'
+      Popup.showAlert('Login Failed!', message);
     }
   };
 

@@ -3,13 +3,14 @@ angular
   .controller('SignupCtrl', [
     '$scope',
     '$state',
+    'Popup',
     signupCtrl
 ]);
 
-function signupCtrl($scope, $state) {
+function signupCtrl($scope, $state, Popup) {
   $scope.createAccount = function(user) {
     if (!(user && user.email && user.pass && user.retype)) {
-      alert('Please fill all field!');
+      Popup.showAlert('Signup failed!', 'Please fill all fields.');
       return;
     }
     if (user.pass === user.retype) {
@@ -19,23 +20,14 @@ function signupCtrl($scope, $state) {
         password: user.pass
       }, function(error, userData) {
         if (error) {
-          switch (error.code) {
-            case 'EMAIL_TAKEN':
-              alert('The new user account cannot be created because the email is already in use.');
-              break;
-            case 'INVALID_EMAIL':
-              alert('The specified email is not a valid email.');
-              break;
-            default:
-              alert('Error creating user:', error);
-          }
+          Popup.showAlert('Signup failed!', error.message);
         } else {
-          alert('Successfully created user account!');
+          Popup.showAlert('Signup successful!', 'Welcome to OneRemote.');
           $state.go('login');
         }
       });
     } else {
-      alert('Password does not match!');
+      Popup.showAlert('Signup failed', 'Retype password does not match.');
     }
   };
 }
