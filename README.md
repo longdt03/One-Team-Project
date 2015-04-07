@@ -3,20 +3,13 @@ One Remote README
 ----------------------------------------------------------------------
 #CONTENTS
 ----------------------------------------------------------------------
-
-     o **[About Us](#about-us)**
-     o **[About One Remote Program](#about-one-remote-program)**
-     o **[Requirement Software](#requirement-software)**
-     o **[Functions](#functions)**
-     o **[Usage](#usage)**
-     o **[Feedback](#feedback)**
-	- **[Questions](#question)**
-	- **[Support](#support)**
-	- **[Reporting Bugs](#reporting-bugs)**
-     o **[Todo](#todo)**
-     o **[Test](#test)**		
-
-
+1. [About Us](#about-us)
+2. [About One Remote Program](#about-one-remote-program)
+3. [Requirement Software](#requirement-software)
+4. [Functions](#functions)
+5. [Usage](#usage)
+6. [Feedback](#feedback)
+7. [Test](#test)
 ----------------------------------------------------------------------
 ### About Us
 ----------------------------------------------------------------------
@@ -57,11 +50,11 @@ To use our program, we need you to have all the following softwares:
  1. Android, IOS Operating System
  2. Internet Connection(because our application operates through Internet)
 To download Android, you can follow this link: 
-http://developer.android.com/sdk/index.html	
+[Android](http://developer.android.com/sdk/index.html)	
 
 
 ----------------------------------------------------------------------
-###Functions
+### Functions
 ----------------------------------------------------------------------
 Now, we have two functions:
 1. Shutdown Options
@@ -97,7 +90,7 @@ If you want more information, go check specified folder.
 ## FeedBack
 -----------------------------------------------------------------------
 
-### Questions
+## Questions
 ---------
 
 For miscellaneous questions about One Remote usage and deployment, we
@@ -105,30 +98,19 @@ encourage you to contact this number: 01689964546 or send its to our mail: onete
 If not, ask us directly in class.
 
 
-### Support
+## Support
 -------
 
 For more extensive One Remote Software questions or deployment issues, please contact
 our Technical Support staff at this mail: oneteam.uet@gmail.com 
 
 
-### Reporting Bugs
+## Reporting Bugs
 --------------
 
 * Photos sometimes do not display.
 * Animations sometimes do not work.
 * User cannot login sometimes
-
-## Todo
-----
-
-1. Complete and upgrade UI
-2. Design icons, logo and splash screen
-3. Improve user experiences
-4. Check internet connection
-5. Display computer name
-6. Save computer ID history
-7. Writing test
 
 ### Test
 -----------------------------------------------------------------------
