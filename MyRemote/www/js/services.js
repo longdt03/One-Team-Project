@@ -52,7 +52,6 @@ angular.module('one.services', ['firebase'])
 .factory('AuthService', function() {
   var service = {
     getId: getId,
-    noti: noti,
     checkConnect: checkConnect
   }
   return service;
@@ -61,15 +60,6 @@ angular.module('one.services', ['firebase'])
   function getId(authData) {
     var data = authData.uid.toString().split(':');
     return data[1];
-  }
-
-  //notify when request sent
-  function noti(err) {
-    if (err){
-      console.log ('Request sent failed');
-    } else {
-      console.log('Request sent success');
-    }
   }
 
   //check device's connnection

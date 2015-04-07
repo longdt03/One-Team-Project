@@ -8,11 +8,19 @@ angular
     '$http', 
     '$ionicLoading', 
     '$timeout',
-    'AuthService', 
+    'Popup', 
     cameraCtrl
   ]);
 
-function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading, $timeout, AuthService) {
+function cameraCtrl(
+  $scope, 
+  $firebase, 
+  $rootScope, 
+  $state, 
+  $http, 
+  $ionicLoading, 
+  $timeout, 
+  Popup) {
   var ref = new Firebase (firebaseUrl);
   var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
 
@@ -41,12 +49,12 @@ function cameraCtrl($scope, $firebase, $rootScope, $state, $http, $ionicLoading,
     }, function (error) {
 
       //when request is sent
-      AuthService.noti(error);
+      if (error){
+        Popup.showAlert('Failed to send request');
+      } else {
+        Popup.showAlert('Request sent success');
+      }
     });
-
-    $timeout(function() {
-      hideLoading();
-    }, 15000);
   };
 
   var showLoading = function() {
