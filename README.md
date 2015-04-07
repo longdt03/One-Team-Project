@@ -4,16 +4,17 @@ One Remote README
 #CONTENTS
 ----------------------------------------------------------------------
 
-     o [About Us](#about-us)
-     o [About One Remote Program](#about-one-remote-program)
-     o [Requirement Software](#requirement software)
-     o [Functions](#functions)
-     o [Usage](#usage)
-     o [Feedback](#feedback)
-	- [Questions](#question)
-	- [Support](#support)
-	- [Reporting Bugs](#reporting-bugs)
-     o [Todo](#todo)
+     o **[About Us](#about-us)**
+     o **[About One Remote Program](#about-one-remote-program)**
+     o **[Requirement Software](#requirement-software)**
+     o **[Functions](#functions)**
+     o **[Usage](#usage)**
+     o **[Feedback](#feedback)**
+	- **[Questions](#question)**
+	- **[Support](#support)**
+	- **[Reporting Bugs](#reporting-bugs)**
+     o **[Todo](#todo)**
+     o **[Test](#test)**		
 
 
 ----------------------------------------------------------------------
@@ -128,3 +129,19 @@ our Technical Support staff at this mail: oneteam.uet@gmail.com
 5. Display computer name
 6. Save computer ID history
 7. Writing test
+
+###Test
+-----------------------------------------------------------------------
+
+* We have test cases and features folder to test.
+* In test cases folder, we have many test cases to test our app.
+	- Sign In : Test cases for Log In and Log Out Function
+* In features folder, we have been writing our code for automated test
+    1. Features are written with the [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
+    2. Support files let you setup the environment in which steps will be run, and define step definitions.
+    3. *World* is a constructor function with utility properties, destined to be used in step definitions
+    	// support/world.js
+    4. Step definitions are the glue between features written in Gherkin and the actual *SUT* (*system under test*). They are 	written in JavaScript.
+    5. Hooks can be used to prepare and clean the environment before and after each scenario is executed.
+
+
