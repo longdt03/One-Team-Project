@@ -40,7 +40,7 @@
           <strong class="grey">Selected Device: </strong>
           {{data.selectedDevice.name || 'No Device'}}
         </a>
-        <a class="item" ng-repeat="device in allDevices" ng-click="chooseDevice(device)">
+        <a class="item" ng-show= "device.online" ng-repeat="device in devices" ng-click="chooseDevice(device)">
           {{device.name}}
         </a>
       </div>

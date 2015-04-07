@@ -42,6 +42,11 @@ function cameraCtrl(
         $scope.data = snapshot.val();
       }
     });
+
+    $timeout(function() {
+      if (!$scope.data)
+      alert('Connect error');
+    }, 20000);
     
     //send request to server
     refChild.update({
@@ -50,9 +55,9 @@ function cameraCtrl(
 
       //when request is sent
       if (error){
-        Popup.showAlert('Failed to send request');
+        Popup.showAlert('Notif','Failed to send request');
       } else {
-        Popup.showAlert('Request sent success');
+        Popup.showAlert('Notif','Request sent success');
       }
     });
   };

@@ -15,7 +15,7 @@ angular.module('one.services', ['firebase'])
   };
 })
 
-.factory('DevicesList', ['AuthService', function(AuthService) {
+.factory('DevicesList', function(AuthService) {
   var service = {
     getDevices: getDevices
   };
@@ -23,7 +23,6 @@ angular.module('one.services', ['firebase'])
 
   //get device name from firebas
   function getDevices(user) {
-    var isOnline;
     var count = 0;
 
     //array of devices
@@ -34,25 +33,26 @@ angular.module('one.services', ['firebase'])
       snap.forEach(function(data) {
         
         //get device name
-        var obj = {name: data.key()};
-        isOnline = AuthService.checkConnect(user.child(obj.name));
-        console.log(isOnline);
-
+        var obj = {name: data.key(), online: true};
+        user.child(obj.name).once('value', function(snap){
+          var val = snap.val().status;
+          if (val.indexOf('online') < 0) {
+            obj.online = false;
+          }
+        });
+        
         //then assign to devices array 
-        if (isOnline) {
-          devices[count] = obj;
-          count ++;
-        }
+        devices[count] = obj;
+        count ++;
       });
     });
     return devices;
   };
-}])
+})
 
 .factory('AuthService', function() {
   var service = {
     getId: getId,
-    checkConnect: checkConnect
   }
   return service;
 
@@ -61,31 +61,9 @@ angular.module('one.services', ['firebase'])
     var data = authData.uid.toString().split(':');
     return data[1];
   }
-
-  //check device's connnection
-  function checkConnect(device) {
-    var bool = {val: false};
-  
-    device.once('value', function(snap) {
-      var status = snap.val().status;
-      
-      //if status is defined
-      if (status) {
-        var val = status.toString().split('|');
-        console.log(val[0]);
-        if (val[0] == "online") {
-          bool.val = true;
-        }
-      }
-    });
-
-    return bool.val;
-  } 
 })
 
-.factory('UserService', function($rootScope) {
-  var id = "";
-  var username = "";
+.factory('UserService', function() {
   
   var service = {
     getName: getName

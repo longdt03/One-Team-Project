@@ -31,13 +31,13 @@ function menuCtrl(
   var ref = new Firebase(firebaseUrl);
   var refChild = ref.child($rootScope.id);
 
-  $scope.allDevices = [];
-  $scope.allDevices = DevicesList.getDevices(refChild);
+  $scope.devices = [];
+  $scope.devices = DevicesList.getDevices(refChild);
 
   $scope.data = {
     selectedDevice: {name: $rootScope.deviceName}
-  };
-  
+  };  
+
   // choose device from list
   $scope.chooseDevice = function(device) {
     $scope.data.selectedDevice = device;
