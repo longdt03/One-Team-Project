@@ -30,10 +30,10 @@ angular.module('one.services', ['firebase'])
 
     // add name to the devices
     user.once('value', function(snap) {
-       snap.forEach(function(data) {
-
+      snap.forEach(function(data) {
+        console.log(data);
         //get device name
-        var obj = {name: data.key()}
+        var obj = {name: data.key()};
         var isOnline = AuthService.checkConnect(user.child(obj.name));
 
         //then assign to devices array 

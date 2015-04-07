@@ -25,20 +25,15 @@ function menuCtrl(
   AuthService
   ) {
   
-  console.log($rootScope.username);
   // devices list
   var ref = new Firebase(firebaseUrl);
   var refChild = ref.child($rootScope.id);
 
   $scope.allDevices = [];
-  $scope.allDevices = [
-    {name: 'kienPC'},
-    {name: 'vuPC'}
-  ];
-  // $scope.allDevices = DevicesList.getDevices(refChild);
+  $scope.allDevices = DevicesList.getDevices(refChild);
 
   $scope.data = {
-    selectedDevice: {name: ""}
+    selectedDevice: {name: $rootScope.deviceName}
   };
   
   // choose device from list
@@ -57,15 +52,13 @@ function menuCtrl(
 
   //go to Shut down interface
   $scope.shutdown = function() {
-    
     //alert when no device was choosen
-    if($scope.data.selectedDevice.name === "") {
+    if(!$scope.data.selectedDevice.name) {
       alert ("Please choose device");
     } else {
-
       //assign deviceName
       $rootScope.deviceName = $scope.data.selectedDevice.name;
-
+      
       //then go to ShutDown
       $state.go('shut-down');
     }
@@ -73,7 +66,7 @@ function menuCtrl(
 
   //Goto camera interface
   $scope.camera = function() {
-    if($scope.data.selectedDevice.name === "") {
+    if(!$scope.data.selectedDevice.name) {
       alert ("Please choose device");
     } else {
       $rootScope.deviceName = $scope.data.selectedDevice.name;
@@ -87,10 +80,7 @@ function menuCtrl(
     //log out of application
     var ref = new Firebase(firebaseUrl);
     ref.unauth();
-
-    //reset user information
-    UserService.reset();
-      
+    $rootScope.deviceName = "";  
     //then goto login interface
     $state.go('login');
   };

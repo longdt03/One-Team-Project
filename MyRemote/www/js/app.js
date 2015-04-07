@@ -77,6 +77,7 @@ angular.module('one', [
   })
 
   .state('shut-down',{
+    cache: false,
     url: '/shut-down',
     templateUrl: 'templates/shut-down.html',
     controller: 'ShutdownCtrl'
