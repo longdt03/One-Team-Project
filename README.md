@@ -10,6 +10,8 @@ One Remote README
 5. [Usage](#usage)
 6. [Feedback](#feedback)
 7. [Test](#test)
+
+
 ----------------------------------------------------------------------
 ### About Us
 ----------------------------------------------------------------------
@@ -99,14 +101,14 @@ If not, ask us directly in class.
 
 
 ## Support
--------
+---------
 
 For more extensive One Remote Software questions or deployment issues, please contact
 our Technical Support staff at this mail: oneteam.uet@gmail.com 
 
 
 ## Reporting Bugs
---------------
+---------
 
 * Photos sometimes do not display.
 * Animations sometimes do not work.
