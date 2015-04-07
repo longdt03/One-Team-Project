@@ -18,7 +18,7 @@ One Remote README
 
 
 ----------------------------------------------------------------------
-###About Us
+### About Us
 ----------------------------------------------------------------------
 
 Thank you for downloading the One Remote Program.
@@ -36,7 +36,7 @@ If you want to have more detail, go check our pivotal tracker in this link below
 
 
 ----------------------------------------------------------------------
-###ABout One Remote Program
+### ABout One Remote Program
 ----------------------------------------------------------------------
 One Remote Program is an application for mobile devices to remotely control computer
 It is a open source code so feel free to download it and use it if u want
@@ -51,7 +51,7 @@ If you need more information about what we have used, follow this link :
 
 
 ----------------------------------------------------------------------
-###Requirement Software
+### Requirement Software
 ----------------------------------------------------------------------
 To use our program, we need you to have all the following softwares:
  1. Android, IOS Operating System
@@ -77,7 +77,7 @@ User can send request to computer to take a photo from webcam. The photo display
 
 
 ----------------------------------------------------------------------
-###Usage
+### Usage
 ----------------------------------------------------------------------
 <How to use>
 First, you have to install my server code into a computer and my client code into a android device(or you can use android virtual machine)
@@ -94,10 +94,10 @@ If you want more information, go check specified folder.
 
 
 -----------------------------------------------------------------------
-##FeedBack
+## FeedBack
 -----------------------------------------------------------------------
 
-###Questions
+### Questions
 ---------
 
 For miscellaneous questions about One Remote usage and deployment, we
@@ -105,21 +105,21 @@ encourage you to contact this number: 01689964546 or send its to our mail: onete
 If not, ask us directly in class.
 
 
-###Support
+### Support
 -------
 
 For more extensive One Remote Software questions or deployment issues, please contact
 our Technical Support staff at this mail: oneteam.uet@gmail.com 
 
 
-###Reporting Bugs
+### Reporting Bugs
 --------------
 
 * Photos sometimes do not display.
 * Animations sometimes do not work.
 * User cannot login sometimes
 
-##TODO
+## Todo
 ----
 
 1. Complete and upgrade UI
@@ -130,7 +130,7 @@ our Technical Support staff at this mail: oneteam.uet@gmail.com
 6. Save computer ID history
 7. Writing test
 
-###Test
+### Test
 -----------------------------------------------------------------------
 
 * We have test cases and features folder to test.
