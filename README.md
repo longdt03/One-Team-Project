@@ -20,10 +20,10 @@ Thank you for downloading the One Remote Program.
 
 We are One Team. We are a student group who studying software technology instructed by Teacher Truong Anh Hoang
  We have four members: 
-1. Dang Thanh Long - scrumt master
-2. Vu Trung Kien 
-3. Doan Thi Hien 
-4. Tran Tuan Linh 
+ 1. Đặng Thành Long - scrump master
+ 2. Vũ Trung Kiên 
+ 3. Doãn Thị Hiền
+ 4. Trần Tuấn Linh
 
 We follow Scrumpt process to do our project. In every sprint, we set up new tasks for it.After that, everybody pick and do their tasks based on their ability. 
 If you want to have more detail, go check our pivotal tracker in this link below:
@@ -31,18 +31,24 @@ If you want to have more detail, go check our pivotal tracker in this link below
 
 
 ----------------------------------------------------------------------
-### ABout One Remote Program
+### About One Remote Program
 ----------------------------------------------------------------------
 One Remote Program is an application for mobile devices to remotely control computer
 It is a open source code so feel free to download it and use it if u want
 This client program has been written in ionic framework and we have used firebase API to store and sync the data. The programming language we use is angularjs 
 In this server, we have used java to code all necessary functions.  
-Besides, we have used jshint tool to check and test the syntax. So, don't worry about any syntax error.
+Besides, we have used [jshint tool](http://jshint.com/) to check and test the syntax. So, don't worry about any syntax error.
 If you need more information about what we have used, follow this link :
 - [Firebase](https://www.firebase.com/ "firebase")
 - [Ionic](http://ionicframework.com/ "Ionic")
 - [Java](http://www.java.com/en/ "Java") 
 - [Angularjs](https://angularjs.org/ "Angularjs")	
+
+Finally, we have videos for our versions: 
++ Our Youtube Channel:  [One Team Youtube Channel](https://www.youtube.com/channel/UC-1-l6-coSMVQ14GVwtTPmA)
+- [Sprint 2](https://www.youtube.com/watch?v=ExW3Xpie2Pg&feature=youtu.be)
+- [Sprint 3]()
+
 
 
 ----------------------------------------------------------------------
@@ -58,35 +64,46 @@ To download Android, you can follow this link:
 ----------------------------------------------------------------------
 ### Functions
 ----------------------------------------------------------------------
-Now, we have two functions:
+Now, we have two functions: <br>
 1. Shutdown Options
 User can choose these tasks:
 * Shutdown
 * Restart
+<br>
 Then choose time delay to execute task on computer, or:
 * Hibernate
 * Log off
+<br>
 computer instantly.
-2. Camera 
+
+2.Camera 
 User can send request to computer to take a photo from webcam. The photo displays after.
 
 
 ----------------------------------------------------------------------
 ### Usage
 ----------------------------------------------------------------------
-<How to use>
 First, you have to install my server code into a computer and my client code into a android device(or you can use android virtual machine)
+
 1. Server is installed in java file(.exe)
 2. Client is installed in moblie in android file(.apk)
-3. The user need to log in by ID and Password
-4. The User Interface is easy to use: we have tabs to pick task and Time to operate.
 
-Server app
+Then, you have to sign in to use our functions in both Client and Server. If you do not have any accounts , you can sign up in Client App <Create User> and then use this account to sign in Server. Besides, you can sign in with google account in Client App
+After you have signed in successfully, you have to choose a device on which the functions can perform. After that. you only have to choose which functions you want to do now. 
 
-Client app
+1. ShutDown Options
+If you want to shutdown a computer : 
+   - First, you have to choose ShutDown
+   - Second, you have to choose Timer
+   - Finally, you have to click "ShutDown" Button
+You do the same with Restart, Log Off and Hibernate.However, in Hibernate and Log Off, it is not necessary to set Timer because we do it instantly
+2. Camera
+First, you have to choose Camera Function
+Second, you click "Camera" Button below
+Finally, you get an image that the computer has just taken
+
 
 If you want more information, go check specified folder.
-
 
 -----------------------------------------------------------------------
 ## FeedBack
@@ -118,8 +135,12 @@ our Technical Support staff at this mail: oneteam.uet@gmail.com
 -----------------------------------------------------------------------
 
 * We have test cases and features folder to test.
-* In test cases folder, we have many test cases to test our app.
-	- Sign In : Test cases for Log In and Log Out Function
+* In test cases folder, we have many test cases to test our app. We write it in "Test Cases" excel file.
+   - Login: Test Cases For Login Function
+   - Logout: Test Cases for LogOut Function
+   - Create User: Test Cases for Create New User Function
+   - Shutdown: Test Cases for ShutDown Function 
+   - Camera: Test Cases for Camera Function
 * In features folder, we have been writing our code for automated test
     1. Features are written with the [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
     2. Support files let you setup the environment in which steps will be run, and define step definitions.
