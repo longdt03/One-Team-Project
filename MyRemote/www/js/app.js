@@ -11,7 +11,8 @@ angular.module('one', [
   'ionic', 
   'one.controllers', 
   'one.services', 
-  'firebase'
+  'firebase',
+  'ngCordova'
 ])
 
 .run(function($ionicPlatform, $rootScope){

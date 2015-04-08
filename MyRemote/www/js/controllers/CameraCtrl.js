@@ -9,6 +9,7 @@ angular
     '$ionicLoading', 
     '$timeout',
     'Popup', 
+    '$cordovaToast',
     cameraCtrl
   ]);
 
@@ -20,51 +21,55 @@ function cameraCtrl(
   $http, 
   $ionicLoading, 
   $timeout, 
-  Popup) {
+  Popup,
+  $cordovaToast
+  ) {
   var ref = new Firebase (firebaseUrl);
   var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
 
-  //get lastest data to display before take a photo
-  refChild.child('data').on('value', function(snapshot) {
-    if(snapshot) {
-      $scope.data = snapshot.val();
-    }
-  });
+  // placeholder image
+  $scope.data = 'img/placeholder.png';
+  $cordovaToast.show('Here is a message', 'long', 'bottom');
   
   $scope.submit = function() {
 
     // show waiting animation
-    showLoading();
+    // showLoading();
 
     //update data changing
     refChild.child('data').on('value', function(snapshot) {
       if(snapshot) {
         $scope.data = snapshot.val();
+        console.log(snapshot.val());
       }
     });
 
     $timeout(function() {
       if (!$scope.data)
-      alert('Connect error');
+      Popup.showAlert('Network error!', 'Slow connection.');
+      hideLoading();
     }, 20000);
     
     //send request to server
+    var time = new Date();
     refChild.update({
-      request: "capture"
+      request: "capture|" + time.getTime().toString()
     }, function (error) {
 
       //when request is sent
       if (error){
-        Popup.showAlert('Notif','Failed to send request');
+        // $cordovaToast.showLongBottom('Here is a message');
+        // Popup.showAlert('Failed!', 'Cannot send request.');
       } else {
-        Popup.showAlert('Notif','Request sent success');
+        // $cordovaToast.showLongBottom('Here is a message');
+        // Popup.showAlert('Successful!', 'Request sent.');
       }
     });
   };
 
   var showLoading = function() {
     $ionicLoading.show({
-      template: '<ion-spinner></ion-spinner>'
+      template: '<ion-spinner class="spinner-positive" icon="bubbles"></ion-spinner>'
     });
   }; 
 

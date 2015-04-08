@@ -33,6 +33,15 @@
   background-color: transparent;
 }
 
+.input-form {
+  /*background-color: white;*/
+  background-image: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: 5px;
+}
+
 .no-border {
 	border: none;
 }
