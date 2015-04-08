@@ -35,7 +35,7 @@ angular.module('one.services', ['firebase'])
         //get device name
         var obj = {name: data.key(), online: true};
         user.child(obj.name).once('value', function(snap){
-          var val = snap.val().status;
+          var val = snap.val().status.toString();
           if (val.indexOf('online') < 0) {
             obj.online = false;
           }

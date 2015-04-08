@@ -5,12 +5,8 @@
  */
 package com.oneproject.server.helper;
 
-import com.oneproject.server.core.Login;
-import com.oneproject.server.utils.FirebaseAdapter;
-import java.awt.Color;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.HashMap;
 
 /**
  *
@@ -27,7 +23,7 @@ public class Config {
     public static String CONFIG_FILEPATH;
     public static String WEBCAM_FOLDER;
     public static String DEVICE_NAME;
-    public static String GG_ACCESS_TOKEN;
+    public static String FIREBASE_SECRET;
     public static String CONNECT_FAIL;
     public static String LOGIN_SUCCESS;
     public static String LOGIN_FAIL;
@@ -37,9 +33,9 @@ public class Config {
         WEBCAM_FOLDER = "res\\webcam\\";
         CONFIG_FILEPATH = "res\\config.txt";
         FIREBASE_URL = "https://one-app.firebaseio.com/";
-        GG_ACCESS_TOKEN = "a6lqL-km9Lsf9GYVGWTkZzJc";
         CONNECT_FAIL = "Check your connection and try again";
         LOGIN_SUCCESS = "Login success!";
         LOGIN_FAIL = "Invalid email or password.";
+        FIREBASE_SECRET = "4lSgJKVQAJNSMxNQwjnU1wklYkKN4q3nohODyutQ";
     }
 }

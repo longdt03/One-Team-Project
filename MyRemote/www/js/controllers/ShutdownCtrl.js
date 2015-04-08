@@ -6,11 +6,11 @@ angular
     '$firebase',
     '$rootScope', 
     'ShutdownOptions',
-    'AuthService',
+    'Popup',
     shutdownCtrl
   ]);
 
-function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, AuthService) {
+function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Popup) {
 
   var ref = new Firebase(firebaseUrl);
   var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
@@ -38,7 +38,11 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Au
     }, function(error){
 
       //notify when request is sent
-      AuthService.noti(error);
+      if(error){
+        Popup.showAlert('Notif','Failed to send request');
+      } else {
+        Popup.showAlert('Notif', 'Request sent success');
+      }
     });
   };
 }

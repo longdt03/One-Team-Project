@@ -8,7 +8,6 @@ package com.oneproject.server.core;
 import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.oneproject.server.helper.Config;
 import com.oneproject.server.utils.FirebaseAdapter;
 
 /**
@@ -19,37 +18,42 @@ public class Login {
 
     public String uID;
 
-    public void isAuthenticate(final String email, final String password, final String provider, final OnRequestListener listener) {
-        if ("password".equals(provider)) {
-            if (listener != null) {
-                System.out.println("loading");
-                listener.onLoading();                    
+    public void loginWithEmailPassword(String email, String password, final OnRequestListener listener) {
+        if (listener != null) {
+            System.out.println("loading");
+            listener.onLoading();
+        }
+        FirebaseAdapter.getFirebaseRoot().authWithPassword(email, password, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData aut) {
+                System.out.println("success");
+                uID = aut.getUid();
+                if (listener != null) {
+                    listener.onSuccess();
+                }
             }
-            FirebaseAdapter.getFirebaseRoot().authWithPassword(email, password, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticationError(FirebaseError fe) {
+                System.out.println(fe.getMessage());
+                if (listener != null) {
+                    listener.onFail();
+                }
+            }
+        });
+    }
+
+    public void loginWithProvider(String email, String password, String provider, final OnRequestListener listener) {
+        if (listener != null) {
+            System.out.println("loading");
+            listener.onLoading();
+        }
+        if ("google".equals(provider)) {
+            String token = "/auth/google/token";
+            FirebaseAdapter.getFirebaseRoot().authWithOAuthToken("google", token, new Firebase.AuthResultHandler() {
                 @Override
                 public void onAuthenticated(AuthData aut) {
                     System.out.println("success");
-                    uID = aut.getUid();                    
-                    if (listener != null) {
-                        listener.onSuccess();
-                    }
-                }
-
-                @Override
-                public void onAuthenticationError(FirebaseError fe) {
-                    System.out.println(fe.getMessage());
-                    if (listener != null) {
-                        listener.onFail();
-                    }
-                }
-            });
-        } else if ("google".equals(provider)) {
-            FirebaseAdapter.getFirebaseRoot().authWithOAuthToken(email, Config.GG_ACCESS_TOKEN, new Firebase.AuthResultHandler() {
-
-                @Override
-                public void onAuthenticated(AuthData aut) {
-                    System.out.println("success");
-                    uID = aut.getUid();                    
+                    uID = aut.getUid();
                     if (listener != null) {
                         listener.onSuccess();
                     }
@@ -64,15 +68,18 @@ public class Login {
                 }
             });
         }
-    }    
-    
+    }
+
     public String getUID() {
         return uID.split(":")[1];
     }
 
     public interface OnRequestListener {
+
         void onLoading();
+
         void onSuccess();
+
         void onFail();
     }
 }

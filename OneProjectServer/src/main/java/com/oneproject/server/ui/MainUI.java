@@ -5,6 +5,7 @@
  */
 package com.oneproject.server.ui;
 
+import com.oneproject.server.helper.TimeHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -98,7 +99,7 @@ public class MainUI extends JFrame implements ActionListener {
     }
    
     public void printLog(String log) {        
-        this.txtLog.append(log + "\n");
+        this.txtLog.append(TimeHelper.getCurrentTime() + ": " + log + "\n");
     }
     
     private void createAndShowUI() {
