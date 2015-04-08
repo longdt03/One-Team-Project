@@ -8,8 +8,7 @@ angular
     '$http', 
     '$ionicLoading', 
     '$timeout',
-    'Popup', 
-    '$cordovaToast',
+    'Popup',
     cameraCtrl
   ]);
 
@@ -21,20 +20,18 @@ function cameraCtrl(
   $http, 
   $ionicLoading, 
   $timeout, 
-  Popup,
-  $cordovaToast
+  Popup
   ) {
   var ref = new Firebase (firebaseUrl);
   var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
 
   // placeholder image
   $scope.data = 'img/placeholder.png';
-  $cordovaToast.show('Here is a message', 'long', 'bottom');
+
   
   $scope.submit = function() {
-
     // show waiting animation
-    // showLoading();
+    showLoading();
 
     //update data changing
     refChild.child('data').on('value', function(snapshot) {
@@ -46,7 +43,7 @@ function cameraCtrl(
 
     $timeout(function() {
       if (!$scope.data)
-      Popup.showAlert('Network error!', 'Slow connection.');
+      Popup.showAlert('Network error!', 'Cannot get image.');
       hideLoading();
     }, 20000);
     
@@ -58,10 +55,8 @@ function cameraCtrl(
 
       //when request is sent
       if (error){
-        // $cordovaToast.showLongBottom('Here is a message');
         // Popup.showAlert('Failed!', 'Cannot send request.');
       } else {
-        // $cordovaToast.showLongBottom('Here is a message');
         // Popup.showAlert('Successful!', 'Request sent.');
       }
     });
