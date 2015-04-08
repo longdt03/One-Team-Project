@@ -89,7 +89,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
             return Config.SYNTAX_ERROR;
         }
 
-        //=>Thuc hien action
+        //=>Thuc hien action        
         if ("shutdown".equals(req[0])) {
             this.onDoActionSuccess();
             Action.doShutdown(Integer.valueOf(req[1]));
@@ -104,7 +104,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
             Action.doLogOff();
         } else if ("capture".equals(req[0])) {
             this.onDoActionSuccess();
-            final String imageUrl = action.captureAndUpload();
+            String imageUrl = action.captureAndUpload();
             fbAdapter.pushData("data", imageUrl);
         }
         return req[0];
@@ -147,7 +147,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
         }
         this.doLogin();
         //=> Dang nhap bang email va password da nhap
-        login.isAuthenticate(email, password, "password", new Login.OnRequestListener() {
+        login.loginWithEmailPassword(email, password, new Login.OnRequestListener() {
             @Override
             public void onLoading() {
                 loadingDialog.setVisible(true);
@@ -188,7 +188,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
         this.doLogin();
 
         //=> Dang nhap bang tai khoan Google
-        login.isAuthenticate(email, password, "google", new Login.OnRequestListener() {
+        login.loginWithProvider(email, password, "google", new Login.OnRequestListener() {
 
             @Override
             public void onLoading() {

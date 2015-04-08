@@ -5,9 +5,7 @@
  */
 package com.oneproject.server.ui;
 
-import java.awt.Dialog;
 import javax.swing.JFrame;
-import javax.swing.JRootPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -15,13 +13,10 @@ import javax.swing.WindowConstants;
  * @author DangThanh
  */
 public class LoadingDialog extends javax.swing.JDialog {
-
-    /**
-     * Creates new form LoadingDialog
-     */
+   
     public LoadingDialog(JFrame owner) throws InterruptedException {
         super(owner);
-        initComponents();
+        initComponents();       
         this.createAndShowUI();
     }
 
@@ -43,15 +38,15 @@ public class LoadingDialog extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addComponent(lbLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(91, 91, 91))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(24, 24, 24)
                 .addComponent(lbLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -70,7 +65,7 @@ public class LoadingDialog extends javax.swing.JDialog {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        this.lbLoading.setText("Waiting...");
+        this.lbLoading.setText("Please Wait...");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
