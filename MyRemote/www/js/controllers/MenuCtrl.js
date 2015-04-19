@@ -28,8 +28,8 @@ function menuCtrl(
   ) {
   
   // devices list
-  var ref = new Firebase(firebaseUrl);
-  var refChild = ref.child($rootScope.id);
+
+  var refChild = new Firebase(firebaseUrl+'/'+ $rootScope.id);
 
   $scope.devices = [];
   $scope.devices = DevicesList.getDevices(refChild);
@@ -89,9 +89,9 @@ function menuCtrl(
     $state.go('login');
   };
 
-  $scope.popover = $ionicPopover.fromTemplate(template, {
-    scope: $scope
-  });
+  // $scope.popover = $ionicPopover.fromTemplate(template, {
+  //   scope: $scope
+  // });
 
   // .fromTemplateUrl() method
   $ionicPopover.fromTemplateUrl('templates/main-popover.html', {
@@ -101,14 +101,16 @@ function menuCtrl(
   });
 
 
-  $scope.openPopover = function($event) {
-    $scope.popover.show($event);
-  };
-  $scope.closePopover = function() {
-    $scope.popover.hide();
-  };
-  //Cleanup the popover when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.popover.remove();
-  });
+  // $scope.openPopover = function($event) {
+  //   $scope.popover.show($event);
+  // };
+  
+  // $scope.closePopover = function() {
+  //   $scope.popover.hide();
+  // };
+
+  // //Cleanup the popover when we're done with it!
+  // $scope.$on('$destroy', function() {
+  //   $scope.popover.remove();
+  // });
 } 
