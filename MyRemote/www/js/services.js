@@ -15,7 +15,7 @@ angular.module('one.services', ['firebase'])
   };
 })
 
-.factory('DevicesList', function(AuthService) {
+.factory('DevicesList', function() {
   var service = {
     getDevices: getDevices
   };
@@ -77,8 +77,6 @@ angular.module('one.services', ['firebase'])
         return authData.password.email.replace(/@.*/, '');
       case 'google':
         return authData.google.displayName;
-      case 'facebook':
-        return authData.facebook.displayName;
     }
   }
 })

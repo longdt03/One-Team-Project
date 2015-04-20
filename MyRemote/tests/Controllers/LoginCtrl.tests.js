@@ -1,9 +1,11 @@
 describe('LoginCtrl', function() {
-	beforeEach(module('ui.router'));
-	beforeEach(module('firebase'));
-	beforeEach(module('ionic'));
-	beforeEach(module('one.services'));
-	beforeEach(module('one.controllers.login'));
+	beforeEach(module(
+    'one.services', 
+    'one.controllers.login', 
+    'ui.router', 
+    'ionic', 
+    'firebase'));
+  
 	var $scope, $rootScope, $controllers;
 
 	beforeEach(inject(function($injector) {
