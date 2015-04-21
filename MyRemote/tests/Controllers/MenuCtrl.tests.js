@@ -1,10 +1,9 @@
 describe('MenuCtrl ', function() {
 
-  var $rootScope, $controllers,
+  var $rootScope, $controllers, $urlRouterProvider,
       controller, rootScope;
 
   beforeEach(function() {
-    module('ui.router');
     module('ui.router');
     module('ionic');
     module('one.services');
@@ -13,9 +12,10 @@ describe('MenuCtrl ', function() {
     inject(function($injector) {
       $rootScope = $injector.get('$rootScope');
       $controller = $injector.get('$controller');
+      //$urlRouterProvider = $injector.get('$urlRouterProvider');
       $scope = {};
           
-      $controller('MenuCtrl', {
+      controller = $controller('MenuCtrl', {
         '$scope': $scope
       });
     });
@@ -23,21 +23,25 @@ describe('MenuCtrl ', function() {
 
   //here we're going to make sure the $scope variable 
   //exists evaluated.
-  it("should have a $scope variable", function() {
+  it('should have a $scope variable', function() {
       expect($scope).toBeDefined();
   });
 
   describe ('Camera ', function(){
 
-    it('should have device be chosen ($scope)', function() {
-      $scope.camera ();
-      expect($scope.data.selectedDevice.name).toBeUndefined();
+    it(' devices should be got!', function(){
+      var device = {name: 'HIEN'};
+      $scope.chooseDevice (device);
+      expect($rootScope.deviceName).toEqual(device.name);
     });
 
-    it('should have device be chosen ($rootScope)', function() {
-      $scope.camera ();
-      expect($rootScope.deviceName).toBeUndefined();
-    });
+    it('should have device be chosen ($rootScope)', inject(function($state) {
+      
+      $scope.data.selectedDevice.name = 'HIEN';
+
+      $scope.shutdown ();
+      expect($state.is('shut-down')).toBe(true);
+    }));
   });
 
 });

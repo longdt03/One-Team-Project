@@ -12,8 +12,8 @@ angular
 
 function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Popup) {
 
-  var ref = new Firebase(firebaseUrl);
-  var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
+  var ref = new Firebase(firebaseUrl + '/' + $rootScope.id + '/' + $rootScope.deviceName);
+  //var refChild = ref.child($rootScope.deviceName);
   
   $scope.tasks = ShutdownOptions.all();
   $scope.data = {
