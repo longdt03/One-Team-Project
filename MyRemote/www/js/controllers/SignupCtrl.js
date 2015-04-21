@@ -11,7 +11,7 @@ function signupCtrl($scope, $state, Popup) {
   $scope.createAccount = function(user) {
     if (!(user && user.email && user.pass && user.retype)) {
       Popup.showAlert('Signup failed!', 'Please fill all fields.');
-      return;
+      $scope.result = 'Signup failed! - Please fill all fields.';
     }
     if (user.pass === user.retype) {
       var ref = new Firebase(firebaseUrl);
@@ -23,11 +23,13 @@ function signupCtrl($scope, $state, Popup) {
           Popup.showAlert('Signup failed!', error.message);
         } else {
           Popup.showAlert('Signup successful!', 'Welcome to OneRemote.');
+          $scope.result = 'Signup successful! - Welcome to OneRemote.';
           $state.go('login');
         }
       });
     } else {
       Popup.showAlert('Signup failed', 'Retype password does not match.');
+      $scope.result = 'Signup failed - Retype password does not match.';
     }
   };
 }
