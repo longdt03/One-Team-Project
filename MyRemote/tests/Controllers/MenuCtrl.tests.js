@@ -1,29 +1,43 @@
 describe('MenuCtrl ', function() {
-  beforeEach(module('ui.router'));
-  beforeEach(module('firebase'));
-  beforeEach(module('ionic'));
-  beforeEach(module('one.services'));
-  beforeEach(module('one.controllers.menu'));
-  var $scope, $rootScope, $controllers,
+
+  var $rootScope, $controllers,
       controller, rootScope;
 
-  beforeEach(inject(function($injector) {
-    $rootScope = $injector.get('$rootScope');
-    $controller = $injector.get('$controller');
-    $scope = $rootScope.$new();
-        
-    $controller('MenuCtrl', {
-      '$scope': $scope
-    });
-  }));
+  beforeEach(function() {
+    module('ui.router');
+    module('ui.router');
+    module('ionic');
+    module('one.services');
+    module('one.controllers.menu');
 
-  it('should have Device be chosen', function() {
-    expect($rootScope.deviceName).toBeUndefined();
+    inject(function($injector) {
+      $rootScope = $injector.get('$rootScope');
+      $controller = $injector.get('$controller');
+      $scope = {};
+          
+      $controller('MenuCtrl', {
+        '$scope': $scope
+      });
+    });
   });
 
-  it('deviceName must be emty string', function() {
-    $scope.logOut ();
-    expect($scope.deviceName).toBe('');
+  //here we're going to make sure the $scope variable 
+  //exists evaluated.
+  it("should have a $scope variable", function() {
+      expect($scope).toBeDefined();
+  });
+
+  describe ('Camera ', function(){
+
+    it('should have device be chosen ($scope)', function() {
+      $scope.camera ();
+      expect($scope.data.selectedDevice.name).toBeUndefined();
+    });
+
+    it('should have device be chosen ($rootScope)', function() {
+      $scope.camera ();
+      expect($rootScope.deviceName).toBeUndefined();
+    });
   });
 
 });

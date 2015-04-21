@@ -83,10 +83,10 @@ function menuCtrl(
     
     //log out of application
     var ref = new Firebase(firebaseUrl);
+    // goto login interface
+    $state.go('login',{});
     ref.unauth();
     $rootScope.deviceName = "";  
-    //then goto login interface
-    $state.go('login');
   };
 
   // $scope.popover = $ionicPopover.fromTemplate(template, {
