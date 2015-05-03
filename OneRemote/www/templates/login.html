@@ -1,0 +1,32 @@
+<ion-view view-title="Login" align-title="left">
+  <ion-content style="background: url(img/login.png) center; background-size: cover; padding: 30% 3% 3% 3%">
+    <div class="card list">
+      <div class="calm-bg" style="padding: 20% 7% 1.5% 7%">
+        <p style="font-size: 1.1em">Sign in with OneRemote account</p>
+      </div>
+      <div class="padding">
+        <div>
+          <label class="item item-input item-floating-label" style="border-bottom: solid 2px #cacaca;">
+            <span class="input-label" style="font-size: 0.7em"><strong>EMAIL</strong></span>
+            <input type="text" placeholder="Email" ng-model="user.email">
+          </label>
+          <label class="item item-input item-floating-label" style="border-bottom: solid 2px #cacaca;">
+            <span class="input-label" style="font-size: 0.7em"><strong>PASSWORD</strong></span>
+            <input type="password" placeholder="Password" ng-model="user.pass">
+          </label>
+        </div>
+          <div class="item item-checkbox">
+            <label class="checkbox checkbox-square">
+              <input type="checkbox" ng-model="rememberMe.isChecked"></label>
+            </label>
+            Remember me
+          </div>
+
+        <div class="item item-button-right">
+          <a ui-sref="sign-up" style="text-decoration: none; color: inherit"><strong class="positive">SIGN UP</strong></a>
+          <button class="button button-small button-positive" style="font-size: 1em" ng-click="signInWithPassword(user)">Continue</button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

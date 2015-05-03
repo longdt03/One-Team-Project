@@ -1,0 +1,68 @@
+<ion-side-menus>
+  <!-- Center content -->
+  <ion-side-menu-content>
+    <ion-header-bar class="bar-positive">
+      <div class="buttons buttons-left header-item">
+        <span class="left-buttons">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+        </span>
+      </div>
+      <h1 class="title">Menu</h1>
+      <div class="buttons buttons-right header-item">
+        <span class="right-buttons">
+          <button class="button button-icon button-clear ion-android-more-vertical button-right" ng-click="openPopover($event)"></button>
+        </span>
+      </div>
+    </ion-header-bar>
+    
+    <ion-content class="has-header">
+      <div class="item card-item">
+        <div ng-click="shutdown()" class="card light-bg ink ink-dark">
+          <div class="item item-avatar item-text-wrap">
+            <span class="avatar" style="background-image: url('img/power.png');"></span>
+            <strong>Shutdown Options</strong>
+            <br>Shutdown, Restart, Log off, Hibernate
+          </div>
+        </div>
+      </div>
+      <div class="item card-item">
+        <div ng-click="camera()" class="card light-bg ink ink-dark">
+          <div class="item item-avatar item-text-wrap">
+            <span class="avatar" style="background-image: url('img/camera.png');"></span>
+            <strong>Camera</strong>
+            <br>Capture photo from computer's camera
+          </div>
+        </div>
+      </div>
+    </ion-content>        
+  </ion-side-menu-content>
+
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+    <ion-header-bar class="dark-bg expanded" style="background: url('img/header.jpg') center; background-size: cover;">
+      <img src="img/profile_picture.png" class="avatar">
+      <div class="menu-bottom">
+        {{username || 'unknown error'}}
+      </div>
+    </ion-header-bar>
+    <ion-content class="stable-bg has-expanded-header">
+        <ion-list>
+          <ion-item>
+            <strong>Selected Device:</strong>
+            {{data.selectedDevice.name || 'No Device'}}
+          </ion-item>
+          <ion-item>
+            <strong>Devices list:</strong>
+            <div class="list list-inset stable-bg">
+              <a class="item dark nav-clear menu-close" ng-show="device.online" ng-repeat="device in devices" ng-click="chooseDevice(device)">
+                {{device.name}}
+              </a>
+            </div>
+          </ion-item>
+          <ion-item ng-click="logOut()">
+            <strong>Log out</strong>
+          </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

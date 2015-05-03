@@ -1,0 +1,32 @@
+<ion-view view-title="Signup" align-title="left">
+  <ion-content style="background: url(img/login.png) center; background-size: cover; padding: 25% 3% 3% 3%">
+    <div class="card list"> 
+      <div class="calm-bg">
+        <button class="button button-icon button-clear button-small ion-arrow-left-c" style="padding: 4px 14px 4px 14px; color: white; font-size: 1em" ui-sref="login"></button>
+      </div>
+      <div class="calm-bg" style="padding: 10% 7% 1.5% 7%">
+        <p style="font-size: 1.1em">Please fill out the form below</p>
+      </div>
+      <div class="padding">
+        <div>
+          <label class="item item-input item-floating-label" style="border-bottom: solid 2px #cacaca;">
+            <span class="input-label" style="font-size: 0.7em"><strong>EMAIL</strong></span>
+            <input type="text" placeholder="Email" ng-model="user.email">
+          </label>
+          <label class="item item-input item-floating-label" style="border-bottom: solid 2px #cacaca;">
+            <span class="input-label" style="font-size: 0.7em"><strong>PASSWORD</strong></span>
+            <input type="password" placeholder="Password" ng-model="user.pass">
+          </label>
+          <label class="item item-input item-floating-label" style="border-bottom: solid 2px #cacaca;">
+            <span class="input-label" style="font-size: 0.7em"><strong>CONFIRM PASSWORD</strong></span>
+            <input type="password" placeholder="Comfirm Password" ng-model="user.retype">
+          </label>
+        </div>
+        <br>
+        <div class="padding">
+          <button class="button button-small button-positive" style="font-size: 1em" ng-click="createAccount(user)">Create Account</button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

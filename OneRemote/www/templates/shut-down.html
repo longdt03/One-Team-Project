@@ -1,0 +1,37 @@
+<ion-header-bar class="bar-positive">
+  <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="main-menu"></button>
+  <h1 class="title">Shutdown Options</h1>
+</ion-header-bar>
+
+<button class="button button-fab button-fab-bottom-right button-positive icon ion-power" ng-click="submit()"></button>
+
+<ion-content class="padding">
+  <div class="card">
+    <div class="calm-bg padding">
+      <strong>TASK</strong>
+    </div>
+    <div class="list">
+      <ion-radio ng-repeat="task in tasks"
+                 ng-value="task"
+                 ng-model="data.selectedTask"
+                 class="light-bg">
+        {{task.name}}   
+      </ion-radio>
+    </div>
+  </div>  
+  <div class="card"  ng-hide="data.selectedTask.time">
+    <div class="calm-bg padding">
+      <strong>No Timer</strong>
+    </div>
+  </div>
+  <div class="card" ng-show="data.selectedTask.time">
+    <div class="calm-bg padding">
+      <strong>Timer</strong>
+      <span class="pull-right">{{data.timer.minute}} minute(s)</span>
+    </div>
+    <div class="item range range-assertive">
+      <i class="icon ion-ios-clock-outline"></i>
+      <input ng-model="data.timer.minute" type="range" name="minute" min="0" max="81">
+    </div>
+  </div>
+</ion-content>
