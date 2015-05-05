@@ -24,12 +24,6 @@ describe('SignupCtrl Tests',function(){
     expect($scope.result).toEqual('Signup failed! - Please fill all fields.');
 	});
 
-	it('createAccount should return errors 0 - Signup Successful',function(){
-		var user = {email: 'Kien@gmail.com', pass:'Nekillar', retype:'Nekillar'};
-    $scope.createAccount(user);
-    expect($scope.result).toEqual('Signup successful! - Welcome to OneRemote.');
-	});
-
 	it('createAccount should return errors 3 - Signup Failed,Retype Password doesnot match ',function(){
 		var user = {email: 'Kien@gmail.com',pass:'Nekillar', retype: 'LongDT'};
     $scope.createAccount(user);

@@ -45,4 +45,35 @@ describe('ShutdownCtrl Tests',function(){
 	it('first Timer should be 0',function(){
 		expect($scope.data.timer.minute).toEqual(0);
 	});
+
+	it('return time to do the command if selectedTask time is true',function(){
+		$scope.data.selectedTask.time = true;
+		$scope.data.timer.minute = 10;
+		$scope.submit();
+		expect($scope.time).toEqual(600);
+	});
+
+	it('return 0 if selectedTask time is false',function(){
+		$scope.data.selectedTask.time = false;
+		$scope.data.timer.minute = 10;
+		$scope.submit();
+		expect($scope.time).toEqual(0);
+	});
+
+	it('test comand request sending to firebase',function(){
+		$scope.data.selectedTask.time = true;
+		$scope.data.selectedTask.msg = 'Shutdown';
+		$scope.data.timer.minute = 10;
+		$scope.submit();
+		expect($scope.request).toEqual('Shutdown|600'); 
+	});
+
+	it('test request sending to firebase',function(){
+		var refChild = new Firebase(firebaseUrl + '/' + $rootScope.id + '/' + $rootScope.deviceName);
+		$scope.submit();
+		refChild.child('request').on('value',function(snapshot){
+			$scope.data = snapshot.val();
+		});
+		expect($scope.data).toEqual('shutdown|0');
+	});
 });
