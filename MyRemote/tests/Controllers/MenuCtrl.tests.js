@@ -8,6 +8,7 @@ describe('MenuCtrl ', function() {
     module('ionic');
     module('one.services');
     module('one.controllers.menu');
+    module('firebase');
 
     inject(function($injector) {
       $rootScope = $injector.get('$rootScope');
@@ -35,13 +36,13 @@ describe('MenuCtrl ', function() {
       expect($rootScope.deviceName).toEqual(device.name);
     });
 
-    // it('should have device be chosen ($rootScope)', inject(function($state) {
+    it('should have device be chosen ($rootScope)', inject(function($state) {
       
-    //   $scope.data.selectedDevice.name = 'HIEN';
+      $scope.data.selectedDevice.name = 'HIEN';
 
-    //   $scope.shutdown ();
-    //   expect($state.is('shut-down')).toBe(true);
-    // }));
+      $scope.shutdown ();
+      expect($state.is('shut-down')).toBe(true);
+    }));
   });
 
 });

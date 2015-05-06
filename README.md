@@ -134,13 +134,19 @@ our Technical Support staff at this mail: oneteam.uet@gmail.com
 ### Test
 -----------------------------------------------------------------------
 
-* We have test cases and features folder to test.
+* We have test cases ,features folder and tests folder to test.
 * In test cases folder, we have many test cases to test our app. We write it in "Test Cases" excel file.
    - Login: Test Cases For Login Function
    - Logout: Test Cases for LogOut Function
    - Create User: Test Cases for Create New User Function
    - Shutdown: Test Cases for ShutDown Function 
    - Camera: Test Cases for Camera Function
+* In tests folder, we have 32 unit tests including :
+   - Login functions
+   - Shutdown functions
+   - Service functions
+   - Menu functions
+   - Signup functions
 * In features folder, we have been writing our code for automated test
     1. Features are written with the [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
     2. Support files let you setup the environment in which steps will be run, and define step definitions.
