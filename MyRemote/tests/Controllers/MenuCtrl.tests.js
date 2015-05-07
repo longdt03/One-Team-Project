@@ -1,7 +1,12 @@
 describe('MenuCtrl ', function() {
 
-  var $rootScope, $controllers, $urlRouterProvider,
+  var $rootScope, $controllers,
       controller, rootScope;
+
+  //create a fake service
+  var $ionicSideMenuDelegate = {
+    toggleLeft: function () {}
+  };
 
   beforeEach(function() {
     module('ui.router');
@@ -17,7 +22,8 @@ describe('MenuCtrl ', function() {
       $scope = {};
           
       controller = $controller('MenuCtrl', {
-        '$scope': $scope
+        '$scope': $scope,
+        '$ionicSideMenuDelegate': $ionicSideMenuDelegate
       });
     });
   });
@@ -28,21 +34,30 @@ describe('MenuCtrl ', function() {
       expect($scope).toBeDefined();
   });
 
+  describe ('toggleLeft function', function() {
+    it('should be call!', function() {
+      // create spy
+      spyOn($ionicSideMenuDelegate, 'toggleLeft');
+      $scope.toggleLeft ();
+      expect($ionicSideMenuDelegate.toggleLeft).toHaveBeenCalled();
+    })
+  });
+
   describe ('Camera ', function(){
 
     it(' devices should be got!', function(){
       var device = {name: 'HIEN'};
       $scope.chooseDevice (device);
-      expect($rootScope.deviceName).toEqual(device.name);
+      expect($scope.data.selectedDevice.name).toEqual(device.name);
     });
 
-    it('should have device be chosen ($rootScope)', inject(function($state) {
+    // it('should have device be chosen ($rootScope)', inject(function($state) {
       
-      $scope.data.selectedDevice.name = 'HIEN';
+    //   $scope.data.selectedDevice.name = 'HIEN';
 
-      $scope.shutdown ();
-      expect($state.is('shut-down')).toBe(true);
-    }));
+    //   $scope.shutdown ();
+    //   expect($state.is('shut-down')).toBe(true);
+    // }));
   });
 
 });

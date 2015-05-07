@@ -48,10 +48,10 @@ function menuCtrl(
   $scope.username = $rootScope.username;
   
   //go to side menu left
-  $scope.toggleLeft = function() {
+  
+$scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
-
   //go to Shut down interface
   $scope.shutdown = function() {
     
@@ -84,7 +84,7 @@ function menuCtrl(
     //log out of application
     var ref = new Firebase(firebaseUrl);
     // goto login interface
-    $state.go('login',{});
+    $state.go('login');
     ref.unauth();
     $rootScope.deviceName = "";  
   };
