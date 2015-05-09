@@ -3,5 +3,6 @@ angular.module('one.controllers', [
   'one.controllers.menu',
   'one.controllers.shutdown',
   'one.controllers.camera',
-  'one.controllers.signup'
+  'one.controllers.signup',
+  'one.controllers.presentation'
 ]);

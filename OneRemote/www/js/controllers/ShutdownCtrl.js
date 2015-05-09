@@ -12,8 +12,8 @@ angular
 
 function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Popup) {
 
-  var ref = new Firebase(firebaseUrl + '/' + $rootScope.id + '/' + $rootScope.deviceName);
-  //var refChild = ref.child($rootScope.deviceName);
+  var ref = new Firebase(firebaseUrl + '/' + $rootScope.id);
+  var refChild = ref.child($rootScope.deviceName);
   
   $scope.tasks = ShutdownOptions.all();
   $scope.data = {
@@ -39,9 +39,9 @@ function shutdownCtrl($scope, $state, $firebase, $rootScope, ShutdownOptions, Po
 
       //notify when request is sent
       if(error){
-        Popup.showAlert('Notif','Failed to send request');
+        Popup.showAlert('Notification','Failed to send request');
       } else {
-        Popup.showAlert('Notif', 'Request sent success');
+        Popup.showAlert('Notification', 'Request sent success');
       }
     });
   };

@@ -63,14 +63,22 @@ angular.module('one', [
     templateUrl: 'templates/about.html'
   })
 
-  .state('shut-down',{
+  .state('shut-down', {
     cache: false,
     url: '/shut-down',
     templateUrl: 'templates/shut-down.html',
     controller: 'ShutdownCtrl'
   })
 
-  .state('camera',{
+  .state('presentation', {
+    cache: false,
+    url: '/presentation',
+    templateUrl: 'templates/presentation.html',
+    controller: 'PresentCtrl'
+  })
+
+  .state('camera', {
+    cache: false,
     url: '/camera',
     templateUrl: 'templates/camera.html',
     controller: 'CameraCtrl'

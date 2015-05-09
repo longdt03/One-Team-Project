@@ -4,7 +4,6 @@ angular
     '$scope', 
     '$firebase', 
     '$rootScope', 
-    '$state', 
     '$http', 
     '$ionicLoading', 
     '$timeout',
@@ -16,7 +15,6 @@ function cameraCtrl(
   $scope, 
   $firebase, 
   $rootScope, 
-  $state, 
   $http, 
   $ionicLoading, 
   $timeout, 
@@ -55,9 +53,7 @@ function cameraCtrl(
 
       //when request is sent
       if (error){
-        // Popup.showAlert('Failed!', 'Cannot send request.');
-      } else {
-        // Popup.showAlert('Successful!', 'Request sent.');
+        Popup.showAlert('Failed!', 'Cannot send request.');
       }
     });
   };

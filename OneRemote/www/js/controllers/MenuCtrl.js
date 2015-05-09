@@ -78,6 +78,16 @@ function menuCtrl(
     }
   };
 
+  // Go to slideshow presentation interface
+  $scope.present = function() {
+    if($scope.data.selectedDevice.name) {
+      $rootScope.deviceName = $scope.data.selectedDevice.name;
+      $state.go('presentation');
+    } else {
+      Popup.showAlert('No Device!', 'Please choose your device in sidemenu.');  
+    }
+  };
+
   //log out 
   $scope.logOut = function() {
     
