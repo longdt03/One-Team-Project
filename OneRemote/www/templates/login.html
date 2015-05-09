@@ -6,11 +6,11 @@
       </div>
       <div class="padding">
         <div>
-          <label class="item item-input item-floating-label" style="border-bottom: solid 2px #cacaca;">
+          <label class="item item-input item-floating-label">
             <span class="input-label" style="font-size: 0.7em"><strong>EMAIL</strong></span>
             <input type="text" placeholder="Email" ng-model="user.email">
           </label>
-          <label class="item item-input item-floating-label" style="border-bottom: solid 2px #cacaca;">
+          <label class="item item-input item-floating-label">
             <span class="input-label" style="font-size: 0.7em"><strong>PASSWORD</strong></span>
             <input type="password" placeholder="Password" ng-model="user.pass">
           </label>
@@ -22,9 +22,13 @@
             Remember me
           </div>
 
-        <div class="item item-button-right">
-          <a ui-sref="sign-up" style="text-decoration: none; color: inherit"><strong class="positive">SIGN UP</strong></a>
-          <button class="button button-small button-positive" style="font-size: 1em" ng-click="signInWithPassword(user)">Continue</button>
+        <div class="padding">
+          <button class="button button-clear button-small" ui-sref="sign-up" style="padding-left: 0px;" data-ink-opacity="0">
+            <strong class="positive">SIGN UP</strong>
+          </button>
+          <button class="button button-small button-positive ink pull-right" ng-click="signInWithPassword(user)">
+            Continue
+          </button>
         </div>
       </div>
     </div>
