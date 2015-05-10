@@ -54,7 +54,7 @@ function menuCtrl(
   
   //function to handle data when press a button
   $scope.handleData = function (stateName){
-    if($scope.data.selectedDevice.name) {
+    if($scope.data.selectedDevice.name && stateName !== '') {
       //assign deviceName
       $rootScope.deviceName = $scope.data.selectedDevice.name;
       
@@ -63,9 +63,15 @@ function menuCtrl(
       
     } else { 
       //alert when no device was choosen
-      Popup.showAlert('No Device!', 'Please choose your device in sidemenu.');      
+      if ($scope.data.selectedDevice.name === '') {
+        Popup.showAlert('No Device!', 'Please choose your device in sidemenu.');      
+      } else {
+        Popup.showAlert('State was empty!', 'Please try again!');
+      }
+
     }
   }
+
   //go to Shut down interface
   $scope.shutdown = function() {
     $scope.handleData('shut-down');    
