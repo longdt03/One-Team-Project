@@ -15,20 +15,20 @@ function presentCtrl(
   Popup
   ) {
 
-  var ref = new Firebase(firebaseUrl);
-  var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
+  var refChild = new Firebase(firebaseUrl + '/' + $rootScope.id 
+                          + '/' + $rootScope.deviceName);
 
   $scope.submit = function(task) {
     var time = new Date();
+    $scope.request = task + '|' + time.getTime().toString();
     refChild.update({
-      request: task + '|' + time.getTime().toString()
+      request: $scope.request
     }, function (error) {
       if (error){
         Popup.showAlert('Failed!', 'Cannot send request.');
       }
     });
-    console.log(task);
   };
 
-  ionic.material.ink.displayEffect();
+  //ionic.material.ink.displayEffect();
 }
