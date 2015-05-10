@@ -38,7 +38,7 @@ describe('MenuCtrl ', function() {
   // test chose device function
   it(' devices should be got!', function(){
     var device = {name: 'HIEN'};
-    $scope.chooseDevice (device);
+    $scope.choseDevice (device);
     expect($scope.data.selectedDevice.name).toEqual(device.name);
   });
 
@@ -52,55 +52,34 @@ describe('MenuCtrl ', function() {
     })
   });
 
-  // test funtions when press camera button
+  // test funtions when press Camera button
   describe ('Camera ', function(){
-    var service;
-    beforeEach(inject(function(Popup) {
-      service = Popup;
-    }));
-  
-
-    it ('should be change state after that', function(){
-      spyOn (state,'go');
-      $scope.data.selectedDevice.name = "HIEN";   
-      state.current.name = 'main-menu';   
+    it ('should handle with handleData function', function() {
+      spyOn($scope, 'handleData');
       $scope.camera();
-      expect(state.go).toHaveBeenCalledWith ('camera');
+      expect($scope.handleData).toHaveBeenCalledWith('camera');
     });
-
-    it(' showAlert should be called if deviceName has not choosen', function() {
-      spyOn(service, 'showAlert');
-      state.current.name = 'main-menu';
-      $scope.camera();
-      expect(service.showAlert).toHaveBeenCalledWith
-          ('No Device!', 'Please choose your device in sidemenu.');
-
-    });
-
-
-
+    
   });
 
-  // test funtions when press shutdown button
+
+  // test funtions when press Shutdown button
   describe ('Shutdown ', function(){
+    it ('should handle with handleData function', function() {
+      spyOn($scope, 'handleData');
+      $scope.shutdown();
+      expect($scope.handleData).toHaveBeenCalledWith('shut-down');
+    });
     
-    it ('should be change state after that', function(){
-      spyOn (state,'go');
-      $scope.data.selectedDevice.name = "HIEN";
-      state.current.name = 'main-menu';
-      $scope.shutdown();
-      expect(state.go).toHaveBeenCalledWith ('shut-down');
+  });
+
+  // test funtions when press Present button
+  describe ('Present ', function(){
+    it ('should handle with handleData function', function() {
+      spyOn($scope, 'handleData');
+      $scope.present();
+      expect($scope.handleData).toHaveBeenCalledWith('presentation');
     });
-
-    it(' showAlert should be called if deviceName has not choosen', function() {
-      spyOn(service, 'showAlert');
-      state.current.name = 'main-menu';
-      $scope.shutdown();
-      expect(service.showAlert).toHaveBeenCalledWith
-          ('No Device!', 'Please choose your device in sidemenu.');
-
-    });
-
     
   });
 

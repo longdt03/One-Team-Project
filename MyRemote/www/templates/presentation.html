@@ -1,0 +1,18 @@
+<ion-header-bar class="bar-positive">
+  <button class="button button-icon button-clear ion-ios-arrow-left" ui-sref="main-menu"></button>
+  <h1 class="title">Slideshow Presentation</h1>
+</ion-header-bar>
+
+<ion-content>
+  <div class="content has-header">
+    <div class="padding">
+      <div class="item item-image">
+        <img ng-src="img/swipe.png" on-swipe-left="submit('prev_slide')" on-swipe-right="submit('next_slide')">
+      </div>
+      <div class="button-bar">
+        <a class="button button-raised button-positive ink" ng-click="submit('first_slide')">First Slide</a>
+        <a class="button button-raised button-positive ink" ng-click="submit('last_slide')">Last Slide</a>
+      </div>
+    </div>
+  </div>
+</ion-content>

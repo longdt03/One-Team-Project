@@ -32,4 +32,6 @@ function signupCtrl($scope, $state, Popup) {
       $scope.result = 'Signup failed - Retype password does not match.';
     }
   };
+
+  //ionic.material.ink.displayEffect();
 }

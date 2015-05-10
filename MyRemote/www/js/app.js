@@ -1,22 +1,13 @@
-// MyRemote App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 var firebaseUrl = 'https://one-app.firebaseio.com';
 
-// 'myremote.services' is found in services.js
-// 'myremote.controllers' is found in controllers.js
 angular.module('one', [
-  'ui.router',
-  'ionic', 
-  'one.controllers', 
-  'one.services', 
+  'ionic',
   'firebase',
-  'ngCordova'
+  'one.controllers',
+  'one.services'
 ])
 
-.run(function($ionicPlatform, $rootScope){
+.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -30,25 +21,19 @@ angular.module('one', [
     // Global Variables
     $rootScope.firebaseUrl = firebaseUrl;
 
-    //display status connection
+    // Display status connection
     var connectedRef = new Firebase(firebaseUrl + '/.info/connected');
-    connectedRef.on('value', function(snapshot){
-      if (snapshot.val() != true){
-        console.log('Disconnected');
-      } else {
+    connectedRef.on('value', function(snapshot) {
+      if (snapshot.val()) {
         console.log('Connected');
+      } else {
+        console.log('Disconnected');
       }
     });
   });
-
 })
 
-.config(function ($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
   // State to represent Login View
@@ -78,14 +63,22 @@ angular.module('one', [
     templateUrl: 'templates/about.html'
   })
 
-  .state('shut-down',{
+  .state('shut-down', {
     cache: false,
     url: '/shut-down',
     templateUrl: 'templates/shut-down.html',
     controller: 'ShutdownCtrl'
   })
 
-  .state('camera',{
+  .state('presentation', {
+    cache: false,
+    url: '/presentation',
+    templateUrl: 'templates/presentation.html',
+    controller: 'PresentCtrl'
+  })
+
+  .state('camera', {
+    cache: false,
     url: '/camera',
     templateUrl: 'templates/camera.html',
     controller: 'CameraCtrl'
@@ -94,3 +87,4 @@ angular.module('one', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 });
+

@@ -1,55 +1,77 @@
-<ion-side-menus class="ionic">
+<ion-side-menus>
   <!-- Center content -->
   <ion-side-menu-content>
-    <div class="bar bar-header bar-positive">
-      <button class="button button-icon icon ion-navicon flat" ng-click="toggleLeft()"></button>
-      <button class="button button-icon icon ion-android-more-vertical flat pull-right" ng-click="openPopover($event)"></button>
-      <h1 class="title fab-left">Menu</h1>
-    </div>
+    <ion-header-bar class="bar-positive">
+      <div class="buttons buttons-left header-item">
+        <span class="left-buttons">
+          <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
+        </span>
+      </div>
+      <h1 class="title">Menu</h1>
+      <div class="buttons buttons-right header-item">
+        <span class="right-buttons">
+          <button class="button button-icon button-clear ion-android-more-vertical button-right" ng-click="openPopover($event)"></button>
+        </span>
+      </div>
+    </ion-header-bar>
     
-    <div class="content has-header">
-      <div class="card">
-        <div ng-click="shutdown()">
-          <div class="item item-avatar item-text-wrap stable-bg" >
-            <span class="avatar shutdown"></span>
-            <strong>Shutdown Options</strong><br>
-            Shutdown, Restart, Log off, Hibernate
+    <ion-content class="has-header">
+      <div class="item card-item">
+        <div ng-click="shutdown()" class="card light-bg ink ink-dark">
+          <div class="item item-avatar item-text-wrap">
+            <span class="avatar" style="background-image: url('img/power.png');"></span>
+            <strong>Shutdown Options</strong>
+            <br>Shutdown, Restart, Log off, Hibernate
           </div>
         </div>
       </div>
-      <div class="card">
-        <div ng-click="camera()">
-          <div class="item item-avatar item-text-wrap stable-bg">
-            <span class="avatar camera"></span>
-            <strong>Camera</strong><br>
-            Capture photo from computer's camera
+      <div class="item card-item">
+        <div ng-click="present()" class="card light-bg ink ink-dark">
+          <div class="item item-avatar item-text-wrap">
+            <span class="avatar" style="background-image: url('img/presentation.png');"></span>
+            <strong>Slideshow Presentation</strong>
+            <br>A presentation remote control
           </div>
         </div>
       </div>
-    </div>
+      <div class="item card-item">
+        <div ng-click="camera()" class="card light-bg ink ink-dark">
+          <div class="item item-avatar item-text-wrap">
+            <span class="avatar" style="background-image: url('img/camera.png');"></span>
+            <strong>Camera</strong>
+            <br>Capture photo from computer's camera
+          </div>
+        </div>
+      </div>
+    </ion-content>        
   </ion-side-menu-content>
 
   <!-- Left menu -->
   <ion-side-menu side="left">
-    <div class="bar bar-header expanded bar-dark">
-      <h1 class="title">{{username}}</h1>
-    </div>
-    <div class="content has-header">
-      <div class="list">
-        <a class="item item-divider">
-          <strong class="grey">Selected Device: </strong>
-          {{data.selectedDevice.name || 'No Device'}}
-        </a>
-        <a class="item" ng-show= "device.online" ng-repeat="device in devices" ng-click="chooseDevice(device)">
-          {{device.name}}
-        </a>
+    <ion-header-bar class="dark-bg expanded" style="background: url('img/header.jpg') center; background-size: cover;">
+      <img src="img/profile_picture.png" class="avatar">
+      <div class="menu-bottom">
+        {{username || 'unknown error'}}
       </div>
-      <div class="list">
-        <a class="item item-divider"></a>
-        <a class="item" nav-clear menu-close ng-click="logOut()">
-          <strong class="grey">Log out</strong>
-        </a>
-      </div>
-    </div>
+    </ion-header-bar>
+    <ion-content class="stable-bg has-expanded-header">
+        <ion-list>
+          <ion-item>
+            <strong>Selected Device:</strong>
+            {{data.selectedDevice.name || 'No Device'}}
+          </ion-item>
+          <ion-item>
+            <strong>Devices list:</strong>
+            <div class="list list-inset stable-bg">
+              <a class="item dark nav-clear menu-close" ng-show="device.online" ng-repeat="device in devices" ng-click="chooseDevice(device)">
+                {{device.name}}
+              </a>
+            </div>
+          </ion-item>
+          <ion-item ng-click="logOut()">
+            <strong>Log out</strong>
+          </ion-item>
+      </ion-list>
+    </ion-content>
   </ion-side-menu>
 </ion-side-menus>

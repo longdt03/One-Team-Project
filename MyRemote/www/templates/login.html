@@ -1,37 +1,36 @@
-<ion-content class="scroll-bg padding">
-  <div class="padding">
-    <div class="padding" style="margin-top: 100px">
-      <div class="ionic">
-        <div class="padding">
-          <button class="button button-block button-assertive" ng-click="signInWithGoogle()">Login with Google+</button>
+<ion-view view-title="Login" align-title="left">
+  <ion-content style="background: url(img/login.png) center; background-size: cover; padding: 30% 3% 3% 3%">
+    <div class="card list">
+      <div class="calm-bg" style="padding: 20% 7% 1.5% 7%">
+        <p style="font-size: 1.1em">Sign in with OneRemote account</p>
+      </div>
+      <div class="padding">
+        <div>
+          <label class="item item-input item-floating-label">
+            <span class="input-label" style="font-size: 0.7em"><strong>EMAIL</strong></span>
+            <input type="text" placeholder="Email" ng-model="user.email">
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label" style="font-size: 0.7em"><strong>PASSWORD</strong></span>
+            <input type="password" placeholder="Password" ng-model="user.pass">
+          </label>
         </div>
-      </div>
-      <h4 class="text-center stable">OR</h4>
-      <div class="padding">
-        <label class="item item-input input-form light-border">
-          <!-- <i class="icon ion-email placeholder-icon"></i> -->
-          <span class="input-label"><strong class="stable">Email</strong></span>
-          <input style="color: white" ng-model="user.email" type="text">
-        </label>
-      </div>
-      <div class="padding">
-        <label class="item item-input input-form light-border">
-          <!-- <i class="icon ion-key placeholder-icon"></i> -->
-          <span class="input-label"><strong class="stable">Password</strong></span>
-          <input style="color: white" ng-model="user.pass" type="password">
-        </label>
-        <ion-checkbox style="color: white" ng-model="rememberMe.isChecked" class="transparency no-border">Remember me</ion-checkbox>
+          <div class="item item-checkbox">
+            <label class="checkbox checkbox-square">
+              <input type="checkbox" ng-model="rememberMe.isChecked"></label>
+            </label>
+            Remember me
+          </div>
 
-      </div>
-      <div class="ionic">
         <div class="padding">
-          <button class="button button-block button-positive" ng-click="signInWithPassword(user)">Login</button>
+          <button class="button button-clear button-small" ui-sref="sign-up" style="padding-left: 0px;" data-ink-opacity="0">
+            <strong class="positive">SIGN UP</strong>
+          </button>
+          <button class="button button-small button-positive ink pull-right" ng-click="signInWithPassword(user)">
+            Continue
+          </button>
         </div>
-      </div>
-      <div class="text-center stable">
-        <a ui-sref="sign-up">Sign up</a> |
-        <a >Forgot password?</a>
       </div>
     </div>
-  </div>
-</ion-content>
+  </ion-content>
+</ion-view>

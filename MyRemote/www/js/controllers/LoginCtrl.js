@@ -27,7 +27,6 @@ function loginCtrl(
   Popup
   ) {
 
-  $scope.message = '';
   var ref = new Firebase(firebaseUrl);
   $scope.rememberMe = {
     isChecked: RememberMe.isChecked()
@@ -59,17 +58,15 @@ function loginCtrl(
     $ionicLoading.hide();
     //notify when an error occurs
     if (error) {
-      $scope.message = 'Login failed'
       switch (error.code) {
         case 'NETWORK_ERROR':
-          $scope.message += ' Unable to contact the OneRemote Server';
+          var message = 'Unable to contact the OneRemote Server';
           Popup.showAlert('Login Failed!', message);
           break;
         default:
           Popup.showAlert('Login Failed!', error.message);
       }
     } else {
-      $scope.message = 'Login success';
       //when login success
       RememberMe.checked($scope.rememberMe.isChecked);
       if ($scope.rememberMe.isChecked) {
@@ -115,12 +112,11 @@ function loginCtrl(
   
   //sign in with email and pass 
   $scope.signInWithPassword = function(user) {
-    
     if(user && user.email && user.pass){
 
       //show loading when start login
       $ionicLoading.show({
-        template: '<ion-spinner icon="bubbles" class="spinner-positive"></ion-spinner>'
+        templateUrl: 'templates/loading-template.html'
       });
 
       // Log in with an email/password combination
@@ -132,7 +128,7 @@ function loginCtrl(
       ;
     } else {
       // notify when email or password is not filled
-      message = 'Please fill email and password.'
+      var message = 'Please fill email and password.'
       Popup.showAlert('Login Failed!', message);
     }
   };
@@ -142,4 +138,6 @@ function loginCtrl(
     $scope.provider = "google";
     signInWithProvider($scope.provider);
   };
+
+  //ionic.material.ink.displayEffect();
 }
