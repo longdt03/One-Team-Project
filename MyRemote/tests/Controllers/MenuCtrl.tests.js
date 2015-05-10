@@ -83,4 +83,37 @@ describe('MenuCtrl ', function() {
     
   });
 
+  describe('- handleData function: ', function() {
+    var service;
+    beforeEach(inject(function(Popup) {
+      service = Popup;
+    }));
+
+    //excute funtion with no device is choosen
+    it ('should have device name choosen before!', function() {
+      $scope.data.selectedDevice.name = '';
+      spyOn(service,'showAlert');
+      $scope.handleData('camera');
+      expect(service.showAlert).toHaveBeenCalledWith
+        ('No Device!', 'Please choose your device in sidemenu.');
+    });
+
+    it('should have correct state!', function() {
+      $scope.data.selectedDevice.name = 'HIEN';
+      spyOn(service,'showAlert');
+      $scope.handleData('');
+      expect(service.showAlert).toHaveBeenCalledWith
+        ('State was empty!', 'Please try again!');
+    });
+
+    //excute function with full object 
+    it ('should go to another state (camera)!', function() {
+      $scope.data.selectedDevice.name = 'HIEN';
+      spyOn(state, 'go');
+      $scope.handleData('camera');
+      expect(state.go).toHaveBeenCalledWith('camera');
+    });
+
+  })
+
 });
