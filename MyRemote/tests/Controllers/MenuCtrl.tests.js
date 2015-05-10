@@ -9,7 +9,6 @@ describe('MenuCtrl ', function() {
   };
 
   beforeEach(function() {
-    module('ui.router');
     module('ionic');
     module('one.services');
     module('one.controllers.menu');
@@ -18,12 +17,14 @@ describe('MenuCtrl ', function() {
     inject(function($injector) {
       $rootScope = $injector.get('$rootScope');
       $controller = $injector.get('$controller');
-      //$urlRouterProvider = $injector.get('$urlRouterProvider');
-      $scope = {};
+      state = $injector.get('$state');
+      $scope = $rootScope.$new (); 
+
           
       controller = $controller('MenuCtrl', {
         '$scope': $scope,
-        '$ionicSideMenuDelegate': $ionicSideMenuDelegate
+        '$ionicSideMenuDelegate': $ionicSideMenuDelegate,
+        '$state': state
       });
     });
   });
@@ -34,6 +35,14 @@ describe('MenuCtrl ', function() {
       expect($scope).toBeDefined();
   });
 
+  // test chose device function
+  it(' devices should be got!', function(){
+    var device = {name: 'HIEN'};
+    $scope.chooseDevice (device);
+    expect($scope.data.selectedDevice.name).toEqual(device.name);
+  });
+
+  // test toggleLeft
   describe ('toggleLeft function', function() {
     it('should be call!', function() {
       // create spy
@@ -43,21 +52,56 @@ describe('MenuCtrl ', function() {
     })
   });
 
+  // test funtions when press camera button
   describe ('Camera ', function(){
+    var service;
+    beforeEach(inject(function(Popup) {
+      service = Popup;
+    }));
+  
 
-    it(' devices should be got!', function(){
-      var device = {name: 'HIEN'};
-      $scope.chooseDevice (device);
-      expect($scope.data.selectedDevice.name).toEqual(device.name);
+    it ('should be change state after that', function(){
+      spyOn (state,'go');
+      $scope.data.selectedDevice.name = "HIEN";   
+      state.current.name = 'main-menu';   
+      $scope.camera();
+      expect(state.go).toHaveBeenCalledWith ('camera');
     });
 
-    // it('should have device be chosen ($rootScope)', inject(function($state) {
-      
-    //   $scope.data.selectedDevice.name = 'HIEN';
+    it(' showAlert should be called if deviceName has not choosen', function() {
+      spyOn(service, 'showAlert');
+      state.current.name = 'main-menu';
+      $scope.camera();
+      expect(service.showAlert).toHaveBeenCalledWith
+          ('No Device!', 'Please choose your device in sidemenu.');
 
-    //   $scope.shutdown ();
-    //   expect($state.is('shut-down')).toBe(true);
-    // }));
+    });
+
+
+
+  });
+
+  // test funtions when press shutdown button
+  describe ('Shutdown ', function(){
+    
+    it ('should be change state after that', function(){
+      spyOn (state,'go');
+      $scope.data.selectedDevice.name = "HIEN";
+      state.current.name = 'main-menu';
+      $scope.shutdown();
+      expect(state.go).toHaveBeenCalledWith ('shut-down');
+    });
+
+    it(' showAlert should be called if deviceName has not choosen', function() {
+      spyOn(service, 'showAlert');
+      state.current.name = 'main-menu';
+      $scope.shutdown();
+      expect(service.showAlert).toHaveBeenCalledWith
+          ('No Device!', 'Please choose your device in sidemenu.');
+
+    });
+
+    
   });
 
 });

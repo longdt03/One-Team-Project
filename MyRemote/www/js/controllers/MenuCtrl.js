@@ -49,9 +49,10 @@ function menuCtrl(
   
   //go to side menu left
   
-$scope.toggleLeft = function() {
+  $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
+
   //go to Shut down interface
   $scope.shutdown = function() {
     
