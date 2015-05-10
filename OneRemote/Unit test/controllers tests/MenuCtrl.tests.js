@@ -1,7 +1,7 @@
 describe('MenuCtrl ', function() {
 
   var $rootScope, $controllers,
-      controller, rootScope;
+      controller;
 
   //create a fake service
   var $ionicSideMenuDelegate = {
@@ -19,7 +19,6 @@ describe('MenuCtrl ', function() {
       $controller = $injector.get('$controller');
       state = $injector.get('$state');
       $scope = $rootScope.$new (); 
-
           
       controller = $controller('MenuCtrl', {
         '$scope': $scope,
@@ -54,54 +53,33 @@ describe('MenuCtrl ', function() {
 
   // test funtions when press camera button
   describe ('Camera ', function(){
-    var service;
-    beforeEach(inject(function(Popup) {
-      service = Popup;
-    }));
-  
-
-    it ('should be change state after that', function(){
-      spyOn (state,'go');
-      $scope.data.selectedDevice.name = "HIEN";   
-      state.current.name = 'main-menu';   
-      $scope.camera();
-      expect(state.go).toHaveBeenCalledWith ('camera');
-    });
-
-    it(' showAlert should be called if deviceName has not choosen', function() {
-      spyOn(service, 'showAlert');
-      state.current.name = 'main-menu';
-      $scope.camera();
-      expect(service.showAlert).toHaveBeenCalledWith
-          ('No Device!', 'Please choose your device in sidemenu.');
-
-    });
-
-
+     spyOn($scope, 'handleData');
+     $scope.camera();
+     expect($scope.handleData).toHaveBeenCalledWith('camera');
 
   });
 
-  // test funtions when press shutdown button
-  describe ('Shutdown ', function(){
+  // // test funtions when press shutdown button
+  // describe ('Shutdown ', function(){
     
-    it ('should be change state after that', function(){
-      spyOn (state,'go');
-      $scope.data.selectedDevice.name = "HIEN";
-      state.current.name = 'main-menu';
-      $scope.shutdown();
-      expect(state.go).toHaveBeenCalledWith ('shut-down');
-    });
+  //   it ('should be change state after that', function(){
+  //     spyOn (state,'go');
+  //     $scope.data.selectedDevice.name = "HIEN";
+  //     state.current.name = 'main-menu';
+  //     $scope.shutdown();
+  //     expect(state.go).toHaveBeenCalledWith ('shut-down');
+  //   });
 
-    it(' showAlert should be called if deviceName has not choosen', function() {
-      spyOn(service, 'showAlert');
-      state.current.name = 'main-menu';
-      $scope.shutdown();
-      expect(service.showAlert).toHaveBeenCalledWith
-          ('No Device!', 'Please choose your device in sidemenu.');
+  //   it(' showAlert should be called if deviceName has not choosen', function() {
+  //     spyOn(service, 'showAlert');
+  //     state.current.name = 'main-menu';
+  //     $scope.shutdown();
+  //     expect(service.showAlert).toHaveBeenCalledWith
+  //         ('No Device!', 'Please choose your device in sidemenu.');
 
-    });
+  //   });
 
     
-  });
+  // });
 
 });
