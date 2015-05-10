@@ -114,6 +114,34 @@ describe('MenuCtrl ', function() {
       expect(state.go).toHaveBeenCalledWith('camera');
     });
 
+  });
+
+  describe('logOut : ', function() {
+    it ('should call $state.go() function!', function() {
+      spyOn(state, 'go');
+      $scope.logOut ();
+      expect(state.go).toHaveBeenCalledWith('login');
+    });
+
+    it('should excute unauth method!', function() {
+      var ref = new Firebase(firebaseUrl);
+      spyOn(state,'go');
+      $scope.logOut();
+      ref.onAuth(function(authData) {
+        if (authData) $scope.check = false;
+        else $scope.check = true;
+      });
+
+      expect ($scope.check).toEqual(true);
+    })
+
+    // it ('should have onAuth method failed!', function() {
+    //   var ref = new Firebase (firebaseUrl);
+    //   state.current.name = 'main-menu';
+    //   $scope.logOut();
+
+    //   expect(ref.onAuth(function(authData){})).toBe(null);
+    // })
   })
 
 });
