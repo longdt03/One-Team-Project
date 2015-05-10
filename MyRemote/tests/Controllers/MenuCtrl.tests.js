@@ -1,8 +1,5 @@
 describe('MenuCtrl ', function() {
 
-  var $rootScope, $controllers,
-      controller, rootScope;
-
   //create a fake service
   var $ionicSideMenuDelegate = {
     toggleLeft: function () {}
@@ -133,15 +130,7 @@ describe('MenuCtrl ', function() {
       });
 
       expect ($scope.check).toEqual(true);
-    })
-
-    // it ('should have onAuth method failed!', function() {
-    //   var ref = new Firebase (firebaseUrl);
-    //   state.current.name = 'main-menu';
-    //   $scope.logOut();
-
-    //   expect(ref.onAuth(function(authData){})).toBe(null);
-    // })
-  })
+    });
+  });
 
 });

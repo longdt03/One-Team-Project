@@ -3,8 +3,7 @@ angular
   .controller('CameraCtrl', [
     '$scope', 
     '$firebase', 
-    '$rootScope', 
-    '$http', 
+    '$rootScope',  
     '$ionicLoading', 
     '$timeout',
     'Popup',
@@ -15,13 +14,12 @@ function cameraCtrl(
   $scope, 
   $firebase, 
   $rootScope, 
-  $http, 
   $ionicLoading, 
   $timeout, 
   Popup
   ) {
-  var ref = new Firebase (firebaseUrl);
-  var refChild = ref.child($rootScope.id).child($rootScope.deviceName);
+  var refChild = new Firebase (firebaseUrl + '/' + $rootScope.id 
+                          + '/' + $rootScope.deviceName);
 
   // placeholder image
   $scope.data = 'img/placeholder.png';
@@ -29,7 +27,7 @@ function cameraCtrl(
   
   $scope.submit = function() {
     // show waiting animation
-    showLoading();
+    $scope.showLoading();
 
     //update data changing
     refChild.child('data').on('value', function(snapshot) {
@@ -42,7 +40,7 @@ function cameraCtrl(
     $timeout(function() {
       if (!$scope.data)
       Popup.showAlert('Network error!', 'Cannot get image.');
-      hideLoading();
+      $scope.hideLoading();
     }, 20000);
     
     //send request to server
@@ -58,15 +56,15 @@ function cameraCtrl(
     });
   };
 
-  var showLoading = function() {
+  $scope.showLoading = function() {
     $ionicLoading.show({
       templateUrl: 'templates/loading-template.html'
     });
   }; 
 
-  var hideLoading = function() {
+  $scope.hideLoading = function() {
     $ionicLoading.hide();
   };
 
-  ionic.material.ink.displayEffect();
+  //ionic.material.ink.displayEffect();
 }
