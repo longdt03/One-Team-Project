@@ -29,20 +29,6 @@ function cameraCtrl(
     // show waiting animation
     $scope.showLoading();
 
-    //update data changing
-    refChild.child('data').on('value', function(snapshot) {
-      if(snapshot) {
-        $scope.data = snapshot.val();
-        console.log(snapshot.val());
-      }
-    });
-
-    $timeout(function() {
-      if (!$scope.data)
-      Popup.showAlert('Network error!', 'Cannot get image.');
-      $scope.hideLoading();
-    }, 20000);
-    
     //send request to server
     var time = new Date();
     refChild.update({
@@ -54,6 +40,20 @@ function cameraCtrl(
         Popup.showAlert('Failed!', 'Cannot send request.');
       }
     });
+
+    //update data changing
+    refChild.child('data').on('value', function(snapshot) {
+      if(snapshot) {
+        $scope.data = snapshot.val();
+      }
+    });
+
+    $timeout(function() {
+      if ($scope.data === 'img/placeholder.png')
+        Popup.showAlert('Network error!', 'Cannot get image.');
+      $scope.hideLoading();
+    }, 20000);
+    
   };
 
   $scope.showLoading = function() {

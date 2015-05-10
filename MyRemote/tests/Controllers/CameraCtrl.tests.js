@@ -11,7 +11,7 @@ describe('CameraCtrl:', function () {
       $scope = $rootScope.$new (); 
 
           
-      controller = $controller('CameraCtrl', {
+      $controller('CameraCtrl', {
         '$scope': $scope,
       });
     }); 
@@ -31,11 +31,32 @@ describe('CameraCtrl:', function () {
       expect($scope.showLoading).toHaveBeenCalled();
     })
 
+    it('should announce when there is no data to recieve', function() {
+      spyOn(service,'showAlert');
+      $scope.submit();
+      expect(service.showAlert).not.toHaveBeenCalledWith
+        ('Network error!', 'Cannot get image.');
+    })
 
-    // it ('should recieve a image from database', function() {
+    it('hideLoading just run after a long time waiting!', function() {
+      spyOn($scope, 'hideLoading');
+      $scope.data = '';
+      $scope.submit();
+      expect($scope.hideLoading).not.toHaveBeenCalled();
+    })
 
-    // })
-
+    //test update data to firebase
+    it('should not have request update on firebase!', function() {
+      
+      var time = new Date();
+    
+      ref.child('request').on('value', function(snapshot) {
+          $scope.request = snapshot.val();
+      })
+      var request = 'capture|' + time.getTime().toString();
+  
+      expect($scope.request).not.toEqual(request);
+    })
 
   })
 
