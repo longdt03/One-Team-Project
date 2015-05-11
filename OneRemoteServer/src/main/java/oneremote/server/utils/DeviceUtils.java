@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.utils;
+package oneremote.server.utils;
 
-import com.oneproject.server.models.Device;
+import oneremote.server.models.Device;
 import java.net.UnknownHostException;
 
 /**

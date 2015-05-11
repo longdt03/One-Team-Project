@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.ui;
+package oneremote.server.ui;
 
-import com.oneproject.server.helper.TimeHelper;
+import oneremote.server.helper.TimeHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;

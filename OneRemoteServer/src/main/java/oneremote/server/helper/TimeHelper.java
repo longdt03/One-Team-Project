@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.helper;
+package oneremote.server.helper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.models;
+package oneremote.server.models;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.snapshot.Node;
-import com.oneproject.server.core.Application;
-import com.oneproject.server.helper.Config;
-import com.oneproject.server.utils.FirebaseAdapter;
+import oneremote.server.core.Application;
+import oneremote.server.helper.Config;
+import oneremote.server.utils.FirebaseAdapter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;

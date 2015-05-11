@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.utils;
+package oneremote.server.utils;
 
 import com.firebase.client.Firebase;
-import com.oneproject.server.helper.Config;
+import oneremote.server.helper.Config;
 
 /**
  *

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.oneproject.server.models;
+package oneremote.server.models;
 
 import java.util.HashMap;
 
