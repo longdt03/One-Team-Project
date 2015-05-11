@@ -34,7 +34,7 @@ describe('MenuCtrl ', function() {
       expect($scope).toBeDefined();
   });
 
-  // test chose device function
+  // test choose device function
   it(' devices should be got!', function(){
     var device = {name: 'HIEN'};
     $scope.chooseDevice (device);
