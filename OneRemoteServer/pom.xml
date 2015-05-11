@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.oneproject.server.core</groupId>
+    <groupId>oneremote.server.core</groupId>
     <artifactId>OneRemoteServer</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
@@ -20,8 +20,8 @@
                     <useDefaultManifestFile>true</useDefaultManifestFile>
                     <archive>
                         <manifest>
-                            <mainClass>com.oneproject.server.core.Application</mainClass>
-                            <packageName>com.oneproject.server.core</packageName>
+                            <mainClass>oneremote.server.core.Application</mainClass>
+                            <packageName>oneremote.server.core</packageName>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>classes/</classpathPrefix>                            
                         </manifest>
@@ -40,7 +40,7 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                         <manifest>
-                            <mainClass>com.oneproject.server.core.Application</mainClass>
+                            <mainClass>oneremote.server.core.Application</mainClass>
                         </manifest>
                     </archive>
  

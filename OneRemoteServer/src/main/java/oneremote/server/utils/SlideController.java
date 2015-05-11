@@ -13,15 +13,15 @@ import java.awt.event.KeyEvent;
  *
  * @author Thanh Long
  */
-public class SlideControler {
+public class SlideController {
 
-    private Robot controler;
-    private int buttonDown = KeyEvent.VK_DOWN;
-    private int buttonUp = KeyEvent.VK_UP;
-    private int buttonHome = KeyEvent.VK_HOME;
-    private int buttonEnd = KeyEvent.VK_END;
+    private final Robot controler;
+    private final int buttonDown = KeyEvent.VK_DOWN;
+    private final int buttonUp = KeyEvent.VK_UP;
+    private final int buttonHome = KeyEvent.VK_HOME;
+    private final int buttonEnd = KeyEvent.VK_END;
 
-    public SlideControler() throws AWTException {
+    public SlideController() throws AWTException {
         this.controler = new Robot();
     }
 

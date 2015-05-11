@@ -7,7 +7,7 @@ package oneremote.server.models;
 
 import oneremote.server.helper.Config;
 import oneremote.server.utils.PicasaUtils;
-import oneremote.server.utils.SlideControler;
+import oneremote.server.utils.SlideController;
 import oneremote.server.utils.WebcamUtils;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class Action {
 
     private WebcamUtils webcam;
     private PicasaUtils picasaUploader;
-    private SlideControler slideControler;
+    private SlideController slideControler;
     
     public Action() throws Exception {
         //=>Khoi tao Webcam 
@@ -28,7 +28,7 @@ public class Action {
         //=> Khoi tao GooglePicasa Uploader
         picasaUploader = new PicasaUtils();
         //=> Khoi tao SlideControler
-        slideControler = new SlideControler();
+        slideControler = new SlideController();
     }
 
     public void doShutdown(int second) throws IOException {

@@ -155,7 +155,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
         login.loginWithEmailPassword(email, password, new Login.OnRequestListener() {
             @Override
             public void onLoading() {
-                loadingDialog.setVisible(true);
+                loadingDialog.showLoading();
                 loginFrame.setEnableLoginButton(false);
                 System.out.println("loading...");
             }
@@ -164,7 +164,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
             public void onSuccess() {
                 try {
                     System.out.println("Success");
-                    loadingDialog.setVisible(false);
+                    loadingDialog.hideLoading();
                     loginFrame.setLoginStatus(Config.LOGIN_SUCCESS);
                     Thread.sleep(2000);
                     loginFrame.setVisible(false);
@@ -176,7 +176,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
 
             @Override
             public void onFail() {
-                loadingDialog.setVisible(false);
+                loadingDialog.hideLoading();
                 loginFrame.setEnableLoginButton(true);
                 loginFrame.setLoginStatus(Config.LOGIN_FAIL);
                 System.out.println("Fail");
