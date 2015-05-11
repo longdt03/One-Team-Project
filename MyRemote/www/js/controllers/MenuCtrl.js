@@ -39,7 +39,7 @@ function menuCtrl(
   };  
 
   // choose device from list
-  $scope.choseDevice = function(device) {
+  $scope.chooseDevice = function(device) {
     $scope.data.selectedDevice = device;
     $rootScope.deviceName = device.name;
   };
