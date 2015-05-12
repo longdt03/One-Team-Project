@@ -18,6 +18,7 @@ import oneremote.server.ui.MainUI;
 import oneremote.server.utils.FirebaseAdapter;
 import oneremote.server.utils.NetworkUtils;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,7 +44,7 @@ public class Application implements ChildEventListener, MainUI.MainUIListener, L
 
     //<editor-fold defaultstate="collapsed" desc="Init Properties">
     //=> Khoi tao giao dien
-    private void initUI() throws InterruptedException {
+    private void initUI() throws InterruptedException, IOException {
         mainUI = new MainUI(this);
         loginFrame = new LoginFrame(this);
         loadingDialog = new LoadingDialog(loginFrame);

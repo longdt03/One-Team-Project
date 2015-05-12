@@ -5,9 +5,14 @@
  */
 package oneremote.server.ui;
 
+import java.awt.Image;
 import oneremote.server.helper.TimeHelper;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -18,7 +23,7 @@ public class MainUI extends JFrame implements ActionListener {
 
     private MainUIListener listener;
 
-    public MainUI(MainUIListener listener) {
+    public MainUI(MainUIListener listener) throws IOException {
         super("One Remote Server");
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -102,7 +107,7 @@ public class MainUI extends JFrame implements ActionListener {
         this.txtLog.append(TimeHelper.getCurrentTime() + ": " + log + "\n");
     }
     
-    private void createAndShowUI() {
+    private void createAndShowUI() throws IOException {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("System".equals(info.getName())) {
@@ -113,6 +118,8 @@ public class MainUI extends JFrame implements ActionListener {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        BufferedImage image = ImageIO.read(this.getClass().getResource("/icon.jpg"));
+        this.setIconImage(image);
         this.setLocationRelativeTo(null);
     }
 
