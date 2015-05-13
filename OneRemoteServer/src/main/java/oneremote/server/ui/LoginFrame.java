@@ -7,14 +7,19 @@ package oneremote.server.ui;
 
 import oneremote.server.helper.Config;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -26,7 +31,7 @@ public class LoginFrame extends JFrame {
     private LoginListener loginListener;
     private HashMap<String, Color> actionMsg;
 
-    public LoginFrame(final LoginListener listener) {
+    public LoginFrame(final LoginListener listener) throws IOException {
         super("One Remote Server - Login");
         initComponents();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -53,7 +58,7 @@ public class LoginFrame extends JFrame {
     }
 
     //=> Khoi tao giao dien
-    private void createAndShowUI() {
+    private void createAndShowUI() throws IOException {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("System".equals(info.getName())) {
@@ -64,6 +69,8 @@ public class LoginFrame extends JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        BufferedImage image = ImageIO.read(this.getClass().getResource("/icon.jpg"));
+        this.setIconImage(image);
         this.setLocationRelativeTo(null);
     }
 
