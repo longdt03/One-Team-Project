@@ -8,8 +8,9 @@ One Remote README
 3. [Requirement Software](#requirement-software)
 4. [Functions](#functions)
 5. [Usage](#usage)
-6. [Feedback](#feedback)
-7. [Test](#test)
+6. [Test](#test)
+7. [Documents](#documents)
+8. [Feedback](#feedback)
 
 
 ----------------------------------------------------------------------
@@ -47,7 +48,7 @@ If you need more information about what we have used, follow this link :
 Finally, we have videos for our versions: 
 + Our Youtube Channel:  [One Team Youtube Channel](https://www.youtube.com/channel/UC-1-l6-coSMVQ14GVwtTPmA)
 - [Sprint 2](https://www.youtube.com/watch?v=ExW3Xpie2Pg&feature=youtu.be)
-- [Sprint 3]()
+- [Sprint 3](https://www.youtube.com/watch?v=CmxY_bRGBtw&feature=youtu.be)
 
 
 
@@ -57,14 +58,15 @@ Finally, we have videos for our versions:
 To use our program, we need you to have all the following softwares:
  1. Android, IOS Operating System
  2. Internet Connection(because our application operates through Internet)
-To download Android, you can follow this link: 
+To download Android, you can follow this link: <br>
 [Android](http://developer.android.com/sdk/index.html)	
+ 3. Windows XP or more 
 
 
 ----------------------------------------------------------------------
 ### Functions
 ----------------------------------------------------------------------
-Now, we have two functions: <br>
+Now, we have three functions: <br>
 1. Shutdown Options
 User can choose these tasks:
 * Shutdown
@@ -78,6 +80,9 @@ computer instantly.
 
 2.Camera 
 User can send request to computer to take a photo from webcam. The photo displays after.
+<br>
+3. SlideShow Controller
+User can control slide using his android smartphone easily
 
 
 ----------------------------------------------------------------------
@@ -97,15 +102,60 @@ If you want to shutdown a computer :
    - Second, you have to choose Timer
    - Finally, you have to click "ShutDown" Button
 You do the same with Restart, Log Off and Hibernate.However, in Hibernate and Log Off, it is not necessary to set Timer because we do it instantly
+
 2. Camera
-First, you have to choose Camera Function
-Second, you click "Camera" Button below
-Finally, you get an image that the computer has just taken
+<br>First, you have to choose Camera Function
+<br>Second, you click "Camera" Button below
+<br>Finally, you get an image that the computer has just taken
+
+3. Slideshow controller
+<br>First, you have to choose slideshow controller
+<br>Second, you can see "First Slide" "Last Slide", click to go to first slide and last slide of the ppw slide. 
+<br>Besides, you can control slide by gliding left or right. Left to return to the following slide and right to move to next slide
 
 
 If you want more information, go check specified folder.
 
 -----------------------------------------------------------------------
+
+### Test
+-----------------------------------------------------------------------
+
+* We have test cases ,features folder and tests folder to test.
+* In test cases folder, we have many test cases to test our app. We write it in "Test Cases" excel file.
+   - Login: Test Cases For Login Function
+   - Logout: Test Cases for LogOut Function
+   - Create User: Test Cases for Create New User Function
+   - Shutdown: Test Cases for ShutDown Function 
+   - Camera: Test Cases for Camera Function
+* In tests folder, we have 49 unit tests including :
+   - Login functions
+   - Shutdown functions
+   - Service functions
+   - Menu functions
+   - Signup functions
+   - Slideshow controller functions
+* Test Coverage: 
+  Our test coverage is more than 95 %
+
+### Documents
+-----------------------------------------------------------------------
+1. Behavior Documents
+   <br>This section include activity diagrams and use case diagrams. 
+   <br>Activity Diagrams: to show how our functions works 
+2. Code Style
+   <br>This folder include Angularjs Code Style and Java Code Style we use
+3. Meeting Documents
+   <br>To show our meeting during the time we do this project
+4. Privacy Policy
+   <br>Include our Privacy Policy
+5. Requirement System Documents
+   <br>To guide people more specifically about our software. In addition, we have naming version rules.
+6. Technical Documents
+   <br>To guide people how our program works and steps to use our software
+7. Testing Documents
+   <br>Including test plan , test cases and test result and coverage for our software
+
 ## FeedBack
 -----------------------------------------------------------------------
 
@@ -130,29 +180,4 @@ our Technical Support staff at this mail: oneteam.uet@gmail.com
 * Photos sometimes do not display.
 * Animations sometimes do not work.
 * User cannot login sometimes
-
-### Test
------------------------------------------------------------------------
-
-* We have test cases ,features folder and tests folder to test.
-* In test cases folder, we have many test cases to test our app. We write it in "Test Cases" excel file.
-   - Login: Test Cases For Login Function
-   - Logout: Test Cases for LogOut Function
-   - Create User: Test Cases for Create New User Function
-   - Shutdown: Test Cases for ShutDown Function 
-   - Camera: Test Cases for Camera Function
-* In tests folder, we have 32 unit tests including :
-   - Login functions
-   - Shutdown functions
-   - Service functions
-   - Menu functions
-   - Signup functions
-* In features folder, we have been writing our code for automated test
-    1. Features are written with the [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
-    2. Support files let you setup the environment in which steps will be run, and define step definitions.
-    3. *World* is a constructor function with utility properties, destined to be used in step definitions
-    	// support/world.js
-    4. Step definitions are the glue between features written in Gherkin and the actual *SUT* (*system under test*). They are 	written in JavaScript.
-    5. Hooks can be used to prepare and clean the environment before and after each scenario is executed.
-
 
